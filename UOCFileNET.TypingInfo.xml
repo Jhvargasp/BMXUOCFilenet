@@ -1,0 +1,1393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project name="UOCFileNET" version="1">
+  <Class name="clsRegPersist">
+    <Sub name="DeleteSettings" type="( String, String ) -&gt; Void" consistent="True">
+      <Declared type="( String, String ) -&gt; Void" />
+      <Detected type="(String,String) -&gt; Void" />
+      <Suggested type="( String, String ) -&gt; Void" />
+      <Variable name="sAppName" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="sSection" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+    </Sub>
+    <Sub name="GetSettings" type="( String, String, VB.Form ) -&gt; Void" consistent="False">
+      <Declared type="( String, String, VB.Form ) -&gt; Void" />
+      <Detected type="(String,String,{UOCFilenet.frmSettings,VB.Form}) -&gt; Void" />
+      <Suggested type="( String, String, UOCFilenet.frmSettings ) -&gt; Void" />
+      <Variable name="fFrm" type="VB.Form" consistent="False">
+        <Declared type="VB.Form" />
+        <Detected type="{UOCFilenet.frmSettings,VB.Form}" />
+        <Suggested type="UOCFilenet.frmSettings" />
+      </Variable>
+      <Variable name="oCtrl" type="VB.Control" consistent="True">
+        <Declared type="VB.Control" />
+        <Detected type="VB.Control" />
+        <Suggested type="VB.Control" />
+      </Variable>
+      <Variable name="sAppName" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="sSection" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="sTemp" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+    </Sub>
+    <Sub name="SaveSettings" type="( String, String, VB.Form ) -&gt; Void" consistent="False">
+      <Declared type="( String, String, VB.Form ) -&gt; Void" />
+      <Detected type="(String,String,{VB.Form,UOCFilenet.frmSettings}) -&gt; Void" />
+      <Suggested type="( String, String, UOCFilenet.frmSettings ) -&gt; Void" />
+      <Variable name="fFrm" type="VB.Form" consistent="False">
+        <Declared type="VB.Form" />
+        <Detected type="{VB.Form,UOCFilenet.frmSettings}" />
+        <Suggested type="UOCFilenet.frmSettings" />
+      </Variable>
+      <Variable name="oCtrl" type="VB.Control" consistent="True">
+        <Declared type="VB.Control" />
+        <Detected type="VB.Control" />
+        <Suggested type="VB.Control" />
+      </Variable>
+      <Variable name="sAppName" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="sSection" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+    </Sub>
+  </Class>
+  <Class name="clsSimpleQuery">
+    <Sub name="BindToLib" type="( IDMObjects.Library, VBA.Collection, String ) -&gt; Void" consistent="True">
+      <Declared type="( IDMObjects.Library, VBA.Collection, String ) -&gt; Void" />
+      <Detected type="(IDMObjects.Library,VBA.Collection,String) -&gt; Void" />
+      <Suggested type="( IDMObjects.Library, VBA.Collection, String ) -&gt; Void" />
+      <Variable name="oNewLib" type="IDMObjects.Library" consistent="True">
+        <Declared type="IDMObjects.Library" />
+        <Detected type="IDMObjects.Library" />
+        <Suggested type="IDMObjects.Library" />
+      </Variable>
+      <Variable name="oTmp" type="String" consistent="True">
+        <Declared type="Variant" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="pColHeadings" type="VBA.Collection" consistent="True">
+        <Declared type="VBA.Collection" />
+        <Detected type="VBA.Collection" />
+        <Suggested type="VBA.Collection" />
+      </Variable>
+      <Variable name="sClass" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="sClasses" type="Array( String )" consistent="True">
+        <Declared type="Array( String )" />
+        <Detected type="Array( String )" />
+        <Suggested type="Array( String )" />
+      </Variable>
+    </Sub>
+    <Variable name="cColHeadings" type="VBA.Collection" consistent="True">
+      <Declared type="VBA.Collection" />
+      <Detected type="VBA.Collection" />
+      <Suggested type="VBA.Collection" />
+    </Variable>
+    <Variable name="CmdEjec" type="ADODB.Command" consistent="True">
+      <Declared type="ADODB.Command" />
+      <Detected type="ADODB.Command" />
+      <Suggested type="ADODB.Command" />
+    </Variable>
+    <Sub name="ExecQuery" type="( IDMListView.IDMListView, String, String, Integer ) -&gt; Void" consistent="False">
+      <Declared type="( IDMListView.IDMListView, String, String, Integer ) -&gt; Void" />
+      <Detected type="(IDMListView.IDMListView,String,String,{ADODB.ADO_LONGPTR,Integer,Byte}) -&gt; Void" />
+      <Suggested type="( IDMListView.IDMListView, String, String, Variant ) -&gt; Void" />
+      <Variable name="IDMLView" type="IDMListView.IDMListView" consistent="True">
+        <Declared type="IDMListView.IDMListView" />
+        <Detected type="IDMListView.IDMListView" />
+        <Suggested type="IDMListView.IDMListView" />
+      </Variable>
+      <Variable name="iMaxRows" type="Integer" consistent="False">
+        <Declared type="Integer" />
+        <Detected type="{ADODB.ADO_LONGPTR,Integer,Byte}" />
+        <Suggested type="Variant" />
+      </Variable>
+      <Variable name="sFolderName" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="{String,Boolean}" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="sWhereClause" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+    </Sub>
+    <Variable name="oMiBD" type="ADODB.Connection" consistent="True">
+      <Declared type="ADODB.Connection" />
+      <Detected type="ADODB.Connection" />
+      <Suggested type="ADODB.Connection" />
+    </Variable>
+    <Variable name="oPropDescs" type="IDMObjects.PropertyDescriptions" consistent="False">
+      <Declared type="IDMObjects.PropertyDescriptions" />
+      <Detected type="{IDMObjects.PropertyDescriptions,IDMObjects.IFnPropertyDescriptionsDual}" />
+      <Suggested type="Variant" />
+    </Variable>
+    <Variable name="oQueryLib" type="IDMObjects.Library" consistent="True">
+      <Declared type="IDMObjects.Library" />
+      <Detected type="IDMObjects.Library" />
+      <Suggested type="IDMObjects.Library" />
+    </Variable>
+    <Variable name="oRS" type="ADODB.Recordset" consistent="True">
+      <Declared type="ADODB.Recordset" />
+      <Detected type="ADODB.Recordset" />
+      <Suggested type="ADODB.Recordset" />
+    </Variable>
+    <Variable name="sConnect" type="String" consistent="True">
+      <Declared type="String" />
+      <Detected type="String" />
+      <Suggested type="String" />
+    </Variable>
+    <Sub name="ShowResults" type="( IDMListView.IDMListView ) -&gt; Void" consistent="True">
+      <Declared type="( IDMListView.IDMListView ) -&gt; Void" />
+      <Detected type="(IDMListView.IDMListView) -&gt; Void" />
+      <Suggested type="( IDMListView.IDMListView ) -&gt; Void" />
+      <Variable name="IDMLView" type="IDMListView.IDMListView" consistent="True">
+        <Declared type="IDMListView.IDMListView" />
+        <Detected type="IDMListView.IDMListView" />
+        <Suggested type="IDMListView.IDMListView" />
+      </Variable>
+      <Variable name="oTmp" type="String" consistent="True">
+        <Declared type="Variant" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="VarPaso" type="Double" consistent="True">
+        <Declared type="Variant" />
+        <Detected type="Double" />
+        <Suggested type="Double" />
+      </Variable>
+    </Sub>
+    <Variable name="sQuery" type="String" consistent="True">
+      <Declared type="String" />
+      <Detected type="String" />
+      <Suggested type="String" />
+    </Variable>
+    <Sub name="UpdateQuery" type="( IDMObjects.Library, String, IDMListView.IDMListView ) -&gt; Void" consistent="True">
+      <Declared type="( IDMObjects.Library, String, IDMListView.IDMListView ) -&gt; Void" />
+      <Detected type="(IDMObjects.Library,String,IDMListView.IDMListView) -&gt; Void" />
+      <Suggested type="( IDMObjects.Library, String, IDMListView.IDMListView ) -&gt; Void" />
+      <Variable name="DirWinTemp" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="i" type="Integer" consistent="False">
+        <Declared type="Integer" />
+        <Detected type="{Long,Integer,Byte}" />
+        <Suggested type="Long" />
+      </Variable>
+      <Variable name="IDMLView" type="IDMListView.IDMListView" consistent="True">
+        <Declared type="IDMListView.IDMListView" />
+        <Detected type="IDMListView.IDMListView" />
+        <Suggested type="IDMListView.IDMListView" />
+      </Variable>
+      <Variable name="oNewLib" type="IDMObjects.Library" consistent="True">
+        <Declared type="IDMObjects.Library" />
+        <Detected type="IDMObjects.Library" />
+        <Suggested type="IDMObjects.Library" />
+      </Variable>
+      <Variable name="PropDesc" type="IDMObjects.PropertyDescription" consistent="True">
+        <Declared type="IDMObjects.PropertyDescription" />
+        <Detected type="IDMObjects.PropertyDescription" />
+        <Suggested type="IDMObjects.PropertyDescription" />
+      </Variable>
+      <Variable name="Salvar" type="Boolean" consistent="True">
+        <Declared type="Boolean" />
+        <Detected type="Boolean" />
+        <Suggested type="Boolean" />
+      </Variable>
+      <Variable name="sClass" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="sClasses" type="Array( String )" consistent="True">
+        <Declared type="Array( String )" />
+        <Detected type="Array( String )" />
+        <Suggested type="Array( String )" />
+      </Variable>
+    </Sub>
+  </Class>
+  <Form name="FrmFileNET">
+    <Variable name="_SSTab1_TabPage0" type="TabPage" consistent="True">
+      <Declared type="TabPage" />
+      <Detected type="TabPage" />
+      <Suggested type="TabPage" />
+    </Variable>
+    <Variable name="_SSTab1_TabPage1" type="TabPage" consistent="True">
+      <Declared type="TabPage" />
+      <Detected type="TabPage" />
+      <Suggested type="TabPage" />
+    </Variable>
+    <Variable name="_SSTab1_TabPage2" type="TabPage" consistent="True">
+      <Declared type="TabPage" />
+      <Detected type="TabPage" />
+      <Suggested type="TabPage" />
+    </Variable>
+    <Variable name="AddNote" type="VB.CommandButton" consistent="True">
+      <Declared type="VB.CommandButton" />
+      <Detected type="VB.CommandButton" />
+      <Suggested type="VB.CommandButton" />
+    </Variable>
+    <Sub name="AddNote_Click" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+      <Variable name="oAnno" type="IDMObjects.Annotation" consistent="True">
+        <Declared type="IDMObjects.Annotation" />
+        <Detected type="IDMObjects.Annotation" />
+        <Suggested type="IDMObjects.Annotation" />
+      </Variable>
+      <Variable name="pg" type="Long" consistent="True">
+        <Declared type="Variant" />
+        <Detected type="Long" />
+        <Suggested type="Long" />
+      </Variable>
+    </Sub>
+    <Variable name="Approve" type="VB.CommandButton" consistent="True">
+      <Declared type="VB.CommandButton" />
+      <Detected type="VB.CommandButton" />
+      <Suggested type="VB.CommandButton" />
+    </Variable>
+    <Sub name="Approve_Click" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+    </Sub>
+    <Variable name="Bande" type="Byte" consistent="True">
+      <Declared type="Variant" />
+      <Detected type="Byte" />
+      <Suggested type="Byte" />
+    </Variable>
+    <Variable name="BtnDelete" type="Threed.SSCommand" consistent="True">
+      <Declared type="Threed.SSCommand" />
+      <Detected type="Threed.SSCommand" />
+      <Suggested type="Threed.SSCommand" />
+    </Variable>
+    <Sub name="BtnDelete_Click" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+    </Sub>
+    <Variable name="BtnMail" type="Threed.SSCommand" consistent="True">
+      <Declared type="Threed.SSCommand" />
+      <Detected type="Threed.SSCommand" />
+      <Suggested type="Threed.SSCommand" />
+    </Variable>
+    <Sub name="BtnMail_Click" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+    </Sub>
+    <Variable name="BtnNave" type="Threed.SSCommand" consistent="True">
+      <Declared type="Threed.SSCommand" />
+      <Detected type="Threed.SSCommand" />
+      <Suggested type="Threed.SSCommand" />
+    </Variable>
+    <Sub name="BtnNave_Click" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+    </Sub>
+    <Variable name="BtnPrint" type="VB.CommandButton" consistent="True">
+      <Declared type="VB.CommandButton" />
+      <Detected type="VB.CommandButton" />
+      <Suggested type="VB.CommandButton" />
+    </Variable>
+    <Sub name="BtnPrint_Click" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+    </Sub>
+    <Variable name="BtnRotar1" type="Threed.SSCommand" consistent="True">
+      <Declared type="Threed.SSCommand" />
+      <Detected type="Threed.SSCommand" />
+      <Suggested type="Threed.SSCommand" />
+    </Variable>
+    <Sub name="BtnRotar1_Click" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+    </Sub>
+    <Variable name="BtnRotar2" type="Threed.SSCommand" consistent="True">
+      <Declared type="Threed.SSCommand" />
+      <Detected type="Threed.SSCommand" />
+      <Suggested type="Threed.SSCommand" />
+    </Variable>
+    <Sub name="BtnRotar2_Click" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+    </Sub>
+    <Variable name="BtnSalir" type="Threed.SSCommand" consistent="True">
+      <Declared type="Threed.SSCommand" />
+      <Detected type="Threed.SSCommand" />
+      <Suggested type="Threed.SSCommand" />
+    </Variable>
+    <Sub name="BtnSalir_Click" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+    </Sub>
+    <Variable name="BtnSalvar" type="VB.CommandButton" consistent="True">
+      <Declared type="VB.CommandButton" />
+      <Detected type="VB.CommandButton" />
+      <Suggested type="VB.CommandButton" />
+    </Variable>
+    <Sub name="BtnSalvar_Click" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+      <Variable name="pg" type="Long" consistent="True">
+        <Declared type="Variant" />
+        <Detected type="{Long,Byte}" />
+        <Suggested type="Long" />
+      </Variable>
+    </Sub>
+    <Variable name="BtnTextBridge" type="Threed.SSCommand" consistent="True">
+      <Declared type="Threed.SSCommand" />
+      <Detected type="Threed.SSCommand" />
+      <Suggested type="Threed.SSCommand" />
+    </Variable>
+    <Sub name="BtnTextBridge_Click" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+      <Variable name="Cade" type="String" consistent="True">
+        <Declared type="Variant" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="Cade1" type="String" consistent="True">
+        <Declared type="Variant" />
+        <Detected type="{Long,String}" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="Cade2" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="PosPunto" type="Long" consistent="True">
+        <Declared type="Variant" />
+        <Detected type="Long" />
+        <Suggested type="Long" />
+      </Variable>
+      <Variable name="VarPaso" type="Double" consistent="True">
+        <Declared type="Variant" />
+        <Detected type="Double" />
+        <Suggested type="Double" />
+      </Variable>
+    </Sub>
+    <Variable name="BtnZoom" type="Threed.SSCommand" consistent="True">
+      <Declared type="Threed.SSCommand" />
+      <Detected type="Threed.SSCommand" />
+      <Suggested type="Threed.SSCommand" />
+    </Variable>
+    <Sub name="BtnZoom_Click" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+    </Sub>
+    <Variable name="BtnZoomIn" type="Threed.SSCommand" consistent="True">
+      <Declared type="Threed.SSCommand" />
+      <Detected type="Threed.SSCommand" />
+      <Suggested type="Threed.SSCommand" />
+    </Variable>
+    <Sub name="BtnZoomIn_Click" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+    </Sub>
+    <Variable name="BtnZoomOut" type="Threed.SSCommand" consistent="True">
+      <Declared type="Threed.SSCommand" />
+      <Detected type="Threed.SSCommand" />
+      <Suggested type="Threed.SSCommand" />
+    </Variable>
+    <Sub name="BtnZoomOut_Click" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+    </Sub>
+    <Variable name="CboUoc" type="VB.ComboBox" consistent="True">
+      <Declared type="VB.ComboBox" />
+      <Detected type="VB.ComboBox" />
+      <Suggested type="VB.ComboBox" />
+    </Variable>
+    <Sub name="CloseBtn_Click" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+    </Sub>
+    <Variable name="Command1" type="VB.CommandButton" consistent="True">
+      <Declared type="VB.CommandButton" />
+      <Detected type="VB.CommandButton" />
+      <Suggested type="VB.CommandButton" />
+    </Variable>
+    <Sub name="Command1_Click" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+      <Variable name="cHeadings" type="VBA.Collection" consistent="True">
+        <Declared type="VBA.Collection" />
+        <Detected type="VBA.Collection" />
+        <Suggested type="VBA.Collection" />
+      </Variable>
+      <Variable name="i" type="Integer" consistent="False">
+        <Declared type="Integer" />
+        <Detected type="{Integer,Byte,Long,Double}" />
+        <Suggested type="Double" />
+      </Variable>
+      <Variable name="oQuery" type="UOCFilenet.clsSimpleQuery" consistent="True">
+        <Declared type="UOCFilenet.clsSimpleQuery" />
+        <Detected type="UOCFilenet.clsSimpleQuery" />
+        <Suggested type="UOCFilenet.clsSimpleQuery" />
+      </Variable>
+      <Variable name="sClass" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="sWhere" type="String" consistent="True">
+        <Declared type="Variant" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+    </Sub>
+    <Function name="ConnectToLibraries" type="(  ) -&gt; Boolean" consistent="True">
+      <Declared type="(  ) -&gt; Boolean" />
+      <Detected type="() -&gt; Boolean" />
+      <Suggested type="(  ) -&gt; Boolean" />
+    </Function>
+    <Variable name="DirWinTemp" type="String" consistent="True">
+      <Declared type="Variant" />
+      <Detected type="String" />
+      <Suggested type="String" />
+    </Variable>
+    <Variable name="DocAct" type="Byte" consistent="False">
+      <Declared type="Byte" />
+      <Detected type="{Integer,Byte,Long,Double}" />
+      <Suggested type="Double" />
+    </Variable>
+    <Variable name="DocumentID" type="VB.Label" consistent="True">
+      <Declared type="VB.Label" />
+      <Detected type="VB.Label" />
+      <Suggested type="VB.Label" />
+    </Variable>
+    <Sub name="Form_Initialize" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+      <Variable name="Temp1" type="Variant" consistent="True">
+        <Declared type="Variant" />
+        <Detected type="Variant" />
+        <Suggested type="Variant" />
+      </Variable>
+      <Variable name="Temp2" type="Variant" consistent="True">
+        <Declared type="Variant" />
+        <Detected type="Variant" />
+        <Suggested type="Variant" />
+      </Variable>
+    </Sub>
+    <Sub name="Form_Load" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+      <Variable name="Bande" type="Byte" consistent="True">
+        <Declared type="Byte" />
+        <Detected type="Byte" />
+        <Suggested type="Byte" />
+      </Variable>
+      <Variable name="Count" type="Integer" consistent="False">
+        <Declared type="Integer" />
+        <Detected type="{Integer,Byte,Long}" />
+        <Suggested type="Long" />
+      </Variable>
+      <Variable name="i" type="Integer" consistent="False">
+        <Declared type="Integer" />
+        <Detected type="{Integer,Byte,Long}" />
+        <Suggested type="Long" />
+      </Variable>
+      <Variable name="Libreria" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="oLib" type="IDMObjects.Library" consistent="False">
+        <Declared type="IDMObjects.Library" />
+        <Detected type="{IDMObjects.Library,CreateObjectType}" />
+        <Suggested type="Variant" />
+      </Variable>
+      <Variable name="UOC_Temp" type="String" consistent="True">
+        <Declared type="Variant" />
+        <Detected type="{String,Byte,Double,Integer}" />
+        <Suggested type="String" />
+      </Variable>
+    </Sub>
+    <Sub name="Form_Unload" type="( Integer ) -&gt; Void" consistent="True">
+      <Declared type="( Integer ) -&gt; Void" />
+      <Detected type="(Integer) -&gt; Void" />
+      <Suggested type="( Integer ) -&gt; Void" />
+      <Variable name="Cancel" type="Integer" consistent="True">
+        <Declared type="Integer" />
+        <Detected type="Integer" />
+        <Suggested type="Integer" />
+      </Variable>
+    </Sub>
+    <Variable name="Highlight" type="VB.CommandButton" consistent="True">
+      <Declared type="VB.CommandButton" />
+      <Detected type="VB.CommandButton" />
+      <Suggested type="VB.CommandButton" />
+    </Variable>
+    <Sub name="Highlight_Click" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+    </Sub>
+    <Variable name="IDMListView1" type="IDMListView.IDMListView" consistent="True">
+      <Declared type="IDMListView.IDMListView" />
+      <Detected type="IDMListView.IDMListView" />
+      <Suggested type="IDMListView.IDMListView" />
+    </Variable>
+    <Sub name="IDMListView1_DblClick" type="( Integer ) -&gt; Void" consistent="False">
+      <Declared type="( Integer ) -&gt; Void" />
+      <Detected type="({Integer,Byte,Long,Double}) -&gt; Void" />
+      <Suggested type="( Double ) -&gt; Void" />
+      <Variable name="Index" type="Integer" consistent="False">
+        <Declared type="Integer" />
+        <Detected type="{Integer,Byte,Long,Double}" />
+        <Suggested type="Double" />
+      </Variable>
+      <Variable name="IndexTemp" type="Integer" consistent="False">
+        <Declared type="Integer" />
+        <Detected type="{Integer,Byte,Long,Double}" />
+        <Suggested type="Double" />
+      </Variable>
+    </Sub>
+    <Variable name="IDMListView2" type="IDMListView.IDMListView" consistent="True">
+      <Declared type="IDMListView.IDMListView" />
+      <Detected type="IDMListView.IDMListView" />
+      <Suggested type="IDMListView.IDMListView" />
+    </Variable>
+    <Sub name="IDMListView2_DblClick" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+      <Variable name="oAnno" type="IDMObjects.Annotation" consistent="False">
+        <Declared type="IDMObjects.Annotation" />
+        <Detected type="{IDMObjects.Annotation,IDMObjects.IFnGenericObject}" />
+        <Suggested type="Variant" />
+      </Variable>
+    </Sub>
+    <Variable name="IDMViewerCtrl1" type="IDMViewerCtrl.IDMViewerCtrl" consistent="True">
+      <Declared type="IDMViewerCtrl.IDMViewerCtrl" />
+      <Detected type="IDMViewerCtrl.IDMViewerCtrl" />
+      <Suggested type="IDMViewerCtrl.IDMViewerCtrl" />
+    </Variable>
+    <Sub name="IDMViewerCtrl1_Click" type="( Integer ) -&gt; Void" consistent="True">
+      <Declared type="( Integer ) -&gt; Void" />
+      <Detected type="(Integer) -&gt; Void" />
+      <Suggested type="( Integer ) -&gt; Void" />
+      <Variable name="Index" type="Integer" consistent="True">
+        <Declared type="Integer" />
+        <Detected type="Integer" />
+        <Suggested type="Integer" />
+      </Variable>
+    </Sub>
+    <Variable name="LblCriterio" type="VB.Label" consistent="True">
+      <Declared type="VB.Label" />
+      <Detected type="VB.Label" />
+      <Suggested type="VB.Label" />
+    </Variable>
+    <Variable name="LblUoc" type="VB.Label" consistent="True">
+      <Declared type="VB.Label" />
+      <Detected type="VB.Label" />
+      <Suggested type="VB.Label" />
+    </Variable>
+    <Sub name="Llena_Paramatros" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+      <Variable name="Temp1" type="Long" consistent="True">
+        <Declared type="Variant" />
+        <Detected type="Long" />
+        <Suggested type="Long" />
+      </Variable>
+      <Variable name="Temp2" type="Long" consistent="True">
+        <Declared type="Variant" />
+        <Detected type="Long" />
+        <Suggested type="Long" />
+      </Variable>
+    </Sub>
+    <Sub name="MyCreateStamp" type="( String ) -&gt; Void" consistent="True">
+      <Declared type="( String ) -&gt; Void" />
+      <Detected type="(String) -&gt; Void" />
+      <Suggested type="( String ) -&gt; Void" />
+      <Variable name="AnnoText" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="oAnno" type="IDMObjects.Annotation" consistent="False">
+        <Declared type="IDMObjects.Annotation" />
+        <Detected type="{IDMObjects.Annotation,IDMObjects.IFnAnnoDual}" />
+        <Suggested type="Variant" />
+      </Variable>
+      <Variable name="pg" type="Long" consistent="True">
+        <Declared type="Variant" />
+        <Detected type="Long" />
+        <Suggested type="Long" />
+      </Variable>
+    </Sub>
+    <Sub name="MyLogon" type="( IDMObjects.Library ) -&gt; Void" consistent="False">
+      <Declared type="( IDMObjects.Library ) -&gt; Void" />
+      <Detected type="({IDMObjects.Library,CreateObjectType}) -&gt; Void" />
+      <Suggested type="( Variant ) -&gt; Void" />
+      <Variable name="dmLogonOptNoUI" type="IDMObjects.idmLibraryLogon" consistent="True">
+        <Declared type="Variant" />
+        <Detected type="IDMObjects.idmLibraryLogon" />
+        <Suggested type="IDMObjects.idmLibraryLogon" />
+      </Variable>
+      <Variable name="oLibrary" type="IDMObjects.Library" consistent="False">
+        <Declared type="IDMObjects.Library" />
+        <Detected type="{IDMObjects.Library,CreateObjectType}" />
+        <Suggested type="Variant" />
+      </Variable>
+    </Sub>
+    <Function name="Procesa_Folio" type="( String, String ) -&gt; String" consistent="True">
+      <Declared type="( Variant, Variant ) -&gt; String" />
+      <Detected type="({String,Byte},{String,Byte,Double,Integer}) -&gt; String" />
+      <Suggested type="( String, String ) -&gt; String" />
+      <Variable name="FolioD" type="String" consistent="True">
+        <Declared type="Variant" />
+        <Detected type="{String,Byte}" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="sWhere" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="UOCX" type="String" consistent="True">
+        <Declared type="Variant" />
+        <Detected type="{String,Byte,Double,Integer}" />
+        <Suggested type="String" />
+      </Variable>
+    </Function>
+    <Variable name="Reject" type="VB.CommandButton" consistent="True">
+      <Declared type="VB.CommandButton" />
+      <Detected type="VB.CommandButton" />
+      <Suggested type="VB.CommandButton" />
+    </Variable>
+    <Sub name="Reject_Click" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+    </Sub>
+    <Sub name="RestoreSettings" type="( Boolean ) -&gt; Void" consistent="True">
+      <Declared type="( Boolean ) -&gt; Void" />
+      <Detected type="(Boolean) -&gt; Void" />
+      <Suggested type="( Boolean ) -&gt; Void" />
+      <Variable name="bForceUi" type="Boolean" consistent="True">
+        <Declared type="Boolean" />
+        <Detected type="Boolean" />
+        <Suggested type="Boolean" />
+      </Variable>
+    </Sub>
+    <Variable name="Rotar" type="Integer" consistent="False">
+      <Declared type="Integer" />
+      <Detected type="{Integer,Byte,Double}" />
+      <Suggested type="Double" />
+    </Variable>
+    <Sub name="SetLVHeaders" type="( VBA.Collection, VBA.Collection ) -&gt; Void" consistent="True">
+      <Declared type="( VBA.Collection, VBA.Collection ) -&gt; Void" />
+      <Detected type="(VBA.Collection,VBA.Collection) -&gt; Void" />
+      <Suggested type="( VBA.Collection, VBA.Collection ) -&gt; Void" />
+      <Variable name="asClasses" type="Array( String )" consistent="True">
+        <Declared type="Array( String )" />
+        <Detected type="Array( String )" />
+        <Suggested type="Array( String )" />
+      </Variable>
+      <Variable name="cHeadings" type="VBA.Collection" consistent="True">
+        <Declared type="VBA.Collection" />
+        <Detected type="VBA.Collection" />
+        <Suggested type="VBA.Collection" />
+      </Variable>
+      <Variable name="cPropNames" type="VBA.Collection" consistent="True">
+        <Declared type="VBA.Collection" />
+        <Detected type="VBA.Collection" />
+        <Suggested type="VBA.Collection" />
+      </Variable>
+      <Variable name="oPropDesc" type="IDMObjects.PropertyDescription" consistent="True">
+        <Declared type="IDMObjects.PropertyDescription" />
+        <Detected type="IDMObjects.PropertyDescription" />
+        <Suggested type="IDMObjects.PropertyDescription" />
+      </Variable>
+    </Sub>
+    <Variable name="ShowAnnotations" type="VB.CheckBox" consistent="True">
+      <Declared type="VB.CheckBox" />
+      <Detected type="VB.CheckBox" />
+      <Suggested type="VB.CheckBox" />
+    </Variable>
+    <Sub name="ShowAnnotations_Click" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+      <Variable name="oAnnos" type="IDMObjects.ObjectSet" consistent="False">
+        <Declared type="IDMObjects.ObjectSet" />
+        <Detected type="{IDMObjects.ObjectSet,IDMObjects.IFnObjSetDual}" />
+        <Suggested type="Variant" />
+      </Variable>
+    </Sub>
+    <Variable name="SSPanel1" type="Threed.SSPanel" consistent="True">
+      <Declared type="Threed.SSPanel" />
+      <Detected type="Threed.SSPanel" />
+      <Suggested type="Threed.SSPanel" />
+    </Variable>
+    <Variable name="SSPanel2" type="Threed.SSPanel" consistent="True">
+      <Declared type="Threed.SSPanel" />
+      <Detected type="Threed.SSPanel" />
+      <Suggested type="Threed.SSPanel" />
+    </Variable>
+    <Variable name="SSTab1" type="TabDlg.SSTab" consistent="True">
+      <Declared type="TabDlg.SSTab" />
+      <Detected type="TabDlg.SSTab" />
+      <Suggested type="TabDlg.SSTab" />
+    </Variable>
+    <Sub name="SSTab1_Click" type="( Integer ) -&gt; Void" consistent="True">
+      <Declared type="( Integer ) -&gt; Void" />
+      <Detected type="(Integer) -&gt; Void" />
+      <Suggested type="( Integer ) -&gt; Void" />
+      <Variable name="i" type="Integer" consistent="True">
+        <Declared type="Integer" />
+        <Detected type="{Integer,Byte}" />
+        <Suggested type="Integer" />
+      </Variable>
+      <Variable name="PreviousTab" type="Integer" consistent="True">
+        <Declared type="Integer" />
+        <Detected type="Integer" />
+        <Suggested type="Integer" />
+      </Variable>
+    </Sub>
+    <Variable name="TxtCriterio" type="VB.TextBox" consistent="True">
+      <Declared type="VB.TextBox" />
+      <Detected type="VB.TextBox" />
+      <Suggested type="VB.TextBox" />
+    </Variable>
+    <Sub name="TxtCriterio_Change" type="( Integer ) -&gt; Void" consistent="False">
+      <Declared type="( Integer ) -&gt; Void" />
+      <Detected type="({Integer,Long,Byte}) -&gt; Void" />
+      <Suggested type="( Long ) -&gt; Void" />
+      <Variable name="Index" type="Integer" consistent="False">
+        <Declared type="Integer" />
+        <Detected type="{Integer,Long,Byte}" />
+        <Suggested type="Long" />
+      </Variable>
+    </Sub>
+    <Sub name="TxtCriterio_GotFocus" type="( Integer ) -&gt; Void" consistent="False">
+      <Declared type="( Integer ) -&gt; Void" />
+      <Detected type="({Integer,Long,Byte}) -&gt; Void" />
+      <Suggested type="( Long ) -&gt; Void" />
+      <Variable name="Index" type="Integer" consistent="False">
+        <Declared type="Integer" />
+        <Detected type="{Integer,Long,Byte}" />
+        <Suggested type="Long" />
+      </Variable>
+    </Sub>
+    <Variable name="XArchivo" type="String" consistent="True">
+      <Declared type="String" />
+      <Detected type="{String,Long}" />
+      <Suggested type="String" />
+    </Variable>
+  </Form>
+  <Form name="frmSettings">
+    <Variable name="btnCancel" type="VB.CommandButton" consistent="True">
+      <Declared type="VB.CommandButton" />
+      <Detected type="VB.CommandButton" />
+      <Suggested type="VB.CommandButton" />
+    </Variable>
+    <Sub name="btnCancel_Click" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+    </Sub>
+    <Variable name="btnOk" type="VB.CommandButton" consistent="True">
+      <Declared type="VB.CommandButton" />
+      <Detected type="VB.CommandButton" />
+      <Suggested type="VB.CommandButton" />
+    </Variable>
+    <Sub name="btnOk_Click" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+    </Sub>
+    <Sub name="ClearEntries" type="( VB.Form ) -&gt; Void" consistent="False">
+      <Declared type="( VB.Form ) -&gt; Void" />
+      <Detected type="({VB.Form,UOCFilenet.frmSettings}) -&gt; Void" />
+      <Suggested type="( UOCFilenet.frmSettings ) -&gt; Void" />
+      <Variable name="fFrm" type="VB.Form" consistent="False">
+        <Declared type="VB.Form" />
+        <Detected type="{VB.Form,UOCFilenet.frmSettings}" />
+        <Suggested type="UOCFilenet.frmSettings" />
+      </Variable>
+      <Variable name="oCtrl" type="VB.Control" consistent="True">
+        <Declared type="VB.Control" />
+        <Detected type="VB.Control" />
+        <Suggested type="VB.Control" />
+      </Variable>
+    </Sub>
+    <Variable name="cmdClear" type="VB.CommandButton" consistent="True">
+      <Declared type="VB.CommandButton" />
+      <Detected type="VB.CommandButton" />
+      <Suggested type="VB.CommandButton" />
+    </Variable>
+    <Sub name="cmdClear_Click" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+      <Variable name="oCtrl" type="VB.Control" consistent="True">
+        <Declared type="VB.Control" />
+        <Detected type="VB.Control" />
+        <Suggested type="VB.Control" />
+      </Variable>
+    </Sub>
+    <Sub name="cmdRefresh_Click" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+    </Sub>
+    <Variable name="cmdSave" type="VB.CommandButton" consistent="True">
+      <Declared type="VB.CommandButton" />
+      <Detected type="VB.CommandButton" />
+      <Suggested type="VB.CommandButton" />
+    </Variable>
+    <Sub name="cmdSave_Click" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+    </Sub>
+    <Variable name="Label1" type="VB.Label" consistent="True">
+      <Declared type="VB.Label" />
+      <Detected type="VB.Label" />
+      <Suggested type="VB.Label" />
+    </Variable>
+    <Variable name="Label2" type="VB.Label" consistent="True">
+      <Declared type="VB.Label" />
+      <Detected type="VB.Label" />
+      <Suggested type="VB.Label" />
+    </Variable>
+    <Variable name="Label3" type="VB.Label" consistent="True">
+      <Declared type="VB.Label" />
+      <Detected type="VB.Label" />
+      <Suggested type="VB.Label" />
+    </Variable>
+    <Variable name="Label8" type="VB.Label" consistent="True">
+      <Declared type="VB.Label" />
+      <Detected type="VB.Label" />
+      <Suggested type="VB.Label" />
+    </Variable>
+    <Variable name="Label9" type="VB.Label" consistent="True">
+      <Declared type="VB.Label" />
+      <Detected type="VB.Label" />
+      <Suggested type="VB.Label" />
+    </Variable>
+    <Variable name="txtIMSLibName" type="VB.TextBox" consistent="True">
+      <Declared type="VB.TextBox" />
+      <Detected type="VB.TextBox" />
+      <Suggested type="VB.TextBox" />
+    </Variable>
+    <Variable name="txtIMSPassword" type="VB.TextBox" consistent="True">
+      <Declared type="VB.TextBox" />
+      <Detected type="VB.TextBox" />
+      <Suggested type="VB.TextBox" />
+    </Variable>
+    <Variable name="txtIMSUser" type="VB.TextBox" consistent="True">
+      <Declared type="VB.TextBox" />
+      <Detected type="VB.TextBox" />
+      <Suggested type="VB.TextBox" />
+    </Variable>
+    <Variable name="txtResDocClass" type="VB.TextBox" consistent="True">
+      <Declared type="VB.TextBox" />
+      <Detected type="VB.TextBox" />
+      <Suggested type="VB.TextBox" />
+    </Variable>
+    <Variable name="txtResFolder" type="VB.TextBox" consistent="True">
+      <Declared type="VB.TextBox" />
+      <Detected type="VB.TextBox" />
+      <Suggested type="VB.TextBox" />
+    </Variable>
+  </Form>
+  <Module name="Globals">
+    <Variable name="clsQuery" type="UOCFilenet.clsSimpleQuery" consistent="True">
+      <Declared type="UOCFilenet.clsSimpleQuery" />
+      <Detected type="UOCFilenet.clsSimpleQuery" />
+      <Suggested type="UOCFilenet.clsSimpleQuery" />
+    </Variable>
+    <Variable name="CommandLine" type="Long" consistent="True">
+      <Declared type="Variant" />
+      <Detected type="{Long,String}" />
+      <Suggested type="Long" />
+    </Variable>
+    <Function name="DirExist" type="" consistent="False">
+      <Declared type="" />
+      <Detected type="" />
+      <Suggested type="" />
+      <Variable name="Dir" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="FN" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+    </Function>
+    <Function name="fncParmIniGet" type="( String, String, String ) -&gt; String" consistent="True">
+      <Declared type="( String, String, String ) -&gt; Variant" />
+      <Detected type="(String,String,String) -&gt; String" />
+      <Suggested type="( String, String, String ) -&gt; String" />
+      <Variable name="Default" type="String" consistent="True">
+        <Declared type="Variant" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="inifile" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="keyname" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="rc" type="Long" consistent="True">
+        <Declared type="Long" />
+        <Detected type="{Long,Boolean}" />
+        <Suggested type="Long" />
+      </Variable>
+      <Variable name="result" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="stanza" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+    </Function>
+    <Sub name="fncParmIniSet" type="( String, String, String, String ) -&gt; Void" consistent="True">
+      <Declared type="( String, String, String, String ) -&gt; Void" />
+      <Detected type="(String,String,String,String) -&gt; Void" />
+      <Suggested type="( String, String, String, String ) -&gt; Void" />
+      <Variable name="inifile" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="keyname" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="lpString" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="rc" type="Long" consistent="True">
+        <Declared type="Long" />
+        <Detected type="Long" />
+        <Suggested type="Long" />
+      </Variable>
+      <Variable name="stanza" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+    </Sub>
+    <Variable name="gbISLogOff" type="Boolean" consistent="True">
+      <Declared type="Boolean" />
+      <Detected type="Boolean" />
+      <Suggested type="Boolean" />
+    </Variable>
+    <Variable name="gcHeadings" type="VBA.Collection" consistent="True">
+      <Declared type="VBA.Collection" />
+      <Detected type="VBA.Collection" />
+      <Suggested type="VBA.Collection" />
+    </Variable>
+    <Variable name="gcPropNames" type="VBA.Collection" consistent="True">
+      <Declared type="VBA.Collection" />
+      <Detected type="VBA.Collection" />
+      <Suggested type="VBA.Collection" />
+    </Variable>
+    <Sub name="Genera_Archivo_Control" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+      <Variable name="DirWinTemp" type="String" consistent="True">
+        <Declared type="Variant" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+    </Sub>
+    <Function name="GetFileName" type="( String ) -&gt; String" consistent="True">
+      <Declared type="( String ) -&gt; String" />
+      <Detected type="(String) -&gt; String" />
+      <Suggested type="( String ) -&gt; String" />
+      <Variable name="ExitWhile" type="Boolean" consistent="True">
+        <Declared type="Boolean" />
+        <Detected type="Boolean" />
+        <Suggested type="Boolean" />
+      </Variable>
+      <Variable name="Pos" type="Integer" consistent="True">
+        <Declared type="Integer" />
+        <Detected type="Integer" />
+        <Suggested type="Integer" />
+      </Variable>
+      <Variable name="PosSave" type="Integer" consistent="True">
+        <Declared type="Integer" />
+        <Detected type="Integer" />
+        <Suggested type="Integer" />
+      </Variable>
+      <Variable name="ScanString" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+    </Function>
+    <Function name="GetPrivateProfileString" type="( String, String, String, String, Long, String ) -&gt; Long" consistent="True">
+      <Declared type="( String, Variant, String, String, Long, String ) -&gt; Long" />
+      <Detected type="(String,String,String,String,Long,String) -&gt; Long" />
+      <Suggested type="( String, String, String, String, Long, String ) -&gt; Long" />
+      <Variable name="lpApplicationName" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="lpDefault" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="lpFileName" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="lpKeyName" type="String" consistent="True">
+        <Declared type="Variant" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="lpReturnedString" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="nSize" type="Long" consistent="True">
+        <Declared type="Long" />
+        <Detected type="Long" />
+        <Suggested type="Long" />
+      </Variable>
+    </Function>
+    <Function name="GetSystemDirectory" type="( String, Long ) -&gt; Long" consistent="True">
+      <Declared type="( String, Long ) -&gt; Long" />
+      <Detected type="(String,Long) -&gt; Long" />
+      <Suggested type="( String, Long ) -&gt; Long" />
+      <Variable name="lpBuffer" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="nSize" type="Long" consistent="True">
+        <Declared type="Long" />
+        <Detected type="Long" />
+        <Suggested type="Long" />
+      </Variable>
+    </Function>
+    <Function name="GetTempFileName" type="( String, String, Long, String ) -&gt; Long" consistent="True">
+      <Declared type="( String, String, Long, String ) -&gt; Long" />
+      <Detected type="(String,String,Long,String) -&gt; Long" />
+      <Suggested type="( String, String, Long, String ) -&gt; Long" />
+      <Variable name="lpPrefixString" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="lpszPath" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="lpTempFileName" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="wUnique" type="Long" consistent="True">
+        <Declared type="Long" />
+        <Detected type="Long" />
+        <Suggested type="Long" />
+      </Variable>
+    </Function>
+    <Function name="GetWindowsDir" type="(  ) -&gt; String" consistent="True">
+      <Declared type="(  ) -&gt; String" />
+      <Detected type="() -&gt; String" />
+      <Suggested type="(  ) -&gt; String" />
+      <Variable name="File" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="Res" type="Integer" consistent="False">
+        <Declared type="Integer" />
+        <Detected type="{Integer,Long}" />
+        <Suggested type="Long" />
+      </Variable>
+      <Variable name="WinDir" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+    </Function>
+    <Function name="GetWindowsDirectory" type="( String, Long ) -&gt; Long" consistent="True">
+      <Declared type="( String, Long ) -&gt; Long" />
+      <Detected type="(String,{Byte,Long}) -&gt; Long" />
+      <Suggested type="( String, Long ) -&gt; Long" />
+      <Variable name="lpBuffer" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="nSize" type="Long" consistent="True">
+        <Declared type="Long" />
+        <Detected type="{Byte,Long}" />
+        <Suggested type="Long" />
+      </Variable>
+    </Function>
+    <Variable name="gfSettings" type="UOCFilenet.frmSettings" consistent="True">
+      <Declared type="UOCFilenet.frmSettings" />
+      <Detected type="UOCFilenet.frmSettings" />
+      <Suggested type="UOCFilenet.frmSettings" />
+    </Variable>
+    <Variable name="goPersist" type="UOCFilenet.clsRegPersist" consistent="True">
+      <Declared type="UOCFilenet.clsRegPersist" />
+      <Detected type="UOCFilenet.clsRegPersist" />
+      <Suggested type="UOCFilenet.clsRegPersist" />
+    </Variable>
+    <Variable name="goPropDescs" type="IDMObjects.PropertyDescriptions" consistent="True">
+      <Declared type="IDMObjects.PropertyDescriptions" />
+      <Detected type="IDMObjects.PropertyDescriptions" />
+      <Suggested type="IDMObjects.PropertyDescriptions" />
+    </Variable>
+    <Variable name="gsAppName" type="String" consistent="True">
+      <Declared type="String" />
+      <Detected type="String" />
+      <Suggested type="String" />
+    </Variable>
+    <Variable name="gsSectionName" type="String" consistent="True">
+      <Declared type="String" />
+      <Detected type="String" />
+      <Suggested type="String" />
+    </Variable>
+    <Sub name="LLena_CboUoc" type="( String, VB.ComboBox ) -&gt; Void" consistent="True">
+      <Declared type="( Variant, VB.ComboBox ) -&gt; Void" />
+      <Detected type="({String,Byte,Double,Integer},VB.ComboBox) -&gt; Void" />
+      <Suggested type="( String, VB.ComboBox ) -&gt; Void" />
+      <Variable name="XCbo" type="VB.ComboBox" consistent="True">
+        <Declared type="VB.ComboBox" />
+        <Detected type="VB.ComboBox" />
+        <Suggested type="VB.ComboBox" />
+      </Variable>
+      <Variable name="XUoc" type="String" consistent="True">
+        <Declared type="Variant" />
+        <Detected type="{String,Byte,Double,Integer}" />
+        <Suggested type="String" />
+      </Variable>
+    </Sub>
+    <Sub name="ObtPassSapuf" type="(  ) -&gt; Void" consistent="True">
+      <Declared type="(  ) -&gt; Void" />
+      <Detected type="() -&gt; Void" />
+      <Suggested type="(  ) -&gt; Void" />
+      <Variable name="DirWinTemp" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="mClassSAPUF" type="UOCFilenet.TuxServer.ClassSAPUF" consistent="True">
+        <Declared type="Object" />
+        <Detected type="UOCFilenet.TuxServer.ClassSAPUF" />
+        <Suggested type="UOCFilenet.TuxServer.ClassSAPUF" />
+      </Variable>
+      <Variable name="VTemp" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+    </Sub>
+    <Variable name="oDocument" type="IDMObjects.Document" consistent="True">
+      <Declared type="IDMObjects.Document" />
+      <Detected type="IDMObjects.Document" />
+      <Suggested type="IDMObjects.Document" />
+    </Variable>
+    <Variable name="oDocument2" type="IDMObjects.Document" consistent="True">
+      <Declared type="IDMObjects.Document" />
+      <Detected type="IDMObjects.Document" />
+      <Suggested type="IDMObjects.Document" />
+    </Variable>
+    <Variable name="oLibraries" type="IDMObjects.ObjectSet" consistent="True">
+      <Declared type="IDMObjects.ObjectSet" />
+      <Detected type="IDMObjects.ObjectSet" />
+      <Suggested type="IDMObjects.ObjectSet" />
+    </Variable>
+    <Variable name="oLibrary" type="IDMObjects.Library" consistent="True">
+      <Declared type="IDMObjects.Library" />
+      <Detected type="IDMObjects.Library" />
+      <Suggested type="IDMObjects.Library" />
+    </Variable>
+    <Variable name="oNeighborhood" type="IDMObjects.Neighborhood" consistent="True">
+      <Declared type="IDMObjects.Neighborhood" />
+      <Detected type="IDMObjects.Neighborhood" />
+      <Suggested type="IDMObjects.Neighborhood" />
+    </Variable>
+    <Variable name="Pag" type="Long" consistent="True">
+      <Declared type="Variant" />
+      <Detected type="Long" />
+      <Suggested type="Long" />
+    </Variable>
+    <Variable name="Pass_Sapuf" type="String" consistent="True">
+      <Declared type="String" />
+      <Detected type="String" />
+      <Suggested type="String" />
+    </Variable>
+    <Function name="sFixDirString" type="( String ) -&gt; String" consistent="True">
+      <Declared type="( String ) -&gt; String" />
+      <Detected type="(String) -&gt; String" />
+      <Suggested type="( String ) -&gt; String" />
+      <Variable name="sInComming" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="sTemp" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+    </Function>
+    <Variable name="TipoDoc" type="String" consistent="True">
+      <Declared type="Variant" />
+      <Detected type="{String,Integer}" />
+      <Suggested type="String" />
+    </Variable>
+    <Variable name="UOC" type="String" consistent="True">
+      <Declared type="Variant" />
+      <Detected type="{String,Byte,Double,Integer}" />
+      <Suggested type="String" />
+    </Variable>
+    <Variable name="UOC1" type="String" consistent="True">
+      <Declared type="Variant" />
+      <Detected type="{String,Byte,Double,Integer}" />
+      <Suggested type="String" />
+    </Variable>
+    <Variable name="VarCom" type="Integer" consistent="True">
+      <Declared type="Variant" />
+      <Detected type="{Integer,String,Byte}" />
+      <Suggested type="Integer" />
+    </Variable>
+    <Function name="WritePrivateProfileString" type="( String, String, String, String ) -&gt; Long" consistent="True">
+      <Declared type="( String, Variant, Variant, String ) -&gt; Long" />
+      <Detected type="(String,String,String,String) -&gt; Long" />
+      <Suggested type="( String, String, String, String ) -&gt; Long" />
+      <Variable name="lpApplicationName" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="lpFileName" type="String" consistent="True">
+        <Declared type="String" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="lpKeyName" type="String" consistent="True">
+        <Declared type="Variant" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+      <Variable name="lpString" type="String" consistent="True">
+        <Declared type="Variant" />
+        <Detected type="String" />
+        <Suggested type="String" />
+      </Variable>
+    </Function>
+    <Variable name="XCalifOnd" type="String" consistent="True">
+      <Declared type="Variant" />
+      <Detected type="{Byte,String}" />
+      <Suggested type="String" />
+    </Variable>
+    <Variable name="XFechaOp" type="String" consistent="True">
+      <Declared type="Variant" />
+      <Detected type="String" />
+      <Suggested type="String" />
+    </Variable>
+    <Variable name="XFile" type="String" consistent="True">
+      <Declared type="Variant" />
+      <Detected type="{Double,String}" />
+      <Suggested type="String" />
+    </Variable>
+    <Variable name="XFolio" type="String" consistent="True">
+      <Declared type="Variant" />
+      <Detected type="{String,Byte}" />
+      <Suggested type="String" />
+    </Variable>
+    <Variable name="XFolio2" type="String" consistent="True">
+      <Declared type="Variant" />
+      <Detected type="{String,Byte}" />
+      <Suggested type="String" />
+    </Variable>
+    <Variable name="XFolioS403" type="String" consistent="True">
+      <Declared type="Variant" />
+      <Detected type="{Byte,String}" />
+      <Suggested type="String" />
+    </Variable>
+    <Variable name="XInst" type="String" consistent="True">
+      <Declared type="Variant" />
+      <Detected type="{Byte,String}" />
+      <Suggested type="String" />
+    </Variable>
+    <Variable name="XProd" type="String" consistent="True">
+      <Declared type="Variant" />
+      <Detected type="{Integer,String}" />
+      <Suggested type="String" />
+    </Variable>
+  </Module>
+</Project>

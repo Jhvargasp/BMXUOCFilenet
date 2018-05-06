@@ -1,0 +1,2503 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project name="UOCFilenet" version="1">
+  <Members>
+    <Module name="Globals" usage="287">
+      <Members>
+        <Declare name="GetWindowsDirectory" type="Function" usage="1">
+          <Members>
+            <Variable name="lpBuffer" />
+            <Variable name="nSize" />
+          </Members>
+          <References>
+            <Function name="Kernel32.GetWindowsDirectory" fromLibrary="True" />
+          </References>
+        </Declare>
+        <Declare name="GetTempFileName" type="Function" usage="0">
+          <Members>
+            <Variable name="lpszPath" />
+            <Variable name="lpPrefixString" />
+            <Variable name="wUnique" />
+            <Variable name="lpTempFileName" />
+          </Members>
+          <References>
+            <Function name="Kernel32.GetTempFileName" fromLibrary="True" />
+          </References>
+        </Declare>
+        <Declare name="GetSystemDirectory" type="Function" usage="0">
+          <Members>
+            <Variable name="lpBuffer" />
+            <Variable name="nSize" />
+          </Members>
+          <References>
+            <Function name="Kernel32.GetSystemDirectory" fromLibrary="True" />
+          </References>
+        </Declare>
+        <Declare name="GetPrivateProfileString" type="Function" usage="1">
+          <Members>
+            <Variable name="lpApplicationName" />
+            <Variable name="lpKeyName" />
+            <Variable name="lpDefault" />
+            <Variable name="lpReturnedString" />
+            <Variable name="nSize" />
+            <Variable name="lpFileName" />
+          </Members>
+          <References>
+            <Function name="Kernel32.GetPrivateProfileString" fromLibrary="True" />
+          </References>
+        </Declare>
+        <Declare name="WritePrivateProfileString" type="Function" usage="1">
+          <Members>
+            <Variable name="lpApplicationName" />
+            <Variable name="lpKeyName" />
+            <Variable name="lpString" />
+            <Variable name="lpFileName" />
+          </Members>
+          <References>
+            <Function name="Kernel32.WritePrivateProfileString" fromLibrary="True" />
+          </References>
+        </Declare>
+        <Variable name="oNeighborhood" usage="2">
+          <References>
+            <Module name="IDMObjects.Neighborhood" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="oLibraries" usage="7">
+          <References>
+            <Module name="IDMObjects.ObjectSet" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="oDocument" usage="78">
+          <References>
+            <Module name="IDMObjects.Document" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="oDocument2" usage="27">
+          <References>
+            <Module name="IDMObjects.Document" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="oLibrary" usage="25">
+          <References>
+            <Module name="IDMObjects.Library" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="clsQuery" usage="12">
+          <References>
+            <Class name="UOCFilenet.clsSimpleQuery" fromLibrary="False" />
+          </References>
+        </Variable>
+        <Variable name="goPropDescs" usage="2">
+          <References>
+            <Module name="IDMObjects.PropertyDescriptions" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="gbISLogOff" usage="0" />
+        <Variable name="gfSettings" usage="20">
+          <References>
+            <Form name="UOCFilenet.frmSettings" fromLibrary="False" />
+          </References>
+        </Variable>
+        <Variable name="goPersist" usage="8">
+          <References>
+            <Class name="UOCFilenet.clsRegPersist" fromLibrary="False" />
+          </References>
+        </Variable>
+        <Variable name="gsAppName" usage="0" />
+        <Variable name="gsSectionName" usage="0" />
+        <Variable name="gcHeadings" usage="3">
+          <References>
+            <Module name="VBA.Collection" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="gcPropNames" usage="2">
+          <References>
+            <Module name="VBA.Collection" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="CommandLine" usage="0" />
+        <Variable name="UOC" usage="0" />
+        <Variable name="XFolio2" usage="0" />
+        <Variable name="XFolio" usage="0" />
+        <Variable name="TipoDoc" usage="0" />
+        <Variable name="UOC1" usage="0" />
+        <Variable name="VarCom" usage="0" />
+        <Variable name="XFolioS403" usage="0" />
+        <Variable name="Pag" usage="0" />
+        <Variable name="XFechaOp" usage="0" />
+        <Variable name="XInst" usage="0" />
+        <Variable name="XFile" usage="0" />
+        <Variable name="XProd" usage="0" />
+        <Variable name="XCalifOnd" usage="0" />
+        <Variable name="Pass_Sapuf" usage="0" />
+        <Function name="GetFileName" usage="2">
+          <Members>
+            <Variable name="ScanString" />
+            <Variable name="PosSave" />
+            <Variable name="ExitWhile" />
+            <Variable name="Pos" />
+          </Members>
+          <References>
+            <Enum name="VBA.VbCompareMethod" fromLibrary="True" />
+            <Function name="VBA.Strings.Mid" fromLibrary="True" />
+            <Function name="VBA.Strings.InStr" fromLibrary="True" />
+            <Module name="VBA.VBA" fromLibrary="True" />
+            <Variable name="VBA.VbCompareMethod.vbBinaryCompare" fromLibrary="True" />
+            <Function name="VBA.Strings.Trim" fromLibrary="True" />
+            <Function name="VBA.Strings.Len" fromLibrary="True" />
+          </References>
+        </Function>
+        <Function name="DirExist" usage="2">
+          <Members>
+            <Variable name="FN" />
+          </Members>
+          <References>
+            <Variable name="VBA.VbFileAttribute.vbNormal" fromLibrary="True" />
+            <Function name="VBA.FileSystem.Dir" fromLibrary="True" />
+            <Enum name="VBA.VbFileAttribute" fromLibrary="True" />
+            <Function name="VBA.Strings.UCase" fromLibrary="True" />
+            <Function name="UOCFilenet.Globals.sFixDirString" fromLibrary="False" />
+            <Module name="VBA.VBA" fromLibrary="True" />
+          </References>
+        </Function>
+        <Function name="sFixDirString" usage="1">
+          <Members>
+            <Variable name="sInComming" />
+            <Variable name="sTemp" />
+          </Members>
+        </Function>
+        <Function name="GetWindowsDir" usage="1">
+          <Members>
+            <Variable name="WinDir">
+              <References>
+                <Function name="VBA.Strings.Space" fromLibrary="True" />
+              </References>
+            </Variable>
+            <Variable name="Res">
+              <References>
+                <Declare name="UOCFilenet.Globals.GetWindowsDirectory" type="Function" fromLibrary="False" />
+              </References>
+            </Variable>
+            <Variable name="File">
+              <References>
+                <Function name="VBA.Strings.Left" fromLibrary="True" />
+                <Function name="VBA.Strings.InStr" fromLibrary="True" />
+                <Function name="VBA.Strings.Chr" fromLibrary="True" />
+              </References>
+            </Variable>
+          </Members>
+          <References>
+            <Function name="VBA.Strings.Trim" fromLibrary="True" />
+          </References>
+        </Function>
+        <Sub name="LLena_CboUoc" usage="4">
+          <Members>
+            <Variable name="XUoc" />
+            <Variable name="XCbo">
+              <References>
+                <Module name="VB.ComboBox" fromLibrary="True" />
+              </References>
+            </Variable>
+          </Members>
+          <References>
+            <Sub name="VB.ComboBox.AddItem" fromLibrary="True" />
+            <Function name="VBA.Conversion.Val" fromLibrary="True" />
+            <Property name="VB.ComboBox.NewIndex" fromLibrary="True" />
+            <Sub name="VB.ComboBox.Clear" fromLibrary="True" />
+            <Property name="VB.ComboBox.ListIndex" fromLibrary="True" />
+          </References>
+        </Sub>
+        <Function name="fncParmIniGet" usage="10">
+          <Members>
+            <Variable name="stanza" />
+            <Variable name="keyname" />
+            <Variable name="inifile" />
+            <Variable name="Default" />
+            <Variable name="result">
+              <References>
+                <Function name="VBA.Strings.Space" fromLibrary="True" />
+              </References>
+            </Variable>
+            <Variable name="rc">
+              <References>
+                <Function name="VBA.Strings.Len" fromLibrary="True" />
+                <Declare name="UOCFilenet.Globals.GetPrivateProfileString" type="Function" fromLibrary="False" />
+              </References>
+            </Variable>
+          </Members>
+          <References>
+            <Function name="VBA.Strings.Len" fromLibrary="True" />
+            <Function name="VBA.Strings.Left" fromLibrary="True" />
+            <Function name="VBA.Strings.Trim" fromLibrary="True" />
+          </References>
+        </Function>
+        <Sub name="fncParmIniSet" usage="26">
+          <Members>
+            <Variable name="stanza" />
+            <Variable name="keyname" />
+            <Variable name="lpString" />
+            <Variable name="inifile" />
+            <Variable name="rc">
+              <References>
+                <Declare name="UOCFilenet.Globals.WritePrivateProfileString" type="Function" fromLibrary="False" />
+              </References>
+            </Variable>
+          </Members>
+        </Sub>
+        <Sub name="ObtPassSapuf" usage="2">
+          <Members>
+            <Variable name="mClassSAPUF">
+              <References>
+                <Function name="VBA.Interaction.CreateObject" fromLibrary="True" />
+              </References>
+            </Variable>
+            <Variable name="DirWinTemp" />
+            <Variable name="VTemp">
+              <References>
+                <Function name="UOCFilenet.Globals.fncParmIniGet" fromLibrary="False" />
+              </References>
+            </Variable>
+          </Members>
+          <References>
+            <Function name="UOCFilenet.Globals.fncParmIniGet" fromLibrary="False" />
+          </References>
+        </Sub>
+        <Sub name="Genera_Archivo_Control" usage="2">
+          <Members>
+            <Variable name="DirWinTemp" />
+          </Members>
+          <References>
+            <Sub name="VBA.FileSystem.Kill" fromLibrary="True" />
+          </References>
+        </Sub>
+      </Members>
+    </Module>
+    <Class name="clsSimpleQuery" usage="4">
+      <Members>
+        <Variable name="oRS" usage="12">
+          <References>
+            <Module name="ADODB.Recordset" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="oMiBD" usage="0">
+          <References>
+            <Module name="ADODB.Connection" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="CmdEjec" usage="0">
+          <References>
+            <Module name="ADODB.Command" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="sConnect" usage="0" />
+        <Variable name="sQuery" usage="0" />
+        <Variable name="oQueryLib" usage="11">
+          <References>
+            <Module name="IDMObjects.Library" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="oPropDescs" usage="38">
+          <References>
+            <Module name="IDMObjects.PropertyDescriptions" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="cColHeadings" usage="3">
+          <References>
+            <Module name="VBA.Collection" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Sub name="BindToLib" usage="1">
+          <Members>
+            <Variable name="oNewLib">
+              <References>
+                <Module name="IDMObjects.Library" fromLibrary="True" />
+              </References>
+            </Variable>
+            <Variable name="pColHeadings">
+              <References>
+                <Module name="VBA.Collection" fromLibrary="True" />
+              </References>
+            </Variable>
+            <Variable name="sClass" />
+            <Variable name="sClasses" />
+            <Variable name="oTmp" />
+          </Members>
+          <References>
+            <Variable name="UOCFilenet.clsSimpleQuery.oPropDescs" fromLibrary="False" />
+            <Enum name="IDMObjects.idmObjectType" fromLibrary="True" />
+            <Variable name="IDMObjects.idmObjectType.idmObjTypeDocument" fromLibrary="True" />
+            <Variable name="UOCFilenet.clsSimpleQuery.cColHeadings" fromLibrary="False" />
+            <Module name="IDMObjects.PropertyDescriptions" fromLibrary="True" />
+            <Sub name="VBA.Collection.Add" fromLibrary="True" />
+            <Variable name="UOCFilenet.clsSimpleQuery.oQueryLib" fromLibrary="False" />
+            <Module name="IDMObjects.IDMObjects" fromLibrary="True" />
+            <Function name="IDMObjects.Library.FilterPropertyDescriptions" fromLibrary="True" />
+          </References>
+        </Sub>
+        <Sub name="UpdateQuery" usage="3">
+          <Members>
+            <Variable name="oNewLib">
+              <References>
+                <Module name="IDMObjects.Library" fromLibrary="True" />
+              </References>
+            </Variable>
+            <Variable name="sClass" />
+            <Variable name="IDMLView" />
+            <Variable name="sClasses" />
+            <Variable name="PropDesc">
+              <References>
+                <Module name="IDMObjects.PropertyDescription" fromLibrary="True" />
+              </References>
+            </Variable>
+            <Variable name="i" />
+            <Variable name="Salvar" />
+            <Variable name="DirWinTemp" />
+          </Members>
+          <References>
+            <Form name="UOCFilenet.FrmFileNET" fromLibrary="False" />
+            <Sub name="IDMObjects.Document.Save" fromLibrary="True" />
+            <Enum name="IDMObjects.idmPropDescState" fromLibrary="True" />
+            <Module name="IDMObjects.Document" fromLibrary="True" />
+            <Property name="IDMObjects.Document.Properties" fromLibrary="True" />
+            <Property name="VB.TextBox.Text" fromLibrary="True" />
+            <Property name="IDMObjects.Document.Permissions" fromLibrary="True" />
+            <Function name="IDMObjects.IFnPropertyDescriptionDual.GetState" fromLibrary="True" />
+            <Sub name="UOCFilenet.Globals.fncParmIniSet" fromLibrary="False" />
+            <Variable name="UOCFilenet.clsSimpleQuery.oRS" fromLibrary="False" />
+            <Variable name="IDMObjects.idmObjectType.idmObjTypeDocument" fromLibrary="True" />
+            <Property name="IDMObjects.IFnPropertyDescriptionDual.Name" fromLibrary="True" />
+            <Variable name="UOCFilenet.Globals.oDocument" fromLibrary="False" />
+            <Property name="IDMObjects.IFnPropertyDual.Value" fromLibrary="True" />
+            <Sub name="ADODB.Recordset.Requery" fromLibrary="True" />
+            <Variable name="IDMObjects.idmDocRefreshOptions.idmRefreshAll" fromLibrary="True" />
+            <Function name="VBA.Conversion.Str" fromLibrary="True" />
+            <Variable name="IDMObjects.idmPropDescState.idmPropReadOnly" fromLibrary="True" />
+            <Function name="VBA.Conversion.Val" fromLibrary="True" />
+            <Property name="IDMObjects.IFnPermissionElement.GranteeName" fromLibrary="True" />
+            <Module name="IDMObjects.IDMObjects" fromLibrary="True" />
+            <Variable name="UOCFilenet.clsSimpleQuery.oQueryLib" fromLibrary="False" />
+            <Sub name="IDMObjects.Document.Refresh" fromLibrary="True" />
+            <Function name="VBA.Strings.Len" fromLibrary="True" />
+            <Function name="IDMObjects.Library.FilterPropertyDescriptions" fromLibrary="True" />
+            <Module name="UOCFilenet.Globals" fromLibrary="False" />
+            <Enum name="IDMObjects.idmObjectType" fromLibrary="True" />
+            <Variable name="UOCFilenet.clsSimpleQuery.oPropDescs" fromLibrary="False" />
+            <Enum name="IDMObjects.idmDocRefreshOptions" fromLibrary="True" />
+          </References>
+        </Sub>
+        <Sub name="ShowResults" usage="1">
+          <Members>
+            <Variable name="IDMLView" />
+            <Variable name="oTmp" />
+            <Variable name="VarPaso" />
+          </Members>
+          <References>
+            <Form name="UOCFilenet.FrmFileNET" fromLibrary="False" />
+            <Sub name="VBA.ErrObject.Raise" fromLibrary="True" />
+            <Function name="VBA.Collection.Count" fromLibrary="True" />
+            <Property name="VB.TextBox.Text" fromLibrary="True" />
+            <Property name="ADODB.Recordset.RecordCount" fromLibrary="True" />
+            <Variable name="VBA.VbAppWinStyle.vbMaximizedFocus" fromLibrary="True" />
+            <Module name="VBA.VBA" fromLibrary="True" />
+            <Function name="VBA.Interaction.MsgBox" fromLibrary="True" />
+            <Function name="VBA.Interaction.Shell" fromLibrary="True" />
+            <Function name="VBA.Strings.Trim" fromLibrary="True" />
+            <Variable name="UOCFilenet.clsSimpleQuery.oRS" fromLibrary="False" />
+            <Enum name="VBA.VbMsgBoxResult" fromLibrary="True" />
+            <Property name="ADODB.Recordset.Fields" fromLibrary="True" />
+            <Variable name="VBA.VbMsgBoxResult.vbYes" fromLibrary="True" />
+            <Property name="VB.App.Path" fromLibrary="True" />
+            <Property name="VB.ComboBox.Text" fromLibrary="True" />
+            <Function name="VBA.Conversion.Str" fromLibrary="True" />
+            <Enum name="VBA.VbMsgBoxStyle" fromLibrary="True" />
+            <Function name="VBA.Conversion.Val" fromLibrary="True" />
+            <Enum name="VBA.VbAppWinStyle" fromLibrary="True" />
+            <Property name="ADODB.Field.Value" fromLibrary="True" />
+            <Variable name="VBA.VbMsgBoxStyle.vbYesNo" fromLibrary="True" />
+            <Property name="VB.Global.App" fromLibrary="True" />
+            <Function name="VBA.Information.Err" fromLibrary="True" />
+            <Variable name="UOCFilenet.clsSimpleQuery.oQueryLib" fromLibrary="False" />
+            <Variable name="UOCFilenet.clsSimpleQuery.cColHeadings" fromLibrary="False" />
+            <Module name="UOCFilenet.Globals" fromLibrary="False" />
+            <Variable name="UOCFilenet.clsSimpleQuery.oPropDescs" fromLibrary="False" />
+          </References>
+        </Sub>
+        <Sub name="ExecQuery" usage="2">
+          <Members>
+            <Variable name="IDMLView" />
+            <Variable name="sWhereClause" />
+            <Variable name="sFolderName" />
+            <Variable name="iMaxRows" />
+          </Members>
+          <References>
+            <Sub name="ADODB.Recordset.Open" fromLibrary="True" />
+            <Property name="ADODB.Recordset.ActiveConnection" fromLibrary="True" />
+            <Sub name="UOCFilenet.clsSimpleQuery.ShowResults" fromLibrary="False" />
+            <Enum name="ADODB.LockTypeEnum" fromLibrary="True" />
+            <Property name="ADODB.Recordset.MaxRecords" fromLibrary="True" />
+            <Variable name="UOCFilenet.clsSimpleQuery.oRS" fromLibrary="False" />
+            <Variable name="ADODB.LockTypeEnum.adLockUnspecified" fromLibrary="True" />
+            <Variable name="ADODB.LockTypeEnum.adLockOptimistic" fromLibrary="True" />
+            <Property name="ADODB.Property.Value" fromLibrary="True" />
+            <Property name="IDMObjects.Library.Name" fromLibrary="True" />
+            <Property name="ADODB.Recordset.Properties" fromLibrary="True" />
+            <Function name="VBA.Interaction.MsgBox" fromLibrary="True" />
+            <Enum name="ADODB.CursorTypeEnum" fromLibrary="True" />
+            <Property name="ADODB.Recordset.LockType" fromLibrary="True" />
+            <Function name="VBA.Strings.Len" fromLibrary="True" />
+            <Property name="IDMObjects.Library.SystemType" fromLibrary="True" />
+            <Variable name="UOCFilenet.clsSimpleQuery.oQueryLib" fromLibrary="False" />
+            <Module name="ADODB.ADODB" fromLibrary="True" />
+            <Module name="ADODB.Recordset" fromLibrary="True" />
+            <Variable name="ADODB.CursorTypeEnum.adOpenKeyset" fromLibrary="True" />
+          </References>
+        </Sub>
+      </Members>
+    </Class>
+    <Form name="frmSettings" usage="5">
+      <Members>
+        <Variable name="txtIMSLibName" usage="3">
+          <References>
+            <Property name="VB.TextBox.Locked" fromLibrary="True" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Property name="VB.TextBox.ForeColor" fromLibrary="True" />
+            <Variable name="VBRUN.MousePointerConstants.vbIBeam" fromLibrary="True" />
+            <Property name="VB.TextBox.MultiLine" fromLibrary="True" />
+            <Property name="VB.TextBox.TabStop" fromLibrary="True" />
+            <Property name="VB.TextBox.BackColor" fromLibrary="True" />
+            <Property name="VB.TextBox.Enabled" fromLibrary="True" />
+            <Property name="VB.TextBox.MaxLength" fromLibrary="True" />
+            <Property name="VB.TextBox.ScrollBars" fromLibrary="True" />
+            <Property name="VB.TextBox.TabIndex" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Property name="VB.TextBox.Alignment" fromLibrary="True" />
+            <Property name="VB.TextBox.HideSelection" fromLibrary="True" />
+            <Property name="VB.TextBox.Name" fromLibrary="True" />
+            <Property name="VB.TextBox.CausesValidation" fromLibrary="True" />
+            <Property name="VB.TextBox.FSBorderStyle" fromLibrary="True" />
+            <Module name="VB.TextBox" fromLibrary="True" />
+            <Property name="VB.TextBox.Font" fromLibrary="True" />
+            <Property name="VB.TextBox.RightToLeft" fromLibrary="True" />
+            <Property name="VB.TextBox.Visible" fromLibrary="True" />
+            <Property name="VB.TextBox.MousePointer" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="txtIMSUser" usage="1">
+          <References>
+            <Property name="VB.TextBox.Locked" fromLibrary="True" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Property name="VB.TextBox.ForeColor" fromLibrary="True" />
+            <Variable name="VBRUN.MousePointerConstants.vbIBeam" fromLibrary="True" />
+            <Property name="VB.TextBox.MultiLine" fromLibrary="True" />
+            <Property name="VB.TextBox.TabStop" fromLibrary="True" />
+            <Property name="VB.TextBox.BackColor" fromLibrary="True" />
+            <Property name="VB.TextBox.Enabled" fromLibrary="True" />
+            <Property name="VB.TextBox.MaxLength" fromLibrary="True" />
+            <Property name="VB.TextBox.ScrollBars" fromLibrary="True" />
+            <Property name="VB.TextBox.TabIndex" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Property name="VB.TextBox.Alignment" fromLibrary="True" />
+            <Property name="VB.TextBox.HideSelection" fromLibrary="True" />
+            <Property name="VB.TextBox.Name" fromLibrary="True" />
+            <Property name="VB.TextBox.CausesValidation" fromLibrary="True" />
+            <Property name="VB.TextBox.FSBorderStyle" fromLibrary="True" />
+            <Module name="VB.TextBox" fromLibrary="True" />
+            <Property name="VB.TextBox.Font" fromLibrary="True" />
+            <Property name="VB.TextBox.RightToLeft" fromLibrary="True" />
+            <Property name="VB.TextBox.Visible" fromLibrary="True" />
+            <Property name="VB.TextBox.MousePointer" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="txtIMSPassword" usage="1">
+          <References>
+            <Property name="VB.TextBox.Locked" fromLibrary="True" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Property name="VB.TextBox.ForeColor" fromLibrary="True" />
+            <Variable name="VBRUN.MousePointerConstants.vbIBeam" fromLibrary="True" />
+            <Property name="VB.TextBox.MultiLine" fromLibrary="True" />
+            <Property name="VB.TextBox.TabStop" fromLibrary="True" />
+            <Property name="VB.TextBox.BackColor" fromLibrary="True" />
+            <Property name="VB.TextBox.Enabled" fromLibrary="True" />
+            <Property name="VB.TextBox.MaxLength" fromLibrary="True" />
+            <Property name="VB.TextBox.ScrollBars" fromLibrary="True" />
+            <Property name="VB.TextBox.TabIndex" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Property name="VB.TextBox.Alignment" fromLibrary="True" />
+            <Property name="VB.TextBox.HideSelection" fromLibrary="True" />
+            <Property name="VB.TextBox.Name" fromLibrary="True" />
+            <Property name="VB.TextBox.CausesValidation" fromLibrary="True" />
+            <Property name="VB.TextBox.FSBorderStyle" fromLibrary="True" />
+            <Module name="VB.TextBox" fromLibrary="True" />
+            <Property name="VB.TextBox.Font" fromLibrary="True" />
+            <Property name="VB.TextBox.RightToLeft" fromLibrary="True" />
+            <Property name="VB.TextBox.Visible" fromLibrary="True" />
+            <Property name="VB.TextBox.MousePointer" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="btnCancel" usage="1">
+          <References>
+            <Property name="VB.CommandButton.RightToLeft" fromLibrary="True" />
+            <Property name="VB.CommandButton.Cancel" fromLibrary="True" />
+            <Property name="VB.CommandButton.Font" fromLibrary="True" />
+            <Property name="VB.CommandButton.Default" fromLibrary="True" />
+            <Module name="VB.CommandButton" fromLibrary="True" />
+            <Property name="VB.CommandButton.Enabled" fromLibrary="True" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Property name="VB.CommandButton.BackColor" fromLibrary="True" />
+            <Variable name="VBRUN.MousePointerConstants.vbDefault" fromLibrary="True" />
+            <Property name="VB.CommandButton.Name" fromLibrary="True" />
+            <Property name="VB.CommandButton.TabIndex" fromLibrary="True" />
+            <Property name="VB.CommandButton.Caption" fromLibrary="True" />
+            <Property name="VB.CommandButton.CausesValidation" fromLibrary="True" />
+            <Property name="VB.CommandButton.TabStop" fromLibrary="True" />
+            <Property name="VB.CommandButton.MousePointer" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="btnOk" usage="1">
+          <References>
+            <Property name="VB.CommandButton.RightToLeft" fromLibrary="True" />
+            <Property name="VB.CommandButton.Cancel" fromLibrary="True" />
+            <Property name="VB.CommandButton.Font" fromLibrary="True" />
+            <Property name="VB.CommandButton.Default" fromLibrary="True" />
+            <Module name="VB.CommandButton" fromLibrary="True" />
+            <Property name="VB.CommandButton.Enabled" fromLibrary="True" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Property name="VB.CommandButton.BackColor" fromLibrary="True" />
+            <Variable name="VBRUN.MousePointerConstants.vbDefault" fromLibrary="True" />
+            <Property name="VB.CommandButton.Name" fromLibrary="True" />
+            <Property name="VB.CommandButton.TabIndex" fromLibrary="True" />
+            <Property name="VB.CommandButton.Caption" fromLibrary="True" />
+            <Property name="VB.CommandButton.CausesValidation" fromLibrary="True" />
+            <Property name="VB.CommandButton.TabStop" fromLibrary="True" />
+            <Property name="VB.CommandButton.MousePointer" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="txtResDocClass" usage="0">
+          <References>
+            <Property name="VB.TextBox.Locked" fromLibrary="True" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Property name="VB.TextBox.ForeColor" fromLibrary="True" />
+            <Variable name="VBRUN.MousePointerConstants.vbIBeam" fromLibrary="True" />
+            <Property name="VB.TextBox.MultiLine" fromLibrary="True" />
+            <Property name="VB.TextBox.TabStop" fromLibrary="True" />
+            <Property name="VB.TextBox.BackColor" fromLibrary="True" />
+            <Property name="VB.TextBox.Enabled" fromLibrary="True" />
+            <Property name="VB.TextBox.MaxLength" fromLibrary="True" />
+            <Property name="VB.TextBox.ScrollBars" fromLibrary="True" />
+            <Property name="VB.TextBox.TabIndex" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Property name="VB.TextBox.Alignment" fromLibrary="True" />
+            <Property name="VB.TextBox.HideSelection" fromLibrary="True" />
+            <Property name="VB.TextBox.Name" fromLibrary="True" />
+            <Property name="VB.TextBox.CausesValidation" fromLibrary="True" />
+            <Property name="VB.TextBox.FSBorderStyle" fromLibrary="True" />
+            <Module name="VB.TextBox" fromLibrary="True" />
+            <Property name="VB.TextBox.Font" fromLibrary="True" />
+            <Property name="VB.TextBox.RightToLeft" fromLibrary="True" />
+            <Property name="VB.TextBox.Visible" fromLibrary="True" />
+            <Property name="VB.TextBox.MousePointer" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="cmdClear" usage="1">
+          <References>
+            <Property name="VB.CommandButton.RightToLeft" fromLibrary="True" />
+            <Property name="VB.CommandButton.Cancel" fromLibrary="True" />
+            <Property name="VB.CommandButton.Font" fromLibrary="True" />
+            <Property name="VB.CommandButton.Default" fromLibrary="True" />
+            <Module name="VB.CommandButton" fromLibrary="True" />
+            <Property name="VB.CommandButton.Enabled" fromLibrary="True" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Property name="VB.CommandButton.BackColor" fromLibrary="True" />
+            <Variable name="VBRUN.MousePointerConstants.vbDefault" fromLibrary="True" />
+            <Property name="VB.CommandButton.Name" fromLibrary="True" />
+            <Property name="VB.CommandButton.TabIndex" fromLibrary="True" />
+            <Property name="VB.CommandButton.Caption" fromLibrary="True" />
+            <Property name="VB.CommandButton.CausesValidation" fromLibrary="True" />
+            <Property name="VB.CommandButton.TabStop" fromLibrary="True" />
+            <Property name="VB.CommandButton.MousePointer" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="cmdSave" usage="1">
+          <References>
+            <Property name="VB.CommandButton.RightToLeft" fromLibrary="True" />
+            <Property name="VB.CommandButton.Cancel" fromLibrary="True" />
+            <Property name="VB.CommandButton.Font" fromLibrary="True" />
+            <Property name="VB.CommandButton.Default" fromLibrary="True" />
+            <Module name="VB.CommandButton" fromLibrary="True" />
+            <Property name="VB.CommandButton.Enabled" fromLibrary="True" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Property name="VB.CommandButton.BackColor" fromLibrary="True" />
+            <Variable name="VBRUN.MousePointerConstants.vbDefault" fromLibrary="True" />
+            <Property name="VB.CommandButton.Name" fromLibrary="True" />
+            <Property name="VB.CommandButton.TabIndex" fromLibrary="True" />
+            <Property name="VB.CommandButton.Caption" fromLibrary="True" />
+            <Property name="VB.CommandButton.CausesValidation" fromLibrary="True" />
+            <Property name="VB.CommandButton.TabStop" fromLibrary="True" />
+            <Property name="VB.CommandButton.MousePointer" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="txtResFolder" usage="0">
+          <References>
+            <Property name="VB.TextBox.Locked" fromLibrary="True" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Property name="VB.TextBox.ForeColor" fromLibrary="True" />
+            <Variable name="VBRUN.MousePointerConstants.vbIBeam" fromLibrary="True" />
+            <Property name="VB.TextBox.MultiLine" fromLibrary="True" />
+            <Property name="VB.TextBox.TabStop" fromLibrary="True" />
+            <Property name="VB.TextBox.BackColor" fromLibrary="True" />
+            <Property name="VB.TextBox.Enabled" fromLibrary="True" />
+            <Property name="VB.TextBox.MaxLength" fromLibrary="True" />
+            <Property name="VB.TextBox.ScrollBars" fromLibrary="True" />
+            <Property name="VB.TextBox.TabIndex" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Property name="VB.TextBox.Alignment" fromLibrary="True" />
+            <Property name="VB.TextBox.HideSelection" fromLibrary="True" />
+            <Property name="VB.TextBox.Name" fromLibrary="True" />
+            <Property name="VB.TextBox.CausesValidation" fromLibrary="True" />
+            <Property name="VB.TextBox.FSBorderStyle" fromLibrary="True" />
+            <Module name="VB.TextBox" fromLibrary="True" />
+            <Property name="VB.TextBox.Font" fromLibrary="True" />
+            <Property name="VB.TextBox.RightToLeft" fromLibrary="True" />
+            <Property name="VB.TextBox.Visible" fromLibrary="True" />
+            <Property name="VB.TextBox.MousePointer" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="Label9" usage="0">
+          <References>
+            <Variable name="VBRUN.MousePointerConstants.vbDefault" fromLibrary="True" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Property name="VB.Label.Enabled" fromLibrary="True" />
+            <Property name="VB.Label.UseMnemonic" fromLibrary="True" />
+            <Property name="VB.Label.AutoSize" fromLibrary="True" />
+            <Property name="VB.Label.TabIndex" fromLibrary="True" />
+            <Property name="VB.Label.Caption" fromLibrary="True" />
+            <Property name="VB.Label.BackColor" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Module name="VB.Label" fromLibrary="True" />
+            <Property name="VB.Label.Font" fromLibrary="True" />
+            <Property name="VB.Label.Name" fromLibrary="True" />
+            <Property name="VB.Label.FSBorderStyle" fromLibrary="True" />
+            <Property name="VB.Label.Alignment" fromLibrary="True" />
+            <Property name="VB.Label.Visible" fromLibrary="True" />
+            <Property name="VB.Label.BackStyle" fromLibrary="True" />
+            <Property name="VB.Label.RightToLeft" fromLibrary="True" />
+            <Property name="VB.Label.ForeColor" fromLibrary="True" />
+            <Property name="VB.Label.MousePointer" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="Label8" usage="0">
+          <References>
+            <Variable name="VBRUN.MousePointerConstants.vbDefault" fromLibrary="True" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Property name="VB.Label.Enabled" fromLibrary="True" />
+            <Property name="VB.Label.UseMnemonic" fromLibrary="True" />
+            <Property name="VB.Label.AutoSize" fromLibrary="True" />
+            <Property name="VB.Label.TabIndex" fromLibrary="True" />
+            <Property name="VB.Label.Caption" fromLibrary="True" />
+            <Property name="VB.Label.BackColor" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Module name="VB.Label" fromLibrary="True" />
+            <Property name="VB.Label.Font" fromLibrary="True" />
+            <Property name="VB.Label.Name" fromLibrary="True" />
+            <Property name="VB.Label.FSBorderStyle" fromLibrary="True" />
+            <Property name="VB.Label.Alignment" fromLibrary="True" />
+            <Property name="VB.Label.Visible" fromLibrary="True" />
+            <Property name="VB.Label.BackStyle" fromLibrary="True" />
+            <Property name="VB.Label.RightToLeft" fromLibrary="True" />
+            <Property name="VB.Label.ForeColor" fromLibrary="True" />
+            <Property name="VB.Label.MousePointer" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="Label3" usage="0">
+          <References>
+            <Variable name="VBRUN.MousePointerConstants.vbDefault" fromLibrary="True" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Property name="VB.Label.Enabled" fromLibrary="True" />
+            <Property name="VB.Label.UseMnemonic" fromLibrary="True" />
+            <Property name="VB.Label.AutoSize" fromLibrary="True" />
+            <Property name="VB.Label.TabIndex" fromLibrary="True" />
+            <Property name="VB.Label.Caption" fromLibrary="True" />
+            <Property name="VB.Label.BackColor" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Module name="VB.Label" fromLibrary="True" />
+            <Property name="VB.Label.Font" fromLibrary="True" />
+            <Property name="VB.Label.Name" fromLibrary="True" />
+            <Property name="VB.Label.FSBorderStyle" fromLibrary="True" />
+            <Property name="VB.Label.Alignment" fromLibrary="True" />
+            <Property name="VB.Label.Visible" fromLibrary="True" />
+            <Property name="VB.Label.BackStyle" fromLibrary="True" />
+            <Property name="VB.Label.RightToLeft" fromLibrary="True" />
+            <Property name="VB.Label.ForeColor" fromLibrary="True" />
+            <Property name="VB.Label.MousePointer" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="Label2" usage="0">
+          <References>
+            <Variable name="VBRUN.MousePointerConstants.vbDefault" fromLibrary="True" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Property name="VB.Label.Enabled" fromLibrary="True" />
+            <Property name="VB.Label.UseMnemonic" fromLibrary="True" />
+            <Property name="VB.Label.AutoSize" fromLibrary="True" />
+            <Property name="VB.Label.TabIndex" fromLibrary="True" />
+            <Property name="VB.Label.Caption" fromLibrary="True" />
+            <Property name="VB.Label.BackColor" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Module name="VB.Label" fromLibrary="True" />
+            <Property name="VB.Label.Font" fromLibrary="True" />
+            <Property name="VB.Label.Name" fromLibrary="True" />
+            <Property name="VB.Label.FSBorderStyle" fromLibrary="True" />
+            <Property name="VB.Label.Alignment" fromLibrary="True" />
+            <Property name="VB.Label.Visible" fromLibrary="True" />
+            <Property name="VB.Label.BackStyle" fromLibrary="True" />
+            <Property name="VB.Label.RightToLeft" fromLibrary="True" />
+            <Property name="VB.Label.ForeColor" fromLibrary="True" />
+            <Property name="VB.Label.MousePointer" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="Label1" usage="0">
+          <References>
+            <Variable name="VBRUN.MousePointerConstants.vbDefault" fromLibrary="True" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Property name="VB.Label.Enabled" fromLibrary="True" />
+            <Property name="VB.Label.UseMnemonic" fromLibrary="True" />
+            <Property name="VB.Label.AutoSize" fromLibrary="True" />
+            <Property name="VB.Label.TabIndex" fromLibrary="True" />
+            <Property name="VB.Label.Caption" fromLibrary="True" />
+            <Property name="VB.Label.BackColor" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Module name="VB.Label" fromLibrary="True" />
+            <Property name="VB.Label.Font" fromLibrary="True" />
+            <Property name="VB.Label.Name" fromLibrary="True" />
+            <Property name="VB.Label.FSBorderStyle" fromLibrary="True" />
+            <Property name="VB.Label.Alignment" fromLibrary="True" />
+            <Property name="VB.Label.Visible" fromLibrary="True" />
+            <Property name="VB.Label.BackStyle" fromLibrary="True" />
+            <Property name="VB.Label.RightToLeft" fromLibrary="True" />
+            <Property name="VB.Label.ForeColor" fromLibrary="True" />
+            <Property name="VB.Label.MousePointer" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Sub name="btnCancel_Click" usage="0">
+          <References>
+            <Variable name="UOCFilenet.frmSettings.btnCancel" fromLibrary="False" />
+            <Sub name="VB.Form.Hide" fromLibrary="True" />
+          </References>
+        </Sub>
+        <Sub name="btnOk_Click" usage="0">
+          <References>
+            <Variable name="UOCFilenet.frmSettings.btnOk" fromLibrary="False" />
+            <Sub name="VB.Global.Unload" fromLibrary="True" />
+          </References>
+        </Sub>
+        <Sub name="cmdClear_Click" usage="0">
+          <Members>
+            <Variable name="oCtrl">
+              <References>
+                <Module name="VB.Control" fromLibrary="True" />
+              </References>
+            </Variable>
+          </Members>
+          <References>
+            <Module name="UOCFilenet.Globals" fromLibrary="False" />
+            <Variable name="UOCFilenet.Globals.goPersist" fromLibrary="False" />
+            <Sub name="UOCFilenet.clsRegPersist.DeleteSettings" fromLibrary="False" />
+            <Variable name="UOCFilenet.frmSettings.cmdClear" fromLibrary="False" />
+            <Sub name="UOCFilenet.frmSettings.ClearEntries" fromLibrary="False" />
+          </References>
+        </Sub>
+        <Sub name="ClearEntries" usage="2">
+          <Members>
+            <Variable name="fFrm">
+              <References>
+                <Form name="UOCFilenet.frmSettings" fromLibrary="False" />
+              </References>
+            </Variable>
+            <Variable name="oCtrl">
+              <References>
+                <Module name="VB.Control" fromLibrary="True" />
+              </References>
+            </Variable>
+          </Members>
+          <References>
+            <Property name="VB.Form.Controls" fromLibrary="True" />
+            <Property name="VB.TextBox.Text" fromLibrary="True" />
+            <Module name="VB.TextBox" fromLibrary="True" />
+          </References>
+        </Sub>
+        <Sub name="cmdRefresh_Click" usage="0">
+          <References>
+            <Sub name="UOCFilenet.clsRegPersist.GetSettings" fromLibrary="False" />
+            <Module name="UOCFilenet.Globals" fromLibrary="False" />
+            <Variable name="UOCFilenet.Globals.goPersist" fromLibrary="False" />
+            <Sub name="UOCFilenet.frmSettings.ClearEntries" fromLibrary="False" />
+          </References>
+        </Sub>
+        <Sub name="cmdSave_Click" usage="0">
+          <References>
+            <Module name="UOCFilenet.Globals" fromLibrary="False" />
+            <Variable name="UOCFilenet.Globals.goPersist" fromLibrary="False" />
+            <Variable name="UOCFilenet.frmSettings.cmdSave" fromLibrary="False" />
+            <Sub name="UOCFilenet.clsRegPersist.SaveSettings" fromLibrary="False" />
+          </References>
+        </Sub>
+      </Members>
+      <References>
+        <Variable name="VBRUN.MousePointerConstants.vbDefault" fromLibrary="True" />
+        <Property name="VB.Form.ShowInTaskbar" fromLibrary="True" />
+        <Property name="VB.Form.MinButton" fromLibrary="True" />
+        <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+        <Property name="VB.Form.ScaleHeight" fromLibrary="True" />
+        <Property name="VB.Form.Caption" fromLibrary="True" />
+        <Property name="VB.Form.ControlBox" fromLibrary="True" />
+        <Property name="VB.Form.WhatsThisButton" fromLibrary="True" />
+        <Property name="VB.Form.BorderStyle" fromLibrary="True" />
+        <Property name="VB.Form.LinkTopic" fromLibrary="True" />
+        <Property name="VB.Form.WindowState" fromLibrary="True" />
+        <Property name="VB.Form.Icon" fromLibrary="True" />
+        <Property name="VB.Form.MousePointer" fromLibrary="True" />
+        <Property name="VB.Form.ScaleMode" fromLibrary="True" />
+        <Property name="VB.Form.RightToLeft" fromLibrary="True" />
+        <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+        <Property name="VB.Form.StartUpPosition" fromLibrary="True" />
+        <Property name="VB.Form.Font" fromLibrary="True" />
+        <Property name="VB.Form.KeyPreview" fromLibrary="True" />
+        <Property name="VB.Form.ScaleWidth" fromLibrary="True" />
+        <Property name="VB.Form.MaxButton" fromLibrary="True" />
+        <Property name="VB.Form.BackColor" fromLibrary="True" />
+        <Module name="VB.Form" fromLibrary="True" />
+        <Property name="VB.Form.Enabled" fromLibrary="True" />
+      </References>
+    </Form>
+    <Class name="clsRegPersist" usage="2">
+      <Members>
+        <Sub name="SaveSettings" usage="1">
+          <Members>
+            <Variable name="sAppName" />
+            <Variable name="sSection" />
+            <Variable name="fFrm">
+              <References>
+                <Form name="UOCFilenet.frmSettings" fromLibrary="False" />
+              </References>
+            </Variable>
+            <Variable name="oCtrl">
+              <References>
+                <Module name="VB.Control" fromLibrary="True" />
+              </References>
+            </Variable>
+          </Members>
+          <References>
+            <Sub name="VBA.Interaction.SaveSetting" fromLibrary="True" />
+            <Property name="VB.Form.Controls" fromLibrary="True" />
+            <Property name="VB.TextBox.Name" fromLibrary="True" />
+            <Property name="VB.TextBox.Text" fromLibrary="True" />
+            <Module name="VB.TextBox" fromLibrary="True" />
+          </References>
+        </Sub>
+        <Sub name="GetSettings" usage="2">
+          <Members>
+            <Variable name="sAppName" />
+            <Variable name="sSection" />
+            <Variable name="fFrm">
+              <References>
+                <Form name="UOCFilenet.frmSettings" fromLibrary="False" />
+              </References>
+            </Variable>
+            <Variable name="oCtrl">
+              <References>
+                <Module name="VB.Control" fromLibrary="True" />
+              </References>
+            </Variable>
+            <Variable name="sTemp" />
+          </Members>
+          <References>
+            <Property name="VB.Form.Controls" fromLibrary="True" />
+            <Function name="VBA.Interaction.GetSetting" fromLibrary="True" />
+            <Property name="VB.TextBox.Name" fromLibrary="True" />
+            <Module name="VB.TextBox" fromLibrary="True" />
+          </References>
+        </Sub>
+        <Sub name="DeleteSettings" usage="1">
+          <Members>
+            <Variable name="sAppName" />
+            <Variable name="sSection" />
+          </Members>
+          <References>
+            <Sub name="VBA.Interaction.DeleteSetting" fromLibrary="True" />
+          </References>
+        </Sub>
+      </Members>
+    </Class>
+    <Form name="FrmFileNET" usage="19">
+      <Members>
+        <Variable name="SSTab1" usage="11">
+          <References>
+            <Module name="TabDlg.SSTab" fromLibrary="True" />
+            <Enum name="TabDlg.StyleConstants" fromLibrary="True" />
+            <Property name="TabDlg.SSTab.Style" fromLibrary="True" />
+            <Property name="TabDlg.SSTab.TabOrientation" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Property name="VB._VbControlExtender_Intrinsic.TabIndex" fromLibrary="True" />
+            <Property name="TabDlg.SSTab.Font" fromLibrary="True" />
+            <Property name="VB._VbControlExtender_Intrinsic.Name" fromLibrary="True" />
+            <Variable name="TabDlg.StyleConstants.ssStylePropertyPage" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="_SSTab1_TabPage0" usage="0">
+          <References>
+            <Module name="VB.@TabPage" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="IDMViewerCtrl1" usage="0">
+          <References>
+            <Property name="VB.VBControlExtender.TabIndex" fromLibrary="True" />
+            <Property name="VB.VBControlExtender.Name" fromLibrary="True" />
+            <Module name="VB.ControlArray" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="_SSTab1_TabPage1" usage="0">
+          <References>
+            <Module name="VB.@TabPage" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="_SSTab1_TabPage2" usage="0">
+          <References>
+            <Module name="VB.@TabPage" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="SSPanel1" usage="0">
+          <References>
+            <Property name="VB.VBControlExtender.TabIndex" fromLibrary="True" />
+            <Property name="VB.VBControlExtender.Name" fromLibrary="True" />
+            <Module name="Threed.SSPanel" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="CboUoc" usage="0">
+          <References>
+            <Module name="VB.ComboBox" fromLibrary="True" />
+            <Property name="VB.ComboBox.Enabled" fromLibrary="True" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Module name="VB.ControlArray" fromLibrary="True" />
+            <Variable name="VBRUN.MousePointerConstants.vbDefault" fromLibrary="True" />
+            <Property name="VB.ComboBox.Sorted" fromLibrary="True" />
+            <Property name="VB.ComboBox.RightToLeft" fromLibrary="True" />
+            <Property name="VB.ComboBox.Font" fromLibrary="True" />
+            <Property name="VB.ComboBox.Name" fromLibrary="True" />
+            <Property name="VB.ComboBox.TabStop" fromLibrary="True" />
+            <Property name="VB.ComboBox.CausesValidation" fromLibrary="True" />
+            <Function name="VBA._HiddenModule.array" fromLibrary="True" />
+            <Property name="VB.ComboBox.Visible" fromLibrary="True" />
+            <Property name="VB.ComboBox.Style" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Property name="VB.ComboBox.BackColor" fromLibrary="True" />
+            <Property name="VB.ComboBox.ForeColor" fromLibrary="True" />
+            <Property name="VB.ComboBox.MousePointer" fromLibrary="True" />
+            <Property name="VB.ComboBox.IntegralHeight" fromLibrary="True" />
+            <Property name="VB.ComboBox.TabIndex" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="TxtCriterio" usage="0">
+          <References>
+            <Module name="VB.ControlArray" fromLibrary="True" />
+            <Property name="VB.TextBox.Locked" fromLibrary="True" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Property name="VB.TextBox.ForeColor" fromLibrary="True" />
+            <Variable name="VBRUN.MousePointerConstants.vbIBeam" fromLibrary="True" />
+            <Property name="VB.TextBox.MultiLine" fromLibrary="True" />
+            <Property name="VB.TextBox.TabStop" fromLibrary="True" />
+            <Property name="VB.TextBox.BackColor" fromLibrary="True" />
+            <Property name="VB.TextBox.Enabled" fromLibrary="True" />
+            <Property name="VB.TextBox.MaxLength" fromLibrary="True" />
+            <Property name="VB.TextBox.ScrollBars" fromLibrary="True" />
+            <Property name="VB.TextBox.TabIndex" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Property name="VB.TextBox.Alignment" fromLibrary="True" />
+            <Property name="VB.TextBox.HideSelection" fromLibrary="True" />
+            <Property name="VB.TextBox.Name" fromLibrary="True" />
+            <Property name="VB.TextBox.CausesValidation" fromLibrary="True" />
+            <Property name="VB.TextBox.FSBorderStyle" fromLibrary="True" />
+            <Module name="VB.TextBox" fromLibrary="True" />
+            <Property name="VB.TextBox.Font" fromLibrary="True" />
+            <Property name="VB.TextBox.RightToLeft" fromLibrary="True" />
+            <Property name="VB.TextBox.Visible" fromLibrary="True" />
+            <Property name="VB.TextBox.MousePointer" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="Command1" usage="3">
+          <References>
+            <Property name="VB.CommandButton.RightToLeft" fromLibrary="True" />
+            <Property name="VB.CommandButton.Cancel" fromLibrary="True" />
+            <Property name="VB.CommandButton.Font" fromLibrary="True" />
+            <Property name="VB.CommandButton.Default" fromLibrary="True" />
+            <Module name="VB.CommandButton" fromLibrary="True" />
+            <Property name="VB.CommandButton.Enabled" fromLibrary="True" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Property name="VB.CommandButton.BackColor" fromLibrary="True" />
+            <Variable name="VBRUN.MousePointerConstants.vbDefault" fromLibrary="True" />
+            <Property name="VB.CommandButton.Name" fromLibrary="True" />
+            <Property name="VB.CommandButton.TabIndex" fromLibrary="True" />
+            <Property name="VB.CommandButton.Caption" fromLibrary="True" />
+            <Property name="VB.CommandButton.CausesValidation" fromLibrary="True" />
+            <Property name="VB.CommandButton.TabStop" fromLibrary="True" />
+            <Property name="VB.CommandButton.MousePointer" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="LblUoc" usage="0">
+          <References>
+            <Variable name="VBRUN.MousePointerConstants.vbDefault" fromLibrary="True" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Module name="VB.ControlArray" fromLibrary="True" />
+            <Property name="VB.Label.Enabled" fromLibrary="True" />
+            <Property name="VB.Label.UseMnemonic" fromLibrary="True" />
+            <Property name="VB.Label.AutoSize" fromLibrary="True" />
+            <Property name="VB.Label.TabIndex" fromLibrary="True" />
+            <Property name="VB.Label.Caption" fromLibrary="True" />
+            <Property name="VB.Label.BackColor" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Module name="VB.Label" fromLibrary="True" />
+            <Property name="VB.Label.Font" fromLibrary="True" />
+            <Property name="VB.Label.Name" fromLibrary="True" />
+            <Property name="VB.Label.FSBorderStyle" fromLibrary="True" />
+            <Property name="VB.Label.Alignment" fromLibrary="True" />
+            <Property name="VB.Label.Visible" fromLibrary="True" />
+            <Property name="VB.Label.BackStyle" fromLibrary="True" />
+            <Property name="VB.Label.RightToLeft" fromLibrary="True" />
+            <Property name="VB.Label.ForeColor" fromLibrary="True" />
+            <Property name="VB.Label.MousePointer" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="LblCriterio" usage="0">
+          <References>
+            <Variable name="VBRUN.MousePointerConstants.vbDefault" fromLibrary="True" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Module name="VB.ControlArray" fromLibrary="True" />
+            <Property name="VB.Label.Enabled" fromLibrary="True" />
+            <Property name="VB.Label.UseMnemonic" fromLibrary="True" />
+            <Property name="VB.Label.AutoSize" fromLibrary="True" />
+            <Property name="VB.Label.TabIndex" fromLibrary="True" />
+            <Property name="VB.Label.Caption" fromLibrary="True" />
+            <Property name="VB.Label.BackColor" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Module name="VB.Label" fromLibrary="True" />
+            <Property name="VB.Label.Font" fromLibrary="True" />
+            <Property name="VB.Label.Name" fromLibrary="True" />
+            <Property name="VB.Label.FSBorderStyle" fromLibrary="True" />
+            <Property name="VB.Label.Alignment" fromLibrary="True" />
+            <Property name="VB.Label.Visible" fromLibrary="True" />
+            <Property name="VB.Label.BackStyle" fromLibrary="True" />
+            <Property name="VB.Label.RightToLeft" fromLibrary="True" />
+            <Property name="VB.Label.ForeColor" fromLibrary="True" />
+            <Property name="VB.Label.MousePointer" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="IDMListView1" usage="0">
+          <References>
+            <Property name="VB.VBControlExtender.TabIndex" fromLibrary="True" />
+            <Property name="VB.VBControlExtender.Name" fromLibrary="True" />
+            <Module name="VB.ControlArray" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="SSPanel2" usage="4">
+          <References>
+            <Property name="VB.VBControlExtender.TabIndex" fromLibrary="True" />
+            <Property name="VB.VBControlExtender.Name" fromLibrary="True" />
+            <Property name="Threed.SSPanel.Autosize" fromLibrary="True" />
+            <Module name="Threed.SSPanel" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="BtnPrint" usage="4">
+          <References>
+            <Variable name="VBRUN.MousePointerConstants.vbDefault" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Property name="VB.CommandButton.CausesValidation" fromLibrary="True" />
+            <Module name="VB.CommandButton" fromLibrary="True" />
+            <Property name="VB.CommandButton.ToolTipText" fromLibrary="True" />
+            <Property name="VB.CommandButton.Name" fromLibrary="True" />
+            <Property name="VB.CommandButton.TabStop" fromLibrary="True" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Property name="VB.CommandButton.Cancel" fromLibrary="True" />
+            <Property name="VB.CommandButton.MousePointer" fromLibrary="True" />
+            <Property name="VB.CommandButton.Enabled" fromLibrary="True" />
+            <Property name="VB.CommandButton.RightToLeft" fromLibrary="True" />
+            <Property name="VB.CommandButton.Caption" fromLibrary="True" />
+            <Property name="VB.CommandButton.BackColor" fromLibrary="True" />
+            <Property name="VB.CommandButton.TabIndex" fromLibrary="True" />
+            <Property name="VB.CommandButton.Default" fromLibrary="True" />
+            <Property name="VB.CommandButton.Font" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="BtnSalvar" usage="3">
+          <References>
+            <Variable name="VBRUN.MousePointerConstants.vbDefault" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Property name="VB.CommandButton.CausesValidation" fromLibrary="True" />
+            <Property name="VB.CommandButton.TabIndex" fromLibrary="True" />
+            <Module name="VB.CommandButton" fromLibrary="True" />
+            <Property name="VB.CommandButton.Name" fromLibrary="True" />
+            <Property name="VB.CommandButton.Visible" fromLibrary="True" />
+            <Property name="VB.CommandButton.TabStop" fromLibrary="True" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Property name="VB.CommandButton.Cancel" fromLibrary="True" />
+            <Property name="VB.CommandButton.MousePointer" fromLibrary="True" />
+            <Property name="VB.CommandButton.RightToLeft" fromLibrary="True" />
+            <Property name="VB.CommandButton.Caption" fromLibrary="True" />
+            <Property name="VB.CommandButton.BackColor" fromLibrary="True" />
+            <Property name="VB.CommandButton.Enabled" fromLibrary="True" />
+            <Property name="VB.CommandButton.Default" fromLibrary="True" />
+            <Property name="VB.CommandButton.Font" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="Highlight" usage="5">
+          <References>
+            <Variable name="VBRUN.MousePointerConstants.vbDefault" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Property name="VB.CommandButton.CausesValidation" fromLibrary="True" />
+            <Property name="VB.CommandButton.TabIndex" fromLibrary="True" />
+            <Module name="VB.CommandButton" fromLibrary="True" />
+            <Property name="VB.CommandButton.Name" fromLibrary="True" />
+            <Property name="VB.CommandButton.Visible" fromLibrary="True" />
+            <Property name="VB.CommandButton.TabStop" fromLibrary="True" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Property name="VB.CommandButton.Cancel" fromLibrary="True" />
+            <Property name="VB.CommandButton.MousePointer" fromLibrary="True" />
+            <Property name="VB.CommandButton.RightToLeft" fromLibrary="True" />
+            <Property name="VB.CommandButton.Caption" fromLibrary="True" />
+            <Property name="VB.CommandButton.BackColor" fromLibrary="True" />
+            <Property name="VB.CommandButton.Enabled" fromLibrary="True" />
+            <Property name="VB.CommandButton.Default" fromLibrary="True" />
+            <Property name="VB.CommandButton.Font" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="ShowAnnotations" usage="14">
+          <References>
+            <Property name="VB.CheckBox.TextAlign" fromLibrary="True" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Variable name="VBRUN.MousePointerConstants.vbDefault" fromLibrary="True" />
+            <Property name="VB.CheckBox.Enabled" fromLibrary="True" />
+            <Property name="VB.CheckBox.Value" fromLibrary="True" />
+            <Property name="VB.CheckBox.Name" fromLibrary="True" />
+            <Property name="VB.CheckBox.Visible" fromLibrary="True" />
+            <Property name="VB.CheckBox.ForeColor" fromLibrary="True" />
+            <Module name="VB.CheckBox" fromLibrary="True" />
+            <Property name="VB.CheckBox.Caption" fromLibrary="True" />
+            <Property name="VB.CheckBox.TabStop" fromLibrary="True" />
+            <Property name="VB.CheckBox.Appearance" fromLibrary="True" />
+            <Property name="VB.CheckBox.Font" fromLibrary="True" />
+            <Property name="VB.CheckBox.MousePointer" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Property name="VB.CheckBox.RightToLeft" fromLibrary="True" />
+            <Property name="VB.CheckBox.TabIndex" fromLibrary="True" />
+            <Property name="VB.CheckBox.BackColor" fromLibrary="True" />
+            <Property name="VB.CheckBox.Alignment" fromLibrary="True" />
+            <Property name="VB.CheckBox.CausesValidation" fromLibrary="True" />
+            <Property name="VB.CheckBox.Style" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="AddNote" usage="5">
+          <References>
+            <Variable name="VBRUN.MousePointerConstants.vbDefault" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Property name="VB.CommandButton.CausesValidation" fromLibrary="True" />
+            <Property name="VB.CommandButton.TabIndex" fromLibrary="True" />
+            <Module name="VB.CommandButton" fromLibrary="True" />
+            <Property name="VB.CommandButton.Name" fromLibrary="True" />
+            <Property name="VB.CommandButton.Visible" fromLibrary="True" />
+            <Property name="VB.CommandButton.TabStop" fromLibrary="True" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Property name="VB.CommandButton.Cancel" fromLibrary="True" />
+            <Property name="VB.CommandButton.MousePointer" fromLibrary="True" />
+            <Property name="VB.CommandButton.RightToLeft" fromLibrary="True" />
+            <Property name="VB.CommandButton.Caption" fromLibrary="True" />
+            <Property name="VB.CommandButton.BackColor" fromLibrary="True" />
+            <Property name="VB.CommandButton.Enabled" fromLibrary="True" />
+            <Property name="VB.CommandButton.Default" fromLibrary="True" />
+            <Property name="VB.CommandButton.Font" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="Reject" usage="5">
+          <References>
+            <Variable name="VBRUN.MousePointerConstants.vbDefault" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Property name="VB.CommandButton.CausesValidation" fromLibrary="True" />
+            <Property name="VB.CommandButton.TabIndex" fromLibrary="True" />
+            <Module name="VB.CommandButton" fromLibrary="True" />
+            <Property name="VB.CommandButton.Name" fromLibrary="True" />
+            <Property name="VB.CommandButton.Visible" fromLibrary="True" />
+            <Property name="VB.CommandButton.TabStop" fromLibrary="True" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Property name="VB.CommandButton.Cancel" fromLibrary="True" />
+            <Property name="VB.CommandButton.MousePointer" fromLibrary="True" />
+            <Property name="VB.CommandButton.RightToLeft" fromLibrary="True" />
+            <Property name="VB.CommandButton.Caption" fromLibrary="True" />
+            <Property name="VB.CommandButton.BackColor" fromLibrary="True" />
+            <Property name="VB.CommandButton.Enabled" fromLibrary="True" />
+            <Property name="VB.CommandButton.Default" fromLibrary="True" />
+            <Property name="VB.CommandButton.Font" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="Approve" usage="5">
+          <References>
+            <Variable name="VBRUN.MousePointerConstants.vbDefault" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Property name="VB.CommandButton.CausesValidation" fromLibrary="True" />
+            <Property name="VB.CommandButton.TabIndex" fromLibrary="True" />
+            <Module name="VB.CommandButton" fromLibrary="True" />
+            <Property name="VB.CommandButton.Name" fromLibrary="True" />
+            <Property name="VB.CommandButton.Visible" fromLibrary="True" />
+            <Property name="VB.CommandButton.TabStop" fromLibrary="True" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Property name="VB.CommandButton.Cancel" fromLibrary="True" />
+            <Property name="VB.CommandButton.MousePointer" fromLibrary="True" />
+            <Property name="VB.CommandButton.RightToLeft" fromLibrary="True" />
+            <Property name="VB.CommandButton.Caption" fromLibrary="True" />
+            <Property name="VB.CommandButton.BackColor" fromLibrary="True" />
+            <Property name="VB.CommandButton.Enabled" fromLibrary="True" />
+            <Property name="VB.CommandButton.Default" fromLibrary="True" />
+            <Property name="VB.CommandButton.Font" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="BtnZoom" usage="2">
+          <References>
+            <Property name="VB.VBControlExtender.TabIndex" fromLibrary="True" />
+            <Property name="VB.VBControlExtender.Name" fromLibrary="True" />
+            <Module name="Threed.SSCommand" fromLibrary="True" />
+            <Property name="Threed.SSCommand.AutoSize" fromLibrary="True" />
+            <Property name="VB.VBControlExtender.ToolTipText" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="IDMListView2" usage="18">
+          <References>
+            <Property name="VB.VBControlExtender.TabIndex" fromLibrary="True" />
+            <Property name="VB.VBControlExtender.Visible" fromLibrary="True" />
+            <Property name="VB.VBControlExtender.Name" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="BtnZoomIn" usage="2">
+          <References>
+            <Property name="VB.VBControlExtender.TabIndex" fromLibrary="True" />
+            <Module name="Threed.SSCommand" fromLibrary="True" />
+            <Property name="VB.VBControlExtender.Name" fromLibrary="True" />
+            <Property name="VB.VBControlExtender.ToolTipText" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="BtnZoomOut" usage="2">
+          <References>
+            <Property name="VB.VBControlExtender.TabIndex" fromLibrary="True" />
+            <Module name="Threed.SSCommand" fromLibrary="True" />
+            <Property name="VB.VBControlExtender.Name" fromLibrary="True" />
+            <Property name="VB.VBControlExtender.ToolTipText" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="BtnNave" usage="2">
+          <References>
+            <Property name="VB.VBControlExtender.TabIndex" fromLibrary="True" />
+            <Property name="VB.VBControlExtender.Name" fromLibrary="True" />
+            <Module name="Threed.SSCommand" fromLibrary="True" />
+            <Property name="Threed.SSCommand.AutoSize" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="BtnSalir" usage="2">
+          <References>
+            <Property name="VB.VBControlExtender.TabIndex" fromLibrary="True" />
+            <Property name="VB.VBControlExtender.Name" fromLibrary="True" />
+            <Module name="Threed.SSCommand" fromLibrary="True" />
+            <Property name="Threed.SSCommand.AutoSize" fromLibrary="True" />
+            <Property name="VB.VBControlExtender.ToolTipText" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="BtnRotar1" usage="2">
+          <References>
+            <Property name="VB.VBControlExtender.TabIndex" fromLibrary="True" />
+            <Property name="VB.VBControlExtender.Name" fromLibrary="True" />
+            <Module name="Threed.SSCommand" fromLibrary="True" />
+            <Property name="Threed.SSCommand.AutoSize" fromLibrary="True" />
+            <Property name="VB.VBControlExtender.ToolTipText" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="BtnRotar2" usage="2">
+          <References>
+            <Property name="VB.VBControlExtender.TabIndex" fromLibrary="True" />
+            <Property name="VB.VBControlExtender.Name" fromLibrary="True" />
+            <Module name="Threed.SSCommand" fromLibrary="True" />
+            <Property name="Threed.SSCommand.AutoSize" fromLibrary="True" />
+            <Property name="VB.VBControlExtender.ToolTipText" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="BtnDelete" usage="4">
+          <References>
+            <Property name="VB.VBControlExtender.TabIndex" fromLibrary="True" />
+            <Property name="VB.VBControlExtender.Name" fromLibrary="True" />
+            <Module name="Threed.SSCommand" fromLibrary="True" />
+            <Property name="Threed.SSCommand.AutoSize" fromLibrary="True" />
+            <Property name="VB.VBControlExtender.ToolTipText" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="BtnMail" usage="2">
+          <References>
+            <Property name="VB.VBControlExtender.TabIndex" fromLibrary="True" />
+            <Property name="VB.VBControlExtender.Name" fromLibrary="True" />
+            <Module name="Threed.SSCommand" fromLibrary="True" />
+            <Property name="Threed.SSCommand.AutoSize" fromLibrary="True" />
+            <Property name="VB.VBControlExtender.ToolTipText" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="BtnTextBridge" usage="2">
+          <References>
+            <Property name="VB.VBControlExtender.TabIndex" fromLibrary="True" />
+            <Property name="VB.VBControlExtender.Name" fromLibrary="True" />
+            <Module name="Threed.SSCommand" fromLibrary="True" />
+            <Property name="Threed.SSCommand.AutoSize" fromLibrary="True" />
+            <Property name="VB.VBControlExtender.ToolTipText" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="DocumentID" usage="5">
+          <References>
+            <Variable name="VBRUN.MousePointerConstants.vbDefault" fromLibrary="True" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Property name="VB.Label.Enabled" fromLibrary="True" />
+            <Property name="VB.Label.UseMnemonic" fromLibrary="True" />
+            <Property name="VB.Label.AutoSize" fromLibrary="True" />
+            <Property name="VB.Label.TabIndex" fromLibrary="True" />
+            <Property name="VB.Label.BackColor" fromLibrary="True" />
+            <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+            <Module name="VB.Label" fromLibrary="True" />
+            <Property name="VB.Label.Font" fromLibrary="True" />
+            <Property name="VB.Label.Name" fromLibrary="True" />
+            <Property name="VB.Label.FSBorderStyle" fromLibrary="True" />
+            <Property name="VB.Label.Alignment" fromLibrary="True" />
+            <Property name="VB.Label.Visible" fromLibrary="True" />
+            <Property name="VB.Label.BackStyle" fromLibrary="True" />
+            <Property name="VB.Label.RightToLeft" fromLibrary="True" />
+            <Property name="VB.Label.ForeColor" fromLibrary="True" />
+            <Property name="VB.Label.MousePointer" fromLibrary="True" />
+          </References>
+        </Variable>
+        <Variable name="DirWinTemp" usage="0" />
+        <Variable name="XArchivo" usage="0" />
+        <Variable name="Bande" usage="0" />
+        <Variable name="DocAct" usage="0" />
+        <Variable name="Rotar" usage="0" />
+        <Function name="Procesa_Folio" usage="2">
+          <Members>
+            <Variable name="FolioD" />
+            <Variable name="UOCX" />
+            <Variable name="sWhere" />
+          </Members>
+          <References>
+            <Function name="VBA.Strings.Len" fromLibrary="True" />
+            <Module name="UOCFilenet.Globals" fromLibrary="False" />
+            <Property name="VB.TextBox.Text" fromLibrary="True" />
+            <Function name="VBA.Conversion.Val" fromLibrary="True" />
+            <Function name="VBA.Strings.Trim" fromLibrary="True" />
+          </References>
+        </Function>
+        <Sub name="SetLVHeaders" usage="1">
+          <Members>
+            <Variable name="cHeadings">
+              <References>
+                <Module name="VBA.Collection" fromLibrary="True" />
+              </References>
+            </Variable>
+            <Variable name="cPropNames">
+              <References>
+                <Module name="VBA.Collection" fromLibrary="True" />
+              </References>
+            </Variable>
+            <Variable name="asClasses" />
+            <Variable name="oPropDesc">
+              <References>
+                <Module name="IDMObjects.PropertyDescription" fromLibrary="True" />
+              </References>
+            </Variable>
+          </Members>
+          <References>
+            <Sub name="VBA.Collection.Add" fromLibrary="True" />
+            <Property name="IDMObjects.PropertyDescription.Name" fromLibrary="True" />
+            <Enum name="IDMObjects.idmObjectType" fromLibrary="True" />
+            <Variable name="IDMObjects.idmObjectType.idmObjTypeDocument" fromLibrary="True" />
+            <Property name="IDMObjects.PropertyDescription.Label" fromLibrary="True" />
+            <Module name="IDMObjects.PropertyDescriptions" fromLibrary="True" />
+            <Module name="UOCFilenet.Globals" fromLibrary="False" />
+            <Module name="IDMObjects.IDMObjects" fromLibrary="True" />
+            <Function name="IDMObjects.Library.FilterPropertyDescriptions" fromLibrary="True" />
+            <Variable name="UOCFilenet.Globals.goPropDescs" fromLibrary="False" />
+            <Variable name="UOCFilenet.Globals.oLibrary" fromLibrary="False" />
+            <Function name="VBA.Strings.Left" fromLibrary="True" />
+          </References>
+        </Sub>
+        <Function name="ConnectToLibraries" usage="0">
+          <References>
+            <Sub name="UOCFilenet.FrmFileNET.RestoreSettings" fromLibrary="False" />
+            <Function name="IDMObjects.Library.GetState" fromLibrary="True" />
+            <Variable name="UOCFilenet.frmSettings.txtIMSLibName" fromLibrary="False" />
+            <Variable name="UOCFilenet.frmSettings.txtIMSPassword" fromLibrary="False" />
+            <Enum name="IDMObjects.idmSysTypeOptions" fromLibrary="True" />
+            <Property name="VB.TextBox.Text" fromLibrary="True" />
+            <Variable name="IDMObjects.idmSysTypeOptions.idmSysTypeIS" fromLibrary="True" />
+            <Variable name="IDMObjects.idmLibraryState.idmLibraryLoggedOn" fromLibrary="True" />
+            <Sub name="IDMObjects.Library.Logoff" fromLibrary="True" />
+            <Property name="VBA.ErrObject.Description" fromLibrary="True" />
+            <Enum name="IDMObjects.idmLibraryLogon" fromLibrary="True" />
+            <Variable name="IDMObjects.idmLibraryLogon.idmLogonOptNoUI" fromLibrary="True" />
+            <Property name="IDMObjects.Library.Name" fromLibrary="True" />
+            <Function name="VBA.Interaction.MsgBox" fromLibrary="True" />
+            <Function name="IDMObjects.Library.Logon" fromLibrary="True" />
+            <Variable name="UOCFilenet.Globals.gfSettings" fromLibrary="False" />
+            <Enum name="IDMObjects.idmLibraryState" fromLibrary="True" />
+            <Module name="IDMObjects.IDMObjects" fromLibrary="True" />
+            <Function name="VBA.Information.Err" fromLibrary="True" />
+            <Variable name="UOCFilenet.Globals.oLibrary" fromLibrary="False" />
+            <Property name="IDMObjects.Library.SystemType" fromLibrary="True" />
+            <Module name="VB.TextBox" fromLibrary="True" />
+            <Module name="UOCFilenet.Globals" fromLibrary="False" />
+            <Variable name="UOCFilenet.frmSettings.txtIMSUser" fromLibrary="False" />
+          </References>
+        </Function>
+        <Sub name="RestoreSettings" usage="2">
+          <Members>
+            <Variable name="bForceUi" />
+          </Members>
+          <References>
+            <Sub name="VB.Form.Show" fromLibrary="True" />
+            <Sub name="UOCFilenet.clsRegPersist.GetSettings" fromLibrary="False" />
+            <Module name="UOCFilenet.Globals" fromLibrary="False" />
+            <Variable name="UOCFilenet.Globals.gfSettings" fromLibrary="False" />
+            <Variable name="UOCFilenet.Globals.goPersist" fromLibrary="False" />
+          </References>
+        </Sub>
+        <Sub name="BtnDelete_Click" usage="0">
+          <References>
+            <Variable name="VBA.VbMsgBoxResult.vbYes" fromLibrary="True" />
+            <Sub name="VB.Global.Unload" fromLibrary="True" />
+            <Sub name="IDMObjects.Document.Delete" fromLibrary="True" />
+            <Function name="VBA.Interaction.MsgBox" fromLibrary="True" />
+            <Enum name="VBA.VbMsgBoxStyle" fromLibrary="True" />
+            <Module name="UOCFilenet.Globals" fromLibrary="False" />
+            <Variable name="UOCFilenet.FrmFileNET.BtnDelete" fromLibrary="False" />
+            <Module name="VBA.VBA" fromLibrary="True" />
+            <Variable name="UOCFilenet.Globals.oDocument" fromLibrary="False" />
+            <Variable name="VBA.VbMsgBoxStyle.vbYesNo" fromLibrary="True" />
+            <Enum name="VBA.VbMsgBoxResult" fromLibrary="True" />
+          </References>
+        </Sub>
+        <Sub name="BtnMail_Click" usage="0">
+          <References>
+            <Variable name="IDMObjects.idmSendOptions.idmSendCopy" fromLibrary="True" />
+            <Variable name="IDMObjects.idmSendOptions.idmSendWithUI" fromLibrary="True" />
+            <Sub name="IDMObjects.Document.Send" fromLibrary="True" />
+            <Variable name="UOCFilenet.FrmFileNET.BtnMail" fromLibrary="False" />
+            <Module name="UOCFilenet.Globals" fromLibrary="False" />
+            <Enum name="IDMObjects.idmSendOptions" fromLibrary="True" />
+            <Variable name="UOCFilenet.Globals.oDocument" fromLibrary="False" />
+          </References>
+        </Sub>
+        <Sub name="BtnNave_Click" usage="0">
+          <References>
+            <Variable name="UOCFilenet.FrmFileNET.BtnNave" fromLibrary="False" />
+          </References>
+        </Sub>
+        <Sub name="BtnPrint_Click" usage="0">
+          <References>
+            <Function name="IDMViewerCtrl.LocalPrint.DoPrint" fromLibrary="True" />
+            <Variable name="UOCFilenet.FrmFileNET.BtnPrint" fromLibrary="False" />
+          </References>
+        </Sub>
+        <Sub name="BtnRotar1_Click" usage="0">
+          <References>
+            <Variable name="UOCFilenet.FrmFileNET.BtnRotar1" fromLibrary="False" />
+          </References>
+        </Sub>
+        <Sub name="BtnRotar2_Click" usage="0">
+          <References>
+            <Variable name="UOCFilenet.FrmFileNET.BtnRotar2" fromLibrary="False" />
+          </References>
+        </Sub>
+        <Sub name="BtnSalir_Click" usage="0">
+          <References>
+            <Variable name="UOCFilenet.FrmFileNET.BtnSalir" fromLibrary="False" />
+            <Sub name="VB.Global.Unload" fromLibrary="True" />
+          </References>
+        </Sub>
+        <Sub name="BtnSalvar_Click" usage="0">
+          <Members>
+            <Variable name="pg" />
+          </Members>
+          <References>
+            <Variable name="UOCFilenet.FrmFileNET.IDMListView2" fromLibrary="False" />
+            <Module name="UOCFilenet.Globals" fromLibrary="False" />
+            <Variable name="UOCFilenet.FrmFileNET.ShowAnnotations" fromLibrary="False" />
+            <Variable name="UOCFilenet.Globals.oDocument2" fromLibrary="False" />
+            <Property name="IDMObjects.Document.Name" fromLibrary="True" />
+            <Variable name="UOCFilenet.FrmFileNET.BtnSalvar" fromLibrary="False" />
+            <Sub name="IDMObjects.Document.Save" fromLibrary="True" />
+            <Variable name="UOCFilenet.FrmFileNET.DocumentID" fromLibrary="False" />
+            <Variable name="UOCFilenet.Globals.oDocument" fromLibrary="False" />
+            <Sub name="UOCFilenet.FrmFileNET.ShowAnnotations_Click" fromLibrary="False" />
+          </References>
+        </Sub>
+        <Sub name="ShowAnnotations_Click" usage="5">
+          <Members>
+            <Variable name="oAnnos">
+              <References>
+                <Module name="IDMObjects.ObjectSet" fromLibrary="True" />
+              </References>
+            </Variable>
+          </Members>
+          <References>
+            <Variable name="UOCFilenet.Globals.oDocument2" fromLibrary="False" />
+            <Variable name="UOCFilenet.FrmFileNET.BtnSalvar" fromLibrary="False" />
+            <Property name="IDMObjects.Document.Annotations" fromLibrary="True" />
+            <Variable name="IDMObjects.idmDocState.idmDocAnnotated" fromLibrary="True" />
+            <Function name="IDMObjects.Document.GetState" fromLibrary="True" />
+            <Module name="IDMObjects.ObjectSet" fromLibrary="True" />
+            <Property name="VB.VBControlExtender.Visible" fromLibrary="True" />
+            <Property name="VB.CommandButton.Visible" fromLibrary="True" />
+            <Variable name="UOCFilenet.Globals.oDocument" fromLibrary="False" />
+            <Variable name="UOCFilenet.FrmFileNET.Approve" fromLibrary="False" />
+            <Property name="VB.CheckBox.Value" fromLibrary="True" />
+            <Property name="IDMObjects.ObjectSet.Count" fromLibrary="True" />
+            <Variable name="UOCFilenet.FrmFileNET.Reject" fromLibrary="False" />
+            <Variable name="UOCFilenet.FrmFileNET.IDMListView2" fromLibrary="False" />
+            <Variable name="UOCFilenet.FrmFileNET.ShowAnnotations" fromLibrary="False" />
+            <Enum name="IDMObjects.idmDocState" fromLibrary="True" />
+            <Variable name="UOCFilenet.FrmFileNET.Highlight" fromLibrary="False" />
+            <Property name="VB.CommandButton.Enabled" fromLibrary="True" />
+            <Module name="IDMObjects.IDMObjects" fromLibrary="True" />
+            <Variable name="UOCFilenet.FrmFileNET.AddNote" fromLibrary="False" />
+            <Module name="UOCFilenet.Globals" fromLibrary="False" />
+          </References>
+        </Sub>
+        <Sub name="BtnTextBridge_Click" usage="0">
+          <Members>
+            <Variable name="Cade" />
+            <Variable name="Cade2" />
+            <Variable name="Cade1">
+              <References>
+                <Module name="UOCFilenet.Globals" fromLibrary="False" />
+                <Function name="UOCFilenet.Globals.GetFileName" fromLibrary="False" />
+              </References>
+            </Variable>
+            <Variable name="PosPunto">
+              <References>
+                <Function name="VBA.Strings.InStr" fromLibrary="True" />
+              </References>
+            </Variable>
+            <Variable name="VarPaso">
+              <References>
+                <Function name="VBA.Interaction.Shell" fromLibrary="True" />
+              </References>
+            </Variable>
+          </Members>
+          <References>
+            <Function name="VBA.Strings.Trim" fromLibrary="True" />
+            <Property name="VB.Global.App" fromLibrary="True" />
+            <Sub name="VBA.FileSystem.Kill" fromLibrary="True" />
+            <Variable name="UOCFilenet.Globals.oDocument2" fromLibrary="False" />
+            <Variable name="UOCFilenet.FrmFileNET.BtnTextBridge" fromLibrary="False" />
+            <Function name="VBA.Strings.Len" fromLibrary="True" />
+            <Function name="IDMObjects.Document.GetCachedFile" fromLibrary="True" />
+            <Module name="UOCFilenet.Globals" fromLibrary="False" />
+            <Variable name="UOCFilenet.Globals.oDocument" fromLibrary="False" />
+            <Function name="VBA.Strings.Left" fromLibrary="True" />
+            <Property name="VB.App.Path" fromLibrary="True" />
+            <Sub name="VBA.FileSystem.FileCopy" fromLibrary="True" />
+          </References>
+        </Sub>
+        <Sub name="BtnZoom_Click" usage="0">
+          <References>
+            <Variable name="UOCFilenet.FrmFileNET.BtnZoom" fromLibrary="False" />
+          </References>
+        </Sub>
+        <Sub name="BtnZoomIn_Click" usage="0">
+          <References>
+            <Variable name="UOCFilenet.FrmFileNET.BtnZoomIn" fromLibrary="False" />
+          </References>
+        </Sub>
+        <Sub name="BtnZoomOut_Click" usage="0">
+          <References>
+            <Variable name="UOCFilenet.FrmFileNET.BtnZoomOut" fromLibrary="False" />
+          </References>
+        </Sub>
+        <Sub name="CloseBtn_Click" usage="0">
+          <References>
+            <Sub name="VB.Form.Hide" fromLibrary="True" />
+          </References>
+        </Sub>
+        <Sub name="Command1_Click" usage="1">
+          <Members>
+            <Variable name="cHeadings">
+              <References>
+                <Module name="VBA.Collection" fromLibrary="True" />
+              </References>
+            </Variable>
+            <Variable name="oQuery">
+              <References>
+                <Class name="UOCFilenet.clsSimpleQuery" fromLibrary="False" />
+              </References>
+            </Variable>
+            <Variable name="i" />
+            <Variable name="sWhere">
+              <References>
+                <Module name="UOCFilenet.Globals" fromLibrary="False" />
+                <Function name="UOCFilenet.FrmFileNET.Procesa_Folio" fromLibrary="False" />
+              </References>
+            </Variable>
+            <Variable name="sClass" />
+          </Members>
+          <References>
+            <Variable name="UOCFilenet.Globals.gcPropNames" fromLibrary="False" />
+            <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+            <Variable name="UOCFilenet.FrmFileNET.Command1" fromLibrary="False" />
+            <Variable name="UOCFilenet.FrmFileNET.SSPanel2" fromLibrary="False" />
+            <Sub name="UOCFilenet.FrmFileNET.SetLVHeaders" fromLibrary="False" />
+            <Property name="VB.TextBox.Text" fromLibrary="True" />
+            <Variable name="UOCFilenet.FrmFileNET.SSTab1" fromLibrary="False" />
+            <Property name="IDMViewerCtrl.Pages.Count" fromLibrary="True" />
+            <Variable name="UOCFilenet.Globals.gcHeadings" fromLibrary="False" />
+            <Variable name="UOCFilenet.Globals.clsQuery" fromLibrary="False" />
+            <Sub name="UOCFilenet.clsSimpleQuery.ExecQuery" fromLibrary="False" />
+            <Variable name="UOCFilenet.FrmFileNET.IDMListView2" fromLibrary="False" />
+            <Module name="UOCFilenet.Globals" fromLibrary="False" />
+            <Property name="VB.VBControlExtender.Visible" fromLibrary="True" />
+            <Property name="VB.ComboBox.Text" fromLibrary="True" />
+            <Function name="UOCFilenet.FrmFileNET.MousePointer" fromLibrary="False" />
+            <Function name="VBA.Conversion.Val" fromLibrary="True" />
+            <Function name="VBA.Information.IsEmpty" fromLibrary="True" />
+            <Function name="VBA.Interaction.MsgBox" fromLibrary="True" />
+            <Sub name="UOCFilenet.FrmFileNET.IDMListView1_DblClick" fromLibrary="False" />
+            <Variable name="VBRUN.MousePointerConstants.vbHourGlass" fromLibrary="True" />
+            <Variable name="UOCFilenet.FrmFileNET.ShowAnnotations" fromLibrary="False" />
+            <Sub name="UOCFilenet.clsSimpleQuery.BindToLib" fromLibrary="False" />
+            <Variable name="UOCFilenet.Globals.oLibrary" fromLibrary="False" />
+            <Function name="UOCFilenet.FrmFileNET.Procesa_Folio" fromLibrary="False" />
+            <Module name="VBA.Collection" fromLibrary="True" />
+            <Property name="VB.CheckBox.Value" fromLibrary="True" />
+            <Sub name="UOCFilenet.clsSimpleQuery.UpdateQuery" fromLibrary="False" />
+            <Sub name="VB.Global.Unload" fromLibrary="True" />
+            <Variable name="VBRUN.MousePointerConstants.vbArrow" fromLibrary="True" />
+          </References>
+        </Sub>
+        <Function name="MousePointer" usage="2" />
+        <Sub name="IDMListView1_DblClick" usage="4">
+          <Members>
+            <Variable name="Index" />
+            <Variable name="IndexTemp" />
+          </Members>
+          <References>
+            <Variable name="UOCFilenet.FrmFileNET.IDMListView2" fromLibrary="False" />
+            <Variable name="UOCFilenet.FrmFileNET.ShowAnnotations" fromLibrary="False" />
+            <Sub name="UOCFilenet.FrmFileNET.ShowAnnotations_Click" fromLibrary="False" />
+            <Property name="IDMObjects.Document.Name" fromLibrary="True" />
+            <Variable name="UOCFilenet.Globals.oDocument2" fromLibrary="False" />
+            <Variable name="UOCFilenet.FrmFileNET.SSPanel2" fromLibrary="False" />
+            <Module name="UOCFilenet.Globals" fromLibrary="False" />
+            <Module name="IDMObjects.Document" fromLibrary="True" />
+            <Variable name="IDMObjects.idmBrightness.idmBrightnessEnhance" fromLibrary="True" />
+            <Variable name="UOCFilenet.Globals.oDocument" fromLibrary="False" />
+            <Enum name="IDMObjects.idmBrightness" fromLibrary="True" />
+            <Variable name="UOCFilenet.FrmFileNET.DocumentID" fromLibrary="False" />
+            <Property name="VB.VBControlExtender.Visible" fromLibrary="True" />
+          </References>
+        </Sub>
+        <Sub name="Form_Initialize" usage="0">
+          <Members>
+            <Variable name="Temp1" />
+            <Variable name="Temp2" />
+          </Members>
+          <References>
+            <Function name="VBA.Interaction.Command" fromLibrary="True" />
+            <Module name="UOCFilenet.Globals" fromLibrary="False" />
+            <Function name="VBA.Strings.Trim" fromLibrary="True" />
+          </References>
+        </Sub>
+        <Sub name="Form_Load" usage="0">
+          <Members>
+            <Variable name="oLib">
+              <References>
+                <Function name="VBA.Interaction.CreateObject" fromLibrary="True" />
+                <Module name="IDMObjects.Library" fromLibrary="True" />
+              </References>
+            </Variable>
+            <Variable name="i" />
+            <Variable name="Bande" />
+            <Variable name="Count">
+              <References>
+                <Module name="UOCFilenet.Globals" fromLibrary="False" />
+                <Property name="IDMObjects.ObjectSet.Count" fromLibrary="True" />
+                <Variable name="UOCFilenet.Globals.oLibraries" fromLibrary="False" />
+              </References>
+            </Variable>
+            <Variable name="Libreria">
+              <References>
+                <Module name="UOCFilenet.Globals" fromLibrary="False" />
+                <Function name="UOCFilenet.Globals.fncParmIniGet" fromLibrary="False" />
+              </References>
+            </Variable>
+            <Variable name="UOC_Temp">
+              <References>
+                <Module name="UOCFilenet.Globals" fromLibrary="False" />
+              </References>
+            </Variable>
+          </Members>
+          <References>
+            <Module name="IDMObjects.ObjectSet" fromLibrary="True" />
+            <Variable name="UOCFilenet.Globals.oNeighborhood" fromLibrary="False" />
+            <Function name="VBA.Interaction.MsgBox" fromLibrary="True" />
+            <Variable name="UOCFilenet.Globals.oLibraries" fromLibrary="False" />
+            <Variable name="UOCFilenet.FrmFileNET.BtnPrint" fromLibrary="False" />
+            <Variable name="UOCFilenet.FrmFileNET.BtnDelete" fromLibrary="False" />
+            <Property name="Threed.SSCommand.Enabled" fromLibrary="True" />
+            <Function name="VBA.Conversion.Val" fromLibrary="True" />
+            <Variable name="UOCFilenet.Globals.oLibrary" fromLibrary="False" />
+            <Variable name="UOCFilenet.FrmFileNET.IDMListView2" fromLibrary="False" />
+            <Sub name="UOCFilenet.Globals.LLena_CboUoc" fromLibrary="False" />
+            <Sub name="UOCFilenet.FrmFileNET.Command1_Click" fromLibrary="False" />
+            <Variable name="UOCFilenet.FrmFileNET.Command1" fromLibrary="False" />
+            <Property name="VB.ComboBox.Text" fromLibrary="True" />
+            <Module name="UOCFilenet.Globals" fromLibrary="False" />
+            <Function name="IDMObjects.Library.GetState" fromLibrary="True" />
+            <Enum name="IDMObjects.idmSysTypeOptions" fromLibrary="True" />
+            <Sub name="UOCFilenet.Globals.Genera_Archivo_Control" fromLibrary="False" />
+            <Variable name="IDMObjects.idmLibraryState.idmLibraryLoggedOn" fromLibrary="True" />
+            <Sub name="UOCFilenet.FrmFileNET.MyLogon" fromLibrary="False" />
+            <Function name="UOCFilenet.Globals.GetWindowsDir" fromLibrary="False" />
+            <Property name="IDMObjects.Library.SystemType" fromLibrary="True" />
+            <Sub name="VB.Global.Unload" fromLibrary="True" />
+            <Property name="VB.CommandButton.Enabled" fromLibrary="True" />
+            <Property name="VB.Label.Caption" fromLibrary="True" />
+            <Function name="UOCFilenet.Globals.DirExist" fromLibrary="False" />
+            <Property name="IDMObjects.Neighborhood.Libraries" fromLibrary="True" />
+            <Sub name="UOCFilenet.Globals.fncParmIniSet" fromLibrary="False" />
+            <Variable name="UOCFilenet.FrmFileNET.SSPanel2" fromLibrary="False" />
+            <Function name="VBA.Information.IsEmpty" fromLibrary="True" />
+            <Module name="IDMObjects.IDMObjects" fromLibrary="True" />
+            <Property name="VB.VBControlExtender.Visible" fromLibrary="True" />
+            <Variable name="UOCFilenet.FrmFileNET.DocumentID" fromLibrary="False" />
+            <Enum name="IDMObjects.idmLibraryState" fromLibrary="True" />
+            <Module name="IDMObjects.Library" fromLibrary="True" />
+            <Property name="IDMObjects.ObjectSet.Item" fromLibrary="True" />
+            <Sub name="UOCFilenet.FrmFileNET.Llena_Paramatros" fromLibrary="False" />
+            <Variable name="IDMObjects.idmSysTypeOptions.idmSysTypeIS" fromLibrary="True" />
+            <Property name="IDMObjects.Library.Name" fromLibrary="True" />
+          </References>
+        </Sub>
+        <Sub name="Llena_Paramatros" usage="1">
+          <Members>
+            <Variable name="Temp1" />
+            <Variable name="Temp2" />
+          </Members>
+          <References>
+            <Function name="VBA.Strings.Mid" fromLibrary="True" />
+            <Module name="UOCFilenet.Globals" fromLibrary="False" />
+            <Function name="VBA.Strings.Len" fromLibrary="True" />
+            <Function name="VBA.Strings.InStr" fromLibrary="True" />
+            <Function name="VBA.Strings.Trim" fromLibrary="True" />
+          </References>
+        </Sub>
+        <Sub name="MyLogon" usage="1">
+          <Members>
+            <Variable name="oLibrary">
+              <References>
+                <Module name="IDMObjects.Library" fromLibrary="True" />
+              </References>
+            </Variable>
+            <Variable name="dmLogonOptNoUI">
+              <References>
+                <Enum name="IDMObjects.idmLibraryLogon" fromLibrary="True" />
+              </References>
+            </Variable>
+          </Members>
+          <References>
+            <Variable name="IDMObjects.idmLibraryState.idmLibraryLoggedOn" fromLibrary="True" />
+            <Sub name="UOCFilenet.Globals.ObtPassSapuf" fromLibrary="False" />
+            <Enum name="IDMObjects.idmLibraryState" fromLibrary="True" />
+            <Module name="UOCFilenet.Globals" fromLibrary="False" />
+            <Function name="IDMObjects.Library.Logon" fromLibrary="True" />
+            <Function name="IDMObjects.Library.GetState" fromLibrary="True" />
+            <Module name="IDMObjects.IDMObjects" fromLibrary="True" />
+          </References>
+        </Sub>
+        <Sub name="Form_Unload" usage="0">
+          <Members>
+            <Variable name="Cancel" />
+          </Members>
+          <References>
+            <Sub name="IDMObjects.Library.Logoff" fromLibrary="True" />
+            <Sub name="VBA.FileSystem.Kill" fromLibrary="True" />
+            <Enum name="IDMObjects.idmLibraryState" fromLibrary="True" />
+            <Function name="IDMObjects.Library.GetState" fromLibrary="True" />
+            <Function name="VBA.Strings.Len" fromLibrary="True" />
+            <Module name="UOCFilenet.Globals" fromLibrary="False" />
+            <Function name="VBA.Strings.Trim" fromLibrary="True" />
+            <Variable name="IDMObjects.idmLibraryState.idmLibraryLoggedOn" fromLibrary="True" />
+            <Module name="IDMObjects.IDMObjects" fromLibrary="True" />
+            <Variable name="UOCFilenet.Globals.oLibrary" fromLibrary="False" />
+          </References>
+        </Sub>
+        <Sub name="IDMListView2_DblClick" usage="0">
+          <Members>
+            <Variable name="oAnno">
+              <References>
+                <Module name="IDMObjects.Annotation" fromLibrary="True" />
+              </References>
+            </Variable>
+          </Members>
+          <References>
+            <Module name="IDMObjects.Annotation" fromLibrary="True" />
+            <Variable name="UOCFilenet.FrmFileNET.IDMListView2" fromLibrary="False" />
+            <Property name="IDMObjects.Annotation.Properties" fromLibrary="True" />
+            <Property name="IDMObjects.IFnPropertyDual.Value" fromLibrary="True" />
+          </References>
+        </Sub>
+        <Sub name="IDMViewerCtrl1_Click" usage="0">
+          <Members>
+            <Variable name="Index" />
+          </Members>
+        </Sub>
+        <Sub name="AddNote_Click" usage="0">
+          <Members>
+            <Variable name="oAnno">
+              <References>
+                <Module name="IDMObjects.Annotation" fromLibrary="True" />
+              </References>
+            </Variable>
+            <Variable name="pg" />
+          </Members>
+          <References>
+            <Variable name="UOCFilenet.Globals.oDocument2" fromLibrary="False" />
+            <Variable name="IDMObjects.idmDocRefreshOptions.idmRefreshAnnotations" fromLibrary="True" />
+            <Enum name="VBRUN.ColorConstants" fromLibrary="True" />
+            <Variable name="UOCFilenet.Globals.oDocument" fromLibrary="False" />
+            <Enum name="IDMObjects.idmDocRefreshOptions" fromLibrary="True" />
+            <Module name="IDMObjects.Annotation" fromLibrary="True" />
+            <Enum name="IDMObjects.idmTabSelect" fromLibrary="True" />
+            <Function name="IDMObjects.Document.CreateAnnotation" fromLibrary="True" />
+            <Property name="IDMObjects.IFnPropertyDual.Value" fromLibrary="True" />
+            <Variable name="VBRUN.ColorConstants.vbWhite" fromLibrary="True" />
+            <Sub name="IDMObjects.Document.Save" fromLibrary="True" />
+            <Variable name="UOCFilenet.FrmFileNET.IDMListView2" fromLibrary="False" />
+            <Property name="IDMObjects.Annotation.Properties" fromLibrary="True" />
+            <Variable name="VBRUN.ColorConstants.vbBlue" fromLibrary="True" />
+            <Variable name="IDMObjects.idmTabSelect.idmTabSelectAll" fromLibrary="True" />
+            <Sub name="IDMObjects.Document.Refresh" fromLibrary="True" />
+            <Module name="IDMObjects.IDMObjects" fromLibrary="True" />
+            <Variable name="UOCFilenet.FrmFileNET.AddNote" fromLibrary="False" />
+            <Function name="IDMObjects.Annotation.ShowPropertiesDialog" fromLibrary="True" />
+            <Module name="UOCFilenet.Globals" fromLibrary="False" />
+          </References>
+        </Sub>
+        <Sub name="MyCreateStamp" usage="2">
+          <Members>
+            <Variable name="AnnoText" />
+            <Variable name="oAnno">
+              <References>
+                <Module name="IDMObjects.Annotation" fromLibrary="True" />
+              </References>
+            </Variable>
+            <Variable name="pg" />
+          </Members>
+          <References>
+            <Module name="IDMObjects.Annotation" fromLibrary="True" />
+            <Variable name="IDMObjects.idmDocRefreshOptions.idmRefreshAnnotations" fromLibrary="True" />
+            <Module name="UOCFilenet.Globals" fromLibrary="False" />
+            <Variable name="UOCFilenet.Globals.oDocument2" fromLibrary="False" />
+            <Property name="IDMObjects.IFnPropertyDual.Value" fromLibrary="True" />
+            <Property name="IDMObjects.Annotation.Properties" fromLibrary="True" />
+            <Sub name="IDMObjects.Document.Save" fromLibrary="True" />
+            <Enum name="IDMObjects.idmDocRefreshOptions" fromLibrary="True" />
+            <Variable name="UOCFilenet.Globals.oDocument" fromLibrary="False" />
+            <Function name="IDMObjects.Document.CreateAnnotation" fromLibrary="True" />
+            <Variable name="UOCFilenet.FrmFileNET.IDMListView2" fromLibrary="False" />
+            <Sub name="IDMObjects.Document.Refresh" fromLibrary="True" />
+          </References>
+        </Sub>
+        <Sub name="Highlight_Click" usage="0">
+          <References>
+            <Variable name="UOCFilenet.FrmFileNET.Highlight" fromLibrary="False" />
+          </References>
+        </Sub>
+        <Sub name="Reject_Click" usage="0">
+          <References>
+            <Sub name="UOCFilenet.FrmFileNET.MyCreateStamp" fromLibrary="False" />
+            <Variable name="UOCFilenet.FrmFileNET.Reject" fromLibrary="False" />
+          </References>
+        </Sub>
+        <Sub name="Approve_Click" usage="0">
+          <References>
+            <Variable name="UOCFilenet.FrmFileNET.Approve" fromLibrary="False" />
+            <Sub name="UOCFilenet.FrmFileNET.MyCreateStamp" fromLibrary="False" />
+          </References>
+        </Sub>
+        <Sub name="SSTab1_Click" usage="0">
+          <Members>
+            <Variable name="PreviousTab" />
+            <Variable name="i">
+              <References>
+                <Property name="TabDlg.SSTab.Tab" fromLibrary="True" />
+                <Variable name="UOCFilenet.FrmFileNET.SSTab1" fromLibrary="False" />
+              </References>
+            </Variable>
+          </Members>
+          <References>
+            <Sub name="UOCFilenet.FrmFileNET.ShowAnnotations_Click" fromLibrary="False" />
+            <Variable name="UOCFilenet.FrmFileNET.SSTab1" fromLibrary="False" />
+            <Variable name="UOCFilenet.FrmFileNET.IDMListView2" fromLibrary="False" />
+            <Property name="TabDlg.SSTab.Tab" fromLibrary="True" />
+            <Property name="VB.CheckBox.Value" fromLibrary="True" />
+            <Property name="VB.CheckBox.Enabled" fromLibrary="True" />
+            <Variable name="UOCFilenet.FrmFileNET.ShowAnnotations" fromLibrary="False" />
+          </References>
+        </Sub>
+        <Sub name="TxtCriterio_Change" usage="0">
+          <Members>
+            <Variable name="Index" />
+          </Members>
+          <References>
+            <Function name="VBA.Strings.Len" fromLibrary="True" />
+            <Variable name="VBA.VbMsgBoxStyle.vbInformation" fromLibrary="True" />
+            <Function name="VBA.Information.IsNumeric" fromLibrary="True" />
+            <Property name="VB.TextBox.Text" fromLibrary="True" />
+            <Enum name="VBA.VbMsgBoxStyle" fromLibrary="True" />
+            <Function name="VBA.Interaction.MsgBox" fromLibrary="True" />
+          </References>
+        </Sub>
+        <Sub name="TxtCriterio_GotFocus" usage="0">
+          <Members>
+            <Variable name="Index" />
+          </Members>
+          <References>
+            <Function name="VBA.Strings.Len" fromLibrary="True" />
+            <Property name="VB.TextBox.SelLength" fromLibrary="True" />
+            <Property name="VB.TextBox.SelStart" fromLibrary="True" />
+            <Property name="VB.TextBox.Text" fromLibrary="True" />
+          </References>
+        </Sub>
+      </Members>
+      <References>
+        <Variable name="VBRUN.MousePointerConstants.vbDefault" fromLibrary="True" />
+        <Property name="VB.Form.ShowInTaskbar" fromLibrary="True" />
+        <Property name="VB.Form.MinButton" fromLibrary="True" />
+        <Enum name="VBRUN.MousePointerConstants" fromLibrary="True" />
+        <Property name="VB.Form.ScaleHeight" fromLibrary="True" />
+        <Property name="VB.Form.Caption" fromLibrary="True" />
+        <Property name="VB.Form.ControlBox" fromLibrary="True" />
+        <Property name="VB.Form.WhatsThisButton" fromLibrary="True" />
+        <Property name="VB.Form.BorderStyle" fromLibrary="True" />
+        <Property name="VB.Form.LinkTopic" fromLibrary="True" />
+        <Property name="VB.Form.WindowState" fromLibrary="True" />
+        <Property name="VB.Form.Icon" fromLibrary="True" />
+        <Property name="VB.Form.MousePointer" fromLibrary="True" />
+        <Property name="VB.Form.ScaleMode" fromLibrary="True" />
+        <Property name="VB.Form.RightToLeft" fromLibrary="True" />
+        <Function name="VBA.Conversion.CByte" fromLibrary="True" />
+        <Property name="VB.Form.StartUpPosition" fromLibrary="True" />
+        <Property name="VB.Form.AutoRedraw" fromLibrary="True" />
+        <Property name="VB.Form.KeyPreview" fromLibrary="True" />
+        <Property name="VB.Form.ScaleWidth" fromLibrary="True" />
+        <Property name="VB.Form.Font" fromLibrary="True" />
+        <Property name="VB.Form.MaxButton" fromLibrary="True" />
+        <Property name="VB.Form.BackColor" fromLibrary="True" />
+        <Module name="VB.Form" fromLibrary="True" />
+        <Property name="VB.Form.Enabled" fromLibrary="True" />
+      </References>
+    </Form>
+  </Members>
+  <References>
+    <Library name="Threed">
+      <Members>
+        <Module name="SSPanel" usage="2">
+          <Members>
+            <Property name="Autosize" usage="1" />
+          </Members>
+        </Module>
+        <Module name="SSCommand" usage="10">
+          <Members>
+            <Property name="AutoSize" usage="8" />
+            <Property name="Enabled" usage="2" />
+          </Members>
+        </Module>
+      </Members>
+    </Library>
+    <Library name="VB">
+      <Members>
+        <Module name="ComboBox" usage="4">
+          <Members>
+            <Sub name="Clear" usage="1" />
+            <Sub name="AddItem" usage="5" />
+            <Property name="NewIndex" usage="5" />
+            <Property name="ListIndex" usage="1" />
+            <Property name="Text" usage="7" />
+            <Property name="Style" usage="2" />
+            <Property name="TabIndex" usage="2" />
+            <Property name="Font" usage="2" />
+            <Property name="BackColor" usage="2" />
+            <Property name="CausesValidation" usage="2" />
+            <Property name="Enabled" usage="2" />
+            <Property name="ForeColor" usage="2" />
+            <Property name="IntegralHeight" usage="2" />
+            <Property name="MousePointer" usage="2" />
+            <Property name="RightToLeft" usage="2" />
+            <Property name="Sorted" usage="2" />
+            <Property name="TabStop" usage="2" />
+            <Property name="Visible" usage="2" />
+            <Property name="Name" usage="2" />
+          </Members>
+        </Module>
+        <Module name="Control" usage="4" />
+        <Module name="Form" usage="2">
+          <Members>
+            <Property name="Controls" usage="4" />
+            <Property name="AutoRedraw" usage="1" />
+            <Property name="Caption" usage="2" />
+            <Property name="Font" usage="2" />
+            <Property name="Icon" usage="2" />
+            <Property name="LinkTopic" usage="2" />
+            <Property name="ScaleHeight" usage="2" />
+            <Property name="ScaleMode" usage="2" />
+            <Property name="ScaleWidth" usage="2" />
+            <Property name="StartUpPosition" usage="2" />
+            <Property name="WindowState" usage="2" />
+            <Property name="BackColor" usage="2" />
+            <Property name="BorderStyle" usage="2" />
+            <Property name="ControlBox" usage="2" />
+            <Property name="Enabled" usage="2" />
+            <Property name="KeyPreview" usage="2" />
+            <Property name="MaxButton" usage="2" />
+            <Property name="MinButton" usage="2" />
+            <Property name="MousePointer" usage="2" />
+            <Property name="RightToLeft" usage="2" />
+            <Property name="ShowInTaskbar" usage="2" />
+            <Property name="WhatsThisButton" usage="2" />
+            <Sub name="Show" usage="1" />
+            <Sub name="Hide" usage="2" />
+          </Members>
+        </Module>
+        <Module name="TextBox" usage="17">
+          <Members>
+            <Property name="Name" usage="14" />
+            <Property name="Text" usage="49" />
+            <Property name="Font" usage="11" />
+            <Property name="MaxLength" usage="11" />
+            <Property name="TabIndex" usage="11" />
+            <Property name="Alignment" usage="11" />
+            <Property name="BackColor" usage="11" />
+            <Property name="CausesValidation" usage="11" />
+            <Property name="Enabled" usage="11" />
+            <Property name="ForeColor" usage="11" />
+            <Property name="HideSelection" usage="11" />
+            <Property name="Locked" usage="11" />
+            <Property name="MousePointer" usage="11" />
+            <Property name="MultiLine" usage="11" />
+            <Property name="RightToLeft" usage="11" />
+            <Property name="ScrollBars" usage="11" />
+            <Property name="TabStop" usage="11" />
+            <Property name="Visible" usage="11" />
+            <Property name="FSBorderStyle" usage="11" />
+            <Property name="SelStart" usage="1" />
+            <Property name="SelLength" usage="1" />
+          </Members>
+        </Module>
+        <Module name="Global" usage="0">
+          <Members>
+            <Property name="App" usage="2" />
+            <Sub name="Unload" usage="5" />
+          </Members>
+        </Module>
+        <Module name="App" usage="0">
+          <Members>
+            <Property name="Path" usage="2" />
+          </Members>
+        </Module>
+        <Module name="_VbControlExtender_Intrinsic" usage="0">
+          <Members>
+            <Property name="TabIndex" usage="1" />
+            <Property name="Name" usage="1" />
+          </Members>
+        </Module>
+        <Module name="@TabPage" usage="3" />
+        <Module name="VBControlExtender" usage="0">
+          <Members>
+            <Property name="TabIndex" usage="19" />
+            <Property name="Name" usage="19" />
+            <Property name="ToolTipText" usage="9" />
+            <Property name="Visible" usage="7" />
+          </Members>
+        </Module>
+        <Module name="CommandButton" usage="11">
+          <Members>
+            <Property name="Caption" usage="11" />
+            <Property name="Enabled" usage="23" />
+            <Property name="Font" usage="11" />
+            <Property name="TabIndex" usage="11" />
+            <Property name="BackColor" usage="11" />
+            <Property name="Cancel" usage="11" />
+            <Property name="CausesValidation" usage="11" />
+            <Property name="Default" usage="11" />
+            <Property name="MousePointer" usage="11" />
+            <Property name="RightToLeft" usage="11" />
+            <Property name="TabStop" usage="11" />
+            <Property name="Name" usage="11" />
+            <Property name="ToolTipText" usage="1" />
+            <Property name="Visible" usage="15" />
+          </Members>
+        </Module>
+        <Module name="Label" usage="16">
+          <Members>
+            <Property name="Alignment" usage="14" />
+            <Property name="Caption" usage="14" />
+            <Property name="TabIndex" usage="14" />
+            <Property name="Font" usage="14" />
+            <Property name="BackColor" usage="14" />
+            <Property name="BackStyle" usage="14" />
+            <Property name="Enabled" usage="14" />
+            <Property name="ForeColor" usage="14" />
+            <Property name="MousePointer" usage="14" />
+            <Property name="RightToLeft" usage="14" />
+            <Property name="UseMnemonic" usage="14" />
+            <Property name="Visible" usage="14" />
+            <Property name="AutoSize" usage="14" />
+            <Property name="FSBorderStyle" usage="14" />
+            <Property name="Name" usage="14" />
+          </Members>
+        </Module>
+        <Module name="CheckBox" usage="1">
+          <Members>
+            <Property name="TextAlign" usage="1" />
+            <Property name="Caption" usage="1" />
+            <Property name="Font" usage="1" />
+            <Property name="TabIndex" usage="1" />
+            <Property name="Alignment" usage="1" />
+            <Property name="Appearance" usage="1" />
+            <Property name="BackColor" usage="1" />
+            <Property name="CausesValidation" usage="1" />
+            <Property name="Enabled" usage="3" />
+            <Property name="ForeColor" usage="1" />
+            <Property name="MousePointer" usage="1" />
+            <Property name="RightToLeft" usage="1" />
+            <Property name="Style" usage="1" />
+            <Property name="TabStop" usage="1" />
+            <Property name="Value" usage="6" />
+            <Property name="Visible" usage="1" />
+            <Property name="Name" usage="1" />
+          </Members>
+        </Module>
+        <Module name="ControlArray" usage="6" />
+      </Members>
+    </Library>
+    <Library name="VBRUN">
+      <Members>
+        <Enum name="MousePointerConstants" usage="43">
+          <Members>
+            <Variable name="vbDefault" usage="30" />
+            <Variable name="vbIBeam" usage="11" />
+            <Variable name="vbHourGlass" usage="1" />
+            <Variable name="vbArrow" usage="1" />
+          </Members>
+        </Enum>
+        <Enum name="ColorConstants" usage="2">
+          <Members>
+            <Variable name="vbBlue" usage="1" />
+            <Variable name="vbWhite" usage="1" />
+          </Members>
+        </Enum>
+      </Members>
+    </Library>
+    <Library name="IDMObjects">
+      <Members>
+        <Module name="Neighborhood" usage="2">
+          <Members>
+            <Property name="Libraries" usage="1" />
+          </Members>
+        </Module>
+        <Module name="ObjectSet" usage="8">
+          <Members>
+            <Property name="Count" usage="3" />
+            <Property name="Item" usage="2" />
+          </Members>
+        </Module>
+        <Module name="Document" usage="6">
+          <Members>
+            <Property name="Properties" usage="18" />
+            <Property name="Permissions" usage="3" />
+            <Sub name="Save" usage="7" />
+            <Sub name="Refresh" usage="5" />
+            <Sub name="Delete" usage="1" />
+            <Sub name="Send" usage="1" />
+            <Property name="Name" usage="4" />
+            <Function name="GetCachedFile" usage="2" />
+            <Property name="Annotations" usage="2" />
+            <Function name="GetState" usage="2" />
+            <Function name="CreateAnnotation" usage="4" />
+          </Members>
+        </Module>
+        <Module name="Library" usage="9">
+          <Members>
+            <Function name="FilterPropertyDescriptions" usage="3" />
+            <Property name="Name" usage="3" />
+            <Property name="SystemType" usage="3" />
+            <Sub name="Logoff" usage="2" />
+            <Function name="Logon" usage="2" />
+            <Function name="GetState" usage="4" />
+          </Members>
+        </Module>
+        <Module name="PropertyDescriptions" usage="5" />
+        <Module name="IDMObjects" usage="26" />
+        <Enum name="idmObjectType" usage="6">
+          <Members>
+            <Variable name="idmObjTypeDocument" usage="3" />
+          </Members>
+        </Enum>
+        <Module name="PropertyDescription" usage="2">
+          <Members>
+            <Property name="Label" usage="1" />
+            <Property name="Name" usage="12" />
+          </Members>
+        </Module>
+        <Module name="IFnPropertyDual" usage="0">
+          <Members>
+            <Property name="Value" usage="30" />
+          </Members>
+        </Module>
+        <Module name="IFnPropertyDescriptionDual" usage="0">
+          <Members>
+            <Property name="Name" usage="18" />
+            <Function name="GetState" usage="16" />
+          </Members>
+        </Module>
+        <Enum name="idmPropDescState" usage="32">
+          <Members>
+            <Variable name="idmPropReadOnly" usage="16" />
+          </Members>
+        </Enum>
+        <Module name="IFnPermissionElement" usage="0">
+          <Members>
+            <Property name="GranteeName" usage="3" />
+          </Members>
+        </Module>
+        <Enum name="idmDocRefreshOptions" usage="5">
+          <Members>
+            <Variable name="idmRefreshAll" usage="1" />
+            <Variable name="idmRefreshAnnotations" usage="4" />
+          </Members>
+        </Enum>
+        <Enum name="idmSysTypeOptions" usage="2">
+          <Members>
+            <Variable name="idmSysTypeIS" usage="2" />
+          </Members>
+        </Enum>
+        <Enum name="idmLibraryLogon" usage="2">
+          <Members>
+            <Variable name="idmLogonOptNoUI" usage="1" />
+          </Members>
+        </Enum>
+        <Enum name="idmLibraryState" usage="8">
+          <Members>
+            <Variable name="idmLibraryLoggedOn" usage="4" />
+          </Members>
+        </Enum>
+        <Enum name="idmSendOptions" usage="3">
+          <Members>
+            <Variable name="idmSendWithUI" usage="1" />
+            <Variable name="idmSendCopy" usage="1" />
+          </Members>
+        </Enum>
+        <Enum name="idmBrightness" usage="4">
+          <Members>
+            <Variable name="idmBrightnessEnhance" usage="4" />
+          </Members>
+        </Enum>
+        <Module name="Annotation" usage="9">
+          <Members>
+            <Property name="Properties" usage="12" />
+            <Function name="ShowPropertiesDialog" usage="1" />
+          </Members>
+        </Module>
+        <Enum name="idmDocState" usage="4">
+          <Members>
+            <Variable name="idmDocAnnotated" usage="2" />
+          </Members>
+        </Enum>
+        <Enum name="idmTabSelect" usage="2">
+          <Members>
+            <Variable name="idmTabSelectAll" usage="1" />
+          </Members>
+        </Enum>
+      </Members>
+    </Library>
+    <Library name="VBA">
+      <Members>
+        <Module name="Collection" usage="12">
+          <Members>
+            <Sub name="Add" usage="3" />
+            <Function name="Count" usage="1" />
+          </Members>
+        </Module>
+        <Module name="VBA" usage="4" />
+        <Enum name="VbCompareMethod" usage="2">
+          <Members>
+            <Variable name="vbBinaryCompare" usage="1" />
+          </Members>
+        </Enum>
+        <Module name="Strings" usage="0">
+          <Members>
+            <Function name="InStr" usage="48" />
+            <Function name="Mid" usage="19" />
+            <Function name="Len" usage="27" />
+            <Function name="Trim" usage="13" />
+            <Function name="UCase" usage="1" />
+            <Function name="Space" usage="2" />
+            <Function name="Left" usage="4" />
+            <Function name="Chr" usage="1" />
+          </Members>
+        </Module>
+        <Enum name="VbFileAttribute" usage="2">
+          <Members>
+            <Variable name="vbNormal" usage="1" />
+          </Members>
+        </Enum>
+        <Module name="FileSystem" usage="0">
+          <Members>
+            <Function name="Dir" usage="1" />
+            <Sub name="Kill" usage="3" />
+            <Sub name="FileCopy" usage="1" />
+          </Members>
+        </Module>
+        <Module name="Conversion" usage="0">
+          <Members>
+            <Function name="Val" usage="27" />
+            <Function name="Str" usage="2" />
+            <Function name="CByte" usage="42" />
+          </Members>
+        </Module>
+        <Module name="Interaction" usage="0">
+          <Members>
+            <Function name="CreateObject" usage="2" />
+            <Sub name="SaveSetting" usage="1" />
+            <Function name="GetSetting" usage="1" />
+            <Sub name="DeleteSetting" usage="1" />
+            <Function name="Shell" usage="2" />
+            <Function name="MsgBox" usage="10" />
+            <Function name="Command" usage="1" />
+          </Members>
+        </Module>
+        <Module name="Information" usage="0">
+          <Members>
+            <Function name="Err" usage="2" />
+            <Function name="IsEmpty" usage="7" />
+            <Function name="IsNumeric" usage="1" />
+          </Members>
+        </Module>
+        <Module name="ErrObject" usage="0">
+          <Members>
+            <Sub name="Raise" usage="1" />
+            <Property name="Description" usage="1" />
+          </Members>
+        </Module>
+        <Enum name="VbAppWinStyle" usage="1">
+          <Members>
+            <Variable name="vbMaximizedFocus" usage="1" />
+          </Members>
+        </Enum>
+        <Enum name="VbMsgBoxStyle" usage="3">
+          <Members>
+            <Variable name="vbYesNo" usage="2" />
+            <Variable name="vbInformation" usage="1" />
+          </Members>
+        </Enum>
+        <Enum name="VbMsgBoxResult" usage="4">
+          <Members>
+            <Variable name="vbYes" usage="2" />
+          </Members>
+        </Enum>
+        <Module name="_HiddenModule" usage="0">
+          <Members>
+            <Function name="array" usage="2" />
+          </Members>
+        </Module>
+      </Members>
+    </Library>
+    <WinLibrary name="Kernel32">
+      <Members>
+        <Function name="GetWindowsDirectory" usage="1" />
+        <Function name="GetTempFileName" usage="1" />
+        <Function name="GetSystemDirectory" usage="1" />
+        <Function name="GetPrivateProfileString" usage="1" />
+        <Function name="WritePrivateProfileString" usage="1" />
+      </Members>
+    </WinLibrary>
+    <Library name="ADODB">
+      <Members>
+        <Module name="Recordset" usage="2">
+          <Members>
+            <Sub name="Requery" usage="1" />
+            <Property name="Fields" usage="1" />
+            <Property name="RecordCount" usage="1" />
+            <Property name="ActiveConnection" usage="1" />
+            <Property name="Properties" usage="2" />
+            <Property name="MaxRecords" usage="1" />
+            <Property name="LockType" usage="1" />
+            <Sub name="Open" usage="1" />
+          </Members>
+        </Module>
+        <Module name="Connection" usage="1" />
+        <Module name="Command" usage="2" />
+        <Module name="Field" usage="0">
+          <Members>
+            <Property name="Value" usage="1" />
+          </Members>
+        </Module>
+        <Module name="Property" usage="0">
+          <Members>
+            <Property name="Value" usage="2" />
+          </Members>
+        </Module>
+        <Enum name="LockTypeEnum" usage="3">
+          <Members>
+            <Variable name="adLockOptimistic" usage="1" />
+            <Variable name="adLockUnspecified" usage="1" />
+          </Members>
+        </Enum>
+        <Enum name="CursorTypeEnum" usage="1">
+          <Members>
+            <Variable name="adOpenKeyset" usage="1" />
+          </Members>
+        </Enum>
+        <Module name="ADODB" usage="1" />
+      </Members>
+    </Library>
+    <Library name="IDMViewerCtrl">
+      <Members>
+        <Module name="LocalPrint" usage="0">
+          <Members>
+            <Function name="DoPrint" usage="1" />
+          </Members>
+        </Module>
+        <Module name="Pages" usage="0">
+          <Members>
+            <Property name="Count" usage="2" />
+          </Members>
+        </Module>
+      </Members>
+    </Library>
+    <Library name="TabDlg">
+      <Members>
+        <Module name="SSTab" usage="1">
+          <Members>
+            <Property name="TabOrientation" usage="1" />
+            <Property name="Style" usage="1" />
+            <Property name="Font" usage="1" />
+            <Property name="Tab" usage="4" />
+          </Members>
+        </Module>
+        <Enum name="StyleConstants" usage="1">
+          <Members>
+            <Variable name="ssStylePropertyPage" usage="1" />
+          </Members>
+        </Enum>
+      </Members>
+    </Library>
+  </References>
+</Project>
