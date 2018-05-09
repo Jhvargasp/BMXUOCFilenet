@@ -70,13 +70,19 @@
     <Reference Include="adodb, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="API, Version=1.1.3106.16993, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\CreditoEmpresarial\OperaNET\API.dll</HintPath>
+      <HintPath>..\C406_020\Dlls\API.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Artinsoft.VB6, Version=2.1.3125.32454, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\CreditoEmpresarial\OperaNET\Artinsoft.VB6.dll</HintPath>
+      <HintPath>..\C406_020\Dlls\Artinsoft.VB6.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="axinterop.idmlistview">
+      <HintPath>..\C406_020\Dlls\axinterop.idmlistview.dll</HintPath>
+    </Reference>
+    <Reference Include="AxInterop.IDMViewerCtrl">
+      <HintPath>..\C406_020\Dlls\AxInterop.IDMViewerCtrl.dll</HintPath>
     </Reference>
     <Reference Include="C1.Win.C1SplitContainer.4, Version=4.0.20141.55, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL">
       <HintPath>..\CreditoEmpresarial\OperaNET\C1.Win.C1SplitContainer.4.dll</HintPath>
@@ -91,6 +97,9 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
       <HintPath>..\CreditoEmpresarial\OperaNET\AxInterop.IDMViewerCtrl.dll</HintPath>
       <WrapperTool>aximp</WrapperTool>
+    </Reference>
+    <Reference Include="FileNet.Api">
+      <HintPath>..\..\..\FileNet.Api.dll</HintPath>
     </Reference>
     <Reference Include="IDMObjects, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -112,6 +121,14 @@
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>..\CreditoEmpresarial\OperaNET\Interop.IDMViewerCtrl.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.IDMViewerCtrl">
+      <HintPath>..\C406_020\Dlls\Interop.IDMViewerCtrl.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="interop.tuxserver">
+      <HintPath>..\C406_020\Dlls\interop.tuxserver.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualBasic">
@@ -140,7 +157,7 @@
     </Reference>
     <Reference Include="ViewImages, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\CreditoEmpresarial\OperaNET\ViewImages.dll</HintPath>
+      <HintPath>..\ViewImages\ViewImages\obj\Debug\ViewImages.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -155,6 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="modulos\CEConnection.cs" />
     <Compile Include="Clases\clsRegPersist.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -12,6 +12,7 @@ using System;
 using Microsoft.Win32;
 
 using VB6 = Microsoft.VisualBasic.Compatibility.VB6.Support;
+using FileNet.Api.Collection;
 
 namespace UOCFilenet
 {
@@ -25,7 +26,7 @@ namespace UOCFilenet
         //static public Collection gcPropNames = new Collection();
 
 
-        public const IDMObjects.idmLibraryLogon dmLogonOptNoUI = 0; // Do not display a user interface.
+        //public const IDMObjects.idmLibraryLogon dmLogonOptNoUI = 0; // Do not display a user interface.
         public const int idmLogonOptServerNetworkNoUI = 16; // (&H10)   Log on in server mode and use network logon credentials; do not display a user interface.
         public const int idmLogonOptServerNoUI = 8; // Log on in server mode; do not display a user interface.
         public const int idmLogonOptUseNetworkNoUI = 2; // Use network logon credentials; do not display a user interface.
@@ -39,7 +40,7 @@ namespace UOCFilenet
         public static string TmpImg = string.Empty;
         /* Avg  Fin 14/01/20109 */
 
-
+            /*
         static private IDMObjects.Neighborhood _oNeighborhood;
         static public IDMObjects.Neighborhood oNeighborhood
         {
@@ -86,9 +87,11 @@ namespace UOCFilenet
                 _oLibrary = value;
             }
         }
-
-        static public IDMObjects.Document oDocument = new IDMObjects.Document();
-        static public IDMObjects.Document oDocument2 = new IDMObjects.Document();
+        */
+        //static public IDMObjects.Document oDocument = new IDMObjects.Document();
+        static public FileNet.Api.Core.IDocument oDocument;
+        //static public IDMObjects.Document oDocument2 = new IDMObjects.Document();
+        static public FileNet.Api.Core.IDocument oDocument2;
 
 
         static private frmSettings _gfSettings;
@@ -137,6 +140,7 @@ namespace UOCFilenet
             }
         }
 
+        /*
         static private IDMError.ErrorManager _oErrManager = null;
         static public IDMError.ErrorManager oErrManager
         {
@@ -152,9 +156,10 @@ namespace UOCFilenet
                 _oErrManager = value;
             }
         }
-
+        */
         static public clsSimpleQuery clsQuery = new clsSimpleQuery();
-        static public IDMObjects.PropertyDescriptions goPropDescs = null;
+        //static public IDMObjects.PropertyDescriptions goPropDescs = null;
+        static public IPropertyDescriptionList goPropDescs = null;
         static public bool gbISLogOff = false;
         public const string gsAppName = "Sistema de Registro y Custodia de Doctos";
         public const string gsSectionName = "FileNET";

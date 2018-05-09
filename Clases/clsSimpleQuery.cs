@@ -4,6 +4,14 @@ using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using System;
 using VB6 = Microsoft.VisualBasic.Compatibility.VB6.Support;
+using static FileNet.Api.Core.Factory;
+using FileNet.Api.Core;
+using FileNet.Api.Constants;
+using FileNet.Api.Property;
+using FileNet.Api.Meta;
+using FileNet.Api.Query;
+using FileNet.Api.Collection;
+using System.Collections;
 
 namespace UOCFilenet
 {
@@ -34,24 +42,24 @@ namespace UOCFilenet
         private ADODB.Command CmdEjec = new ADODB.Command();
         private string sConnect = String.Empty;
         private string sQuery = String.Empty;
-        private IDMObjects.Library oQueryLib = null;
-        private IDMObjects.PropertyDescriptions oPropDescs = null;
+        //private IDMObjects.Library oQueryLib = null;
+
+        //private IDMObjects.PropertyDescriptions oPropDescs = null;
+        private FileNet.Api.Collection.IPropertyDescriptionList oPropDescs = null;
         private Collection cColHeadings = new Collection();
         // If we keep the library as a global variable, we can
         // cache data like property descriptions and column headings
-        public void BindToLib(IDMObjects.Library oNewLib, Collection pColHeadings, string sClass)
+        public void BindToLib(IObjectStore objObjectStore, Collection pColHeadings, string sClass)
         {
             string[] sClasses = new string[2];
-
-            sClasses[0] = sClass;
-            oQueryLib = oNewLib;
-            oPropDescs = (IDMObjects.PropertyDescriptions)oQueryLib.FilterPropertyDescriptions(IDMObjects.idmObjectType.idmObjTypeDocument, sClasses);
+            IClassDescription objClassDesc = ClassDescription.FetchInstance(objObjectStore, sClass, null);
+            oPropDescs = objClassDesc.PropertyDescriptions;
             foreach (string oTmp in pColHeadings)
             {
                 // Weed out any bogus labels the caller passed us
                 try
                 {
-                    if (oPropDescs[oTmp] != null)
+                    if (oPropDescs.Contains(oTmp))
                     {
                         cColHeadings.Add(oTmp, null, null, null);
                     }
@@ -63,16 +71,19 @@ namespace UOCFilenet
             }
         }
 
-        public void UpdateQuery(IDMObjects.Library oNewLib, string sClass, AxIDMListView.AxIDMListView IDMLView)
+        public void UpdateQuery(IObjectStore objObjectStore, string sClass, AxIDMListView.AxIDMListView IDMLView)
         {
             string[] sClasses = new string[2];
             //IDMObjects.PropertyDescription PropDesc = null;
             sClasses[0] = sClass;
             bool Salvar = false;
             //string DirWinTemp = "C:\\APPS\\CreditoEmpresarial\\";
-            string DirWinTemp = @Globals.DirLog; 
-            oQueryLib = oNewLib;
-            oPropDescs = (IDMObjects.PropertyDescriptions)oQueryLib.FilterPropertyDescriptions(IDMObjects.idmObjectType.idmObjTypeDocument, sClasses);
+            string DirWinTemp = @Globals.DirLog;
+            //oQueryLib = oNewLib;
+            //oPropDescs = (IDMObjects.PropertyDescriptions)oQueryLib.FilterPropertyDescriptions(IDMObjects.idmObjectType.idmObjTypeDocument, sClasses);
+            IClassDescription objClassDesc = ClassDescription.FetchInstance(objObjectStore, sClass, null);
+            oPropDescs = objClassDesc.PropertyDescriptions;
+
             if (IDMLView.CountItems() == 0)
             {
                 @Globals.fncParmIniSet("UOCFileNet", "Execute", "5", DirWinTemp + "UOCFileNet.ini");
@@ -84,53 +95,63 @@ namespace UOCFilenet
             for (int i = 1; i <= IDMLView.CountItems(); i++)
             {
                 IDMLView.SelectItem(i);
-                @Globals.oDocument = (IDMObjects.Document)IDMLView.SelectedItem;
+                //TODO validate with Filenet
+                //@Globals.oDocument = (Document)IDMLView.SelectedItem;
                 switch (@Globals.VarCom)
                 {
                     case 1:
-                        if (!oPropDescs["F_PAGES"].GetState(IDMObjects.idmPropDescState.idmPropReadOnly))
+                        String pName = "F_PAGES";
+                        IPropertyDescription propertyDescription = getPropertyDescriptionByName(oPropDescs,pName);
+                        if (propertyDescription.IsReadOnly==false)
                         {
-                            @Globals.oDocument.Properties[oPropDescs["F_PAGES"].Name].Value = @Globals.Pag;
+                            @Globals.oDocument.Properties.FindProperty(pName).SetObjectValue( @Globals.Pag);
                             Salvar = true;
                         }
 
                         break;
                     case 2:
-                        if (!oPropDescs["NumCliente"].GetState(IDMObjects.idmPropDescState.idmPropReadOnly))
+                         pName = "NumCliente";
+                        if (FrmFileNET.DefInstance.TxtCriterio[0].Text.Length > 0)
                         {
-                            if (FrmFileNET.DefInstance.TxtCriterio[0].Text.Length > 0)
-                            {
-                                @Globals.oDocument.Properties[oPropDescs["NumCliente"].Name].Value = FrmFileNET.DefInstance.TxtCriterio[0].Text;
-                                Salvar = true;
-                            }
-                        }
-                        if (!oPropDescs["Contrato"].GetState(IDMObjects.idmPropDescState.idmPropReadOnly))
-                        {
-                            if (FrmFileNET.DefInstance.TxtCriterio[2].Text.Length > 0)
-                            {
-                                @Globals.oDocument.Properties[oPropDescs["Contrato"].Name].Value = FrmFileNET.DefInstance.TxtCriterio[2].Text;
-                                Salvar = true;
-                            }
-                        }
-                        if (!oPropDescs["Linea"].GetState(IDMObjects.idmPropDescState.idmPropReadOnly))
-                        {
-                            if (FrmFileNET.DefInstance.TxtCriterio[3].Text.Length > 0)
-                            {
-                                @Globals.oDocument.Properties[oPropDescs["Linea"].Name].Value = FrmFileNET.DefInstance.TxtCriterio[3].Text;
-                                Salvar = true;
-                            }
-                        }
-                        if (!oPropDescs["FolioS403"].GetState(IDMObjects.idmPropDescState.idmPropReadOnly))
-                        {
-                            @Globals.oDocument.Properties[oPropDescs["FolioS403"].Name].Value = @Globals.XFolioS403;
+                            @Globals.oDocument.Properties.FindProperty(pName).SetObjectValue(FrmFileNET.DefInstance.TxtCriterio[0].Text);
                             Salvar = true;
                         }
-                        if (!oPropDescs["CalificaOnDemand"].GetState(IDMObjects.idmPropDescState.idmPropReadOnly))
+
+
+                        pName = "Contrato";
+                        if (FrmFileNET.DefInstance.TxtCriterio[2].Text.Length > 0)
                         {
-                            @Globals.oDocument.Properties[oPropDescs["CalificaOnDemand"].Name].Value = 0;
-                            @Globals.oDocument.Properties[oPropDescs["Status"].Name].Value = 1;
+                            @Globals.oDocument.Properties.FindProperty(pName).SetObjectValue(FrmFileNET.DefInstance.TxtCriterio[2].Text);
                             Salvar = true;
                         }
+
+                        pName = "Linea";
+                        if (FrmFileNET.DefInstance.TxtCriterio[3].Text.Length > 0)
+                        {
+                            @Globals.oDocument.Properties.FindProperty(pName).SetObjectValue(FrmFileNET.DefInstance.TxtCriterio[3].Text);
+                            Salvar = true;
+                        }
+                        
+                        pName = "FolioS403";
+                        propertyDescription = getPropertyDescriptionByName(oPropDescs, pName);
+                        if (propertyDescription.IsReadOnly == false)
+
+                        {
+                            @Globals.oDocument.Properties.FindProperty(pName).SetObjectValue(@Globals.XFolioS403);
+                            Salvar = true;
+                        }
+
+                        pName = "CalificaOnDemand";
+                        propertyDescription = getPropertyDescriptionByName(oPropDescs, pName);
+                        if (propertyDescription.IsReadOnly == false)
+
+                        {
+                            @Globals.oDocument.Properties.FindProperty(pName).SetObjectValue(0);
+                            @Globals.oDocument.Properties.FindProperty("Status").SetObjectValue(1);
+                            Salvar = true;
+                        }
+
+
                         //Set CmdEjec = New ADODB.Command 
                         //Set CmdEjec.ActiveConnection = oMiBD 
                         //sQuery1 = "UPDATE FnDocument SET Cliente = '1' WHERE Folio='" & FrmFileNET.TxtCriterio(1) & "'" 
@@ -145,106 +166,117 @@ namespace UOCFilenet
                         break;
                     case 3:
                     case 6:
-                        if (!oPropDescs["CalificaOnDemand"].GetState(IDMObjects.idmPropDescState.idmPropReadOnly))
+                        pName = "CalificaOnDemand";
+                        propertyDescription = getPropertyDescriptionByName(oPropDescs, pName);
+                        if (propertyDescription.IsReadOnly == false && @Globals.XCalifOnd.Length > 0)
+
                         {
-                            if (@Globals.XCalifOnd.Length > 0)
-                            {
-                                @Globals.oDocument.Properties[oPropDescs["CalificaOnDemand"].Name].Value = @Globals.XCalifOnd;
-                                @Globals.oDocument.Properties[oPropDescs["Status"].Name].Value = @Globals.XCalifOnd;
-                                Salvar = true;
-                            }
+                            @Globals.oDocument.Properties.FindProperty(pName).SetObjectValue(@Globals.XCalifOnd);
+                            @Globals.oDocument.Properties.FindProperty("Status").SetObjectValue((@Globals.XCalifOnd));
+                            Salvar = true;
                         }
-                        if (!oPropDescs["FechaOperacion"].GetState(IDMObjects.idmPropDescState.idmPropReadOnly))
+
+
+                        pName = "FechaOperacion";
+                        propertyDescription = getPropertyDescriptionByName(oPropDescs, pName);
+                        if (propertyDescription.IsReadOnly == false && @Globals.XFechaOp.Length > 0)
+
                         {
-                            if (@Globals.XFechaOp.Length > 0)
-                            {
-                                @Globals.oDocument.Properties[oPropDescs["FechaOperacion"].Name].Value = @Globals.XFechaOp;
-                                Salvar = true;
-                            }
+                            @Globals.oDocument.Properties.FindProperty(pName).SetObjectValue(@Globals.XFechaOp);
+                            Salvar = true;
                         }
-                        if (!oPropDescs["Instrumento"].GetState(IDMObjects.idmPropDescState.idmPropReadOnly))
+
+
+                        pName = "Instrumento";
+                        propertyDescription = getPropertyDescriptionByName(oPropDescs, pName);
+                        if (propertyDescription.IsReadOnly == false && @Globals.XInst.Length > 0)
+
                         {
-                            if (@Globals.XInst.Length > 0)
-                            {
-                                @Globals.oDocument.Properties[oPropDescs["Instrumento"].Name].Value = @Globals.XInst;
-                                Salvar = true;
-                            }
+                            @Globals.oDocument.Properties.FindProperty(pName).SetObjectValue(@Globals.XInst);
+                            Salvar = true;
                         }
-                        if (!oPropDescs["Producto"].GetState(IDMObjects.idmPropDescState.idmPropReadOnly))
+
+                                               
+                        pName = "Producto";
+                        propertyDescription = getPropertyDescriptionByName(oPropDescs, pName);
+                        if (propertyDescription.IsReadOnly == false && @Globals.XProd.Length > 0)
+
                         {
-                            if (@Globals.XProd.Length > 0)
-                            {
-                                @Globals.oDocument.Properties[oPropDescs["Producto"].Name].Value = @Globals.XProd;
-                                Salvar = true;
-                            }
+                            @Globals.oDocument.Properties.FindProperty(pName).SetObjectValue(@Globals.XProd);
+                            Salvar = true;
                         }
-                        if (!oPropDescs["FolioS403"].GetState(IDMObjects.idmPropDescState.idmPropReadOnly))
+
+                        pName = "FolioS403";
+                        propertyDescription = getPropertyDescriptionByName(oPropDescs, pName);
+                        if (propertyDescription.IsReadOnly == false && @Globals.XFolioS403.Length > 0)
+
                         {
-                            if (@Globals.XFolioS403.Length > 0)
-                            {
-                                @Globals.oDocument.Properties[oPropDescs["FolioS403"].Name].Value = @Globals.XFolioS403;
-                                Salvar = true;
-                            }
+                            @Globals.oDocument.Properties.FindProperty(pName).SetObjectValue(@Globals.XFolioS403);
+                            Salvar = true;
                         }
-                        if (!oPropDescs["NumCliente"].GetState(IDMObjects.idmPropDescState.idmPropReadOnly))
+
+                        pName = "NumCliente";
+                        propertyDescription = getPropertyDescriptionByName(oPropDescs, pName);
+                        if (propertyDescription.IsReadOnly == false && FrmFileNET.DefInstance.TxtCriterio[0].Text.Length > 0)
+
                         {
-                            if (FrmFileNET.DefInstance.TxtCriterio[0].Text.Length > 0)
-                            {
-                                @Globals.oDocument.Properties[oPropDescs["NumCliente"].Name].Value = FrmFileNET.DefInstance.TxtCriterio[0].Text;
-                                Salvar = true;
-                            }
+                            @Globals.oDocument.Properties.FindProperty(pName).SetObjectValue(FrmFileNET.DefInstance.TxtCriterio[0].Text);
+                            Salvar = true;
                         }
-                        if (!oPropDescs["Contrato"].GetState(IDMObjects.idmPropDescState.idmPropReadOnly))
+                        
+                        pName = "Contrato";
+                        propertyDescription = getPropertyDescriptionByName(oPropDescs, pName);
+                        if (propertyDescription.IsReadOnly == false && FrmFileNET.DefInstance.TxtCriterio[2].Text.Length > 0)
+
                         {
-                            if (FrmFileNET.DefInstance.TxtCriterio[2].Text.Length > 0)
-                            {
-                                @Globals.oDocument.Properties[oPropDescs["Contrato"].Name].Value = FrmFileNET.DefInstance.TxtCriterio[2].Text;
-                                Salvar = true;
-                            }
+                            @Globals.oDocument.Properties.FindProperty(pName).SetObjectValue(FrmFileNET.DefInstance.TxtCriterio[2].Text);
+                            Salvar = true;
                         }
-                        if (!oPropDescs["Linea"].GetState(IDMObjects.idmPropDescState.idmPropReadOnly))
+
+                        pName = "Linea";
+                        propertyDescription = getPropertyDescriptionByName(oPropDescs, pName);
+                        if (propertyDescription.IsReadOnly == false && FrmFileNET.DefInstance.TxtCriterio[3].Text.Length > 0)
+
                         {
-                            if (FrmFileNET.DefInstance.TxtCriterio[3].Text.Length > 0)
-                            {
-                                @Globals.oDocument.Properties[oPropDescs["Linea"].Name].Value = FrmFileNET.DefInstance.TxtCriterio[3].Text;
-                                Salvar = true;
-                            }
+                            @Globals.oDocument.Properties.FindProperty(pName).SetObjectValue(FrmFileNET.DefInstance.TxtCriterio[3].Text);
+                            Salvar = true;
                         }
+
                         if (Double.Parse(@Globals.TipoDoc) != 999)
                         {
-                            if (!oPropDescs["TipoDoc"].GetState(IDMObjects.idmPropDescState.idmPropReadOnly))
+                            pName = "TipoDoc";
+                            propertyDescription = getPropertyDescriptionByName(oPropDescs, pName);
+                            if (propertyDescription.IsReadOnly == false && Conversion.Val(@Globals.TipoDoc) > 0)
+
                             {
-                                if (Conversion.Val(@Globals.TipoDoc) > 0)
-                                {
-                                    @Globals.oDocument.Properties[oPropDescs["TipoDoc"].Name].Value = @Globals.TipoDoc;
-                                    Salvar = true;
-                                }
-                            }
-                        }
-                        if (!oPropDescs["XfolioS"].GetState(IDMObjects.idmPropDescState.idmPropReadOnly))
-                        {
-                            if (@Globals.XFile.Length > 0)
-                            {
-                                @Globals.oDocument.Properties[oPropDescs["XfolioS"].Name].Value = Conversion.Str(@Globals.XFile);
+                                @Globals.oDocument.Properties.FindProperty(pName).SetObjectValue(@Globals.TipoDoc);
                                 Salvar = true;
                             }
-                            else
-                            {
-                                Salvar = false;
-                            }
+
                         }
+                       
+                        pName = "XfolioS";
+                        propertyDescription = getPropertyDescriptionByName(oPropDescs, pName);
+                        if (propertyDescription.IsReadOnly == false && @Globals.XFile.Length > 0)
+
+                        {
+                            @Globals.oDocument.Properties.FindProperty(pName).SetObjectValue(Conversion.Str(@Globals.XFile));
+                            Salvar = true;
+                        }
+
                         if (Salvar)
                         {
-                            @Globals.oDocument.Permissions[1].GranteeName = "SicUsrG:CredEmp:Banamex"; //Read
-                            @Globals.oDocument.Permissions[2].GranteeName = "OperatorG:CredEmp:Banamex"; //Write
-                            @Globals.oDocument.Permissions[3].GranteeName = "OperatorG:CredEmp:Banamex"; //AccessAX
+                            //TODO set security
+                            //@Globals.oDocument.Permissions[1].GranteeName = "SicUsrG:CredEmp:Banamex"; //Read
+                            //@Globals.oDocument.Permissions[2].GranteeName = "OperatorG:CredEmp:Banamex"; //Write
+                            //@Globals.oDocument.Permissions[3].GranteeName = "OperatorG:CredEmp:Banamex"; //AccessAX
                         }
 
                         break;
                 }
                 if (Salvar)
                 {
-                    @Globals.oDocument.Save();
+                    @Globals.oDocument.Save(RefreshMode.REFRESH);
                     if (@Globals.VarCom == 3 || @Globals.VarCom == 6)
                     {
                         @Globals.fncParmIniSet("UOCFileNet", "Execute", "1", DirWinTemp + "UOCFileNet.ini");
@@ -253,9 +285,24 @@ namespace UOCFilenet
             }
             if (Salvar)
             {
-                @Globals.oDocument.Refresh(IDMObjects.idmDocRefreshOptions.idmRefreshAll);
+                //@Globals.oDocument.Refresh(RefreshMode.REFRESH);
                 oRS.Requery(-1);
             }
+        }
+
+        private IPropertyDescription getPropertyDescriptionByName(IPropertyDescriptionList oPropDescs, string pName)
+        {
+            IEnumerator itr = oPropDescs.GetEnumerator ();
+            while (itr.MoveNext())
+            {
+                IPropertyDescription pds = (IPropertyDescription)itr.Current;
+                if (pds.Name == pName)
+                {
+                    return pds;
+                }
+            }
+            return null;
+
         }
 
         // Private subroutine for building up IDMListView
@@ -264,11 +311,12 @@ namespace UOCFilenet
             bool OnErrorResumeNext = false;
             double VarPaso = 0;
             // Do basic IDMLView initialization
-            IDMLView.DefaultLibrary = oQueryLib;
+            //TODO validate AxIDMListView with Filenet
+            //IDMLView.DefaultLibrary = oQueryLib;
             IDMLView.ClearItems();
             if (cColHeadings.Count > 0)
             {
-                IDMLView.ClearColumnHeaders(oQueryLib);
+                //IDMLView.ClearColumnHeaders(oQueryLib);
                 try
                 {
                     OnErrorResumeNext = true;
@@ -276,11 +324,11 @@ namespace UOCFilenet
                     {
                         foreach (string oTmp in cColHeadings)
                         {
-                            IDMLView.AddColumnHeader(oQueryLib, oPropDescs[oTmp]);
+                            //IDMLView.AddColumnHeader(oQueryLib, oPropDescs[oTmp]);
                         }
                     }
-                    IDMLView.SwitchColumnHeaders(oQueryLib);
-                    IDMLView.View = IDMListView.idmView.idmViewReport;
+                    //IDMLView.SwitchColumnHeaders(oQueryLib);
+                    //IDMLView.View = IDMListView.idmView.idmViewReport;
                 }
                 catch (Exception e)
                 {
@@ -289,7 +337,7 @@ namespace UOCFilenet
             }
             else
             {
-                IDMLView.View = IDMListView.idmView.idmViewList;
+                //IDMLView.View = IDMListView.idmView.idmViewList;
             }
             // Now for the easy part - slam in the actual items
             if (oRS.RecordCount > 0)
@@ -332,14 +380,23 @@ namespace UOCFilenet
         // Calls must be preceded by a BindToLib
         public void ExecQuery(ref  AxIDMListView.AxIDMListView IDMLView, string sWhereClause, string sFolderName, int iMaxRows)
         {
-
-            if (oQueryLib != null)
+            IObjectStore objObjectStore=null;
+            if (objObjectStore != null)
             {
                 // Build the string necessary to bind to the database connection
-                sConnect = "provider=FnDBProvider;data source=" + oQueryLib.Name + ";Prompt=4;SystemType=" + ((int)oQueryLib.SystemType) + ";";
+                //sConnect = "provider=FnDBProvider;data source=" + oQueryLib.Name + ";Prompt=4;SystemType=" + ((int)oQueryLib.SystemType) + ";";
                 // Build the query string
 
-                sQuery = "SELECT * FROM FnDocument ";
+                //sQuery = "SELECT * FROM FnDocument ";
+                String mySQLString = "SELECT This FROM Document ";
+                SearchSQL sqlObject = new SearchSQL();
+                sqlObject.SetQueryString(mySQLString);
+
+                // The SearchSQL instance (sqlObject) can then be specified in the 
+                // SearchScope parameter list to execute the search. Uses fetchRows to test the SQL 
+                // statement.
+                SearchScope searchScope = new SearchScope(objObjectStore);
+            
                 if (sWhereClause.Length > 0)
                 {
                     sQuery = sQuery + "WHERE " + sWhereClause;
@@ -353,20 +410,26 @@ namespace UOCFilenet
                 //Set oMiBD = New ADODB.Connection
                 //oMiBD.ConnectionString = sConnect
                 //oMiBD.Open
-                oRS = new ADODB.Recordset();
+                //oRS = new ADODB.Recordset();
 
-                oRS.let_ActiveConnection(sConnect);
-                oRS.Properties["SupportsObjSet"].Value = true;
+                //oRS.let_ActiveConnection(sConnect);
+                //oRS.Properties["SupportsObjSet"].Value = true;
                 if (iMaxRows > 0)
                 {
-                    oRS.MaxRecords = iMaxRows;
+                    //searchScope.
+                    //oRS.MaxRecords = iMaxRows;
+                    sQuery = sQuery + " OPTIONS(COUNT_LIMIT "+iMaxRows+")";
                 }
-                oRS.Properties["SearchFolderName"].Value = sFolderName;
+                //oRS.Properties["SearchFolderName"].Value = sFolderName;
                 // All set up - pull the trigger
-                oRS.LockType = ADODB.LockTypeEnum.adLockOptimistic;
+                //oRS.LockType = ADODB.LockTypeEnum.adLockOptimistic;
                 //oRS.Open sQuery, oMiBD, adOpenKeyset, , adCmdText
                 //oRS.Open sQuery, oMiBD, adOpenKeyset
-                oRS.Open(sQuery, Type.Missing, ADODB.CursorTypeEnum.adOpenKeyset, ADODB.LockTypeEnum.adLockUnspecified, -1);
+                //oRS.Open(sQuery, Type.Missing, ADODB.CursorTypeEnum.adOpenKeyset, ADODB.LockTypeEnum.adLockUnspecified, -1);
+
+                IRepositoryRowSet rowSet = searchScope.FetchRows(sqlObject, null, null, true);
+
+
                 ShowResults(IDMLView);
             }
             else

@@ -6,8 +6,12 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using System.IO;
 using System;
+using BulkLoader;
 
 using VB6 = Microsoft.VisualBasic.Compatibility.VB6.Support;
+using FileNet.Api.Core;
+using FileNet.Api.Meta;
+using FileNet.Api.Collection;
 
 namespace UOCFilenet
 {
@@ -17,7 +21,7 @@ namespace UOCFilenet
     {
 
         //class ExitEnvironmentException : Exception { }
-
+        CEConnection ceConnection = new CEConnection();
         public string DirWinTemp = String.Empty;
         public string XArchivo = String.Empty;
         byte Bande = 0;
@@ -93,26 +97,28 @@ namespace UOCFilenet
             asClasses[0] = "ExpedientesDC";
             //Set goPropDescs = oLibrary.FilterPropertyDescriptions(idmObjTypeDocument, _
             //'asClasses)
-            @Globals.goPropDescs = (IDMObjects.PropertyDescriptions)@Globals.oLibrary.FilterPropertyDescriptions(IDMObjects.idmObjectType.idmObjTypeDocument, asClasses);
-            IDMListView1[DocAct].ClearColumnHeaders(@Globals.oLibrary);
+            @Globals.goPropDescs = ceConnection.getPropertiesDescriptions(oLibrary, asClasses);
+                //(IDMObjects.PropertyDescriptions)@Globals.oLibrary.FilterPropertyDescriptions(IDMObjects.idmObjectType.idmObjTypeDocument, asClasses);
+            IDMListView1[DocAct].ClearColumnHeaders(oLibrary);
             IDMListView1[DocAct].ClearItems();
-            foreach (IDMObjects.PropertyDescription oPropDesc in @Globals.goPropDescs)
+            foreach (IPropertyDescription oPropDesc in @Globals.goPropDescs)
             {
                 if (oPropDesc.Name.Substring(0, Math.Min(oPropDesc.Name.Length, 2)) != "F_" && (oPropDesc.Name == "UOC" || oPropDesc.Name == "Folio" || oPropDesc.Name == "Contrato" || oPropDesc.Name == "NumCliente" || oPropDesc.Name == "Linea" || oPropDesc.Name == "TipoDoc" || oPropDesc.Name == "FolioS403" || oPropDesc.Name == "Producto" || oPropDesc.Name == "Instrumento" || oPropDesc.Name == "XfolioS"))
                 {
                     if (Bande == 0)
                     {
-                        IDMListView1[DocAct].AddColumnHeader(@Globals.oLibrary, oPropDesc);
-                        cHeadings.Add(oPropDesc.Label, null, null, null);
+                        IDMListView1[DocAct].AddColumnHeader(oLibrary, oPropDesc);
+                        cHeadings.Add(oPropDesc.DisplayName, null, null, null);
                         cPropNames.Add(oPropDesc.Name, null, null, null);
                     }
                 }
             }
             Bande = 1;
-            IDMListView1[DocAct].SwitchColumnHeaders(@Globals.oLibrary);
+            IDMListView1[DocAct].SwitchColumnHeaders(oLibrary);
         }
 
         //Dim oLibrary As IDMObjects.Library
+        IObjectStore oLibrary;
         private bool ConnectToLibraries()
         {
             bool result = false;
@@ -134,21 +140,26 @@ namespace UOCFilenet
                 // connections
                 if (@Globals.gbISLogOff)
                 {
-                    @Globals.oLibrary.Logoff();
+                    //TOdo perform logout
+                    //oLibrary.l.Logoff();
                 }
-                @Globals.oLibrary = null;
+                oLibrary = null;
 
                 // Hook up to the IMS library
-                @Globals.oLibrary.SystemType = IDMObjects.idmSysTypeOptions.idmSysTypeIS;
-                @Globals.oLibrary.Name = @Globals.gfSettings.txtIMSLibName.Text;
-                if (!@Globals.oLibrary.GetState(IDMObjects.idmLibraryState.idmLibraryLoggedOn))
+                //@Globals.oLibrary.SystemType = IDMObjects.idmSysTypeOptions.idmSysTypeIS;
+                //oLibrary.Name = @Globals.gfSettings.txtIMSLibName.Text;
+
+                
+                //if (!@Globals.oLibrary.GetState(IDMObjects.idmLibraryState.idmLibraryLoggedOn))
                 {
-                    @Globals.oLibrary.Logon(@Globals.gfSettings.txtIMSUser, @Globals.gfSettings.txtIMSPassword, Type.Missing, IDMObjects.idmLibraryLogon.idmLogonOptNoUI);
+                    //@Globals.oLibrary.Logon(@Globals.gfSettings.txtIMSUser, @Globals.gfSettings.txtIMSPassword, Type.Missing, IDMObjects.idmLibraryLogon.idmLogonOptNoUI);
+                    ceConnection.EstablishCredentials(@Globals.gfSettings.txtIMSUser.Text, @Globals.gfSettings.txtIMSPassword.Text, @Globals.gfSettings.textResUrl.Text);
+                    oLibrary= ceConnection.FetchOS(@Globals.gfSettings.txtIMSLibName.Text);
                     @Globals.gbISLogOff = true;
                 }
-                else
+                //else
                 {
-                    @Globals.gbISLogOff = false;
+                   // @Globals.gbISLogOff = false;
                 }
                 return true;
             }
@@ -186,7 +197,8 @@ namespace UOCFilenet
         private void BtnMail_ClickEvent(Object eventSender, EventArgs eventArgs)
         {
             
-            @Globals.oDocument.Send(Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, (IDMObjects.idmSendOptions)(((int)IDMObjects.idmSendOptions.idmSendWithUI) + ((int)IDMObjects.idmSendOptions.idmSendCopy)));
+                //TODO define what does email option
+            //@Globals.oDocument.Send(Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, (IDMObjects.idmSendOptions)(((int)IDMObjects.idmSendOptions.idmSendWithUI) + ((int)IDMObjects.idmSendOptions.idmSendCopy)));
 
         }
 
@@ -275,11 +287,13 @@ namespace UOCFilenet
             int pg = IDMViewerCtrl1[DocAct].PageNumber;
             if (DocAct == 0 || DocAct == 2)
             {
-                @Globals.oDocument.Save();
+                //@Globals.oDocument.Save();
+                MessageBox.Show("Save file...");
             }
             else
             {
-                @Globals.oDocument2.Save();
+//                @Globals.oDocument2.Save();
+                MessageBox.Show("Save file...");
             }
             IDMListView2.ClearItems();
             ShowAnnotations_Click(ShowAnnotations, new EventArgs());
@@ -289,7 +303,9 @@ namespace UOCFilenet
                 //UPGRADE_WARNING:oDocument of type IDMObjects.Document is being forced to Scalar. Click for more: 'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="vbup1068"'
                 //AIS - DVega
                 //Artinsoft.VB6.Utils.ReflectionHelper.SetMember(IDMViewerCtrl1[DocAct], "Document", @Globals.oDocument);
-                IDMViewerCtrl1[DocAct].Document = @Globals.oDocument;
+                //IDMViewerCtrl1[DocAct].Document = @Globals.oDocument;
+                MessageBox.Show("IDMViewerCtrl1 document...");
+
                 DocumentID.Text = @Globals.oDocument.Name;
             }
             else
@@ -298,7 +314,8 @@ namespace UOCFilenet
                 //UPGRADE_WARNING:oDocument2 of type IDMObjects.Document is being forced to Scalar. Click for more: 'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="vbup1068"'
                 //AIS - DVega   
                 //Artinsoft.VB6.Utils.ReflectionHelper.SetMember(IDMViewerCtrl1[DocAct], "Document", @Globals.oDocument2);
-                IDMViewerCtrl1[DocAct].Document = @Globals.oDocument2;
+                //IDMViewerCtrl1[DocAct].Document = @Globals.oDocument2;
+                MessageBox.Show("IDMViewerCtrl1 document...");
                 DocumentID.Text = @Globals.oDocument2.Name;
             }
             if (pg > 1)
@@ -337,11 +354,13 @@ namespace UOCFilenet
             {
                 if (DocAct == 1)
                 {
-                    Cade = @Globals.oDocument2.GetCachedFile(0, "", Type.Missing);
+                    //TODO not defined operation
+                    //Cade = @Globals.oDocument2.GetCachedFile(0, "", Type.Missing);
                 }
                 else
                 {
-                    Cade = @Globals.oDocument.GetCachedFile(0, "", Type.Missing);
+                    //TODO not defined operation
+                    //Cade = @Globals.oDocument.GetCachedFile(0, "", Type.Missing);
                 }
             }
             catch (Exception e1)
@@ -463,10 +482,12 @@ namespace UOCFilenet
             oLib = new IDMObjects.Library();//Activator.CreateInstance(Type.GetTypeFromProgID("idmObjects.Library"));
             oLib = (IDMObjects.Library)Activator.CreateInstance(Type.GetTypeFromProgID("idmObjects.Library"));
             oLib.SystemType = IDMObjects.idmSysTypeOptions.idmSysTypeIS;*/
-
+            /*
             @Globals.oLibraries = (IDMObjects.ObjectSet)@Globals.oNeighborhood.Libraries;
             IDMObjects.Library oLib = (IDMObjects.Library)Activator.CreateInstance(Type.GetTypeFromProgID("idmObjects.Library"));
             oLib.SystemType = IDMObjects.idmSysTypeOptions.idmSysTypeIS;
+            */
+
 
             byte Bande = 0;
             @Globals.gbISLogOff = false;
@@ -496,7 +517,7 @@ namespace UOCFilenet
             if ((Libreria == null) || (Libreria.Length == 0))
             {
                 MessageBox.Show(this, "No se encuentra el archivo de inicio de FileNET", Application.ProductName);
-                oLib = null;
+                oLibrary = null;
                 @Globals.fncParmIniSet("UOCFileNet", "Execute", "2", DirWinTemp + "UOCFileNet.ini");
                 @Globals.fncParmIniSet("Error", "ErrNumber", "2", DirWinTemp + "UOCFileNet.ini");
                 @Globals.fncParmIniSet("Error", "DescError", "No se encuentra el archivo de inicio de FileNET", DirWinTemp + "UOCFileNet.ini");
@@ -505,6 +526,7 @@ namespace UOCFilenet
                 Environment.Exit(0);
             }
 
+            /*
             for (int i = 1; i <= ((int)@Globals.oLibraries.Count); i++)
             {                                
                 if ((((IDMObjects.Library)@Globals.oLibraries[i]).Name) == "DefaultIMS:" + Libreria)
@@ -519,6 +541,7 @@ namespace UOCFilenet
             {
                 oLib.Name = Libreria;
             }
+            */
 
             Llena_Paramatros(1);
             if (@Globals.VarCom == 7 || @Globals.VarCom == 8)
@@ -530,15 +553,15 @@ namespace UOCFilenet
             if (@Globals.VarCom == 0)
             {
                 MessageBox.Show(this, "Parámetros No decuados para Ejecutar el Programa", Application.ProductName);
-                oLib = null;
+                oLibrary = null;
                 @Globals.fncParmIniSet("UOCFileNet", "Execute", "3", DirWinTemp + "UOCFileNet.ini");
                 @Globals.fncParmIniSet("Error", "ErrNumber", "3", DirWinTemp + "UOCFileNet.ini");
                 @Globals.fncParmIniSet("Error", "DescError", "Parámetros No decuados para Ejecutar el Programa", DirWinTemp + "UOCFileNet.ini");
                 this.Close();
             }
 
-            MyLogon(oLib); // Hace LOGON a librería
-            if (!(oLib.GetState(IDMObjects.idmLibraryState.idmLibraryLoggedOn)))
+            MyLogon(""); // Hace LOGON a librería
+            if (!(oLibrary.RootFolder.FolderName.Contains("/")))
             {
                 MessageBox.Show(this, "Error en logon a librería", Application.ProductName);
                 @Globals.gbISLogOff = false;
@@ -551,7 +574,7 @@ namespace UOCFilenet
             else
             {
                 @Globals.gbISLogOff = true;
-                @Globals.oLibrary = oLib; // Hace la librería global por flexibilidad
+                //@Globals.oLibrary = oLib; // Hace la librería global por flexibilidad
             }
            
             Command1.Enabled = true;
@@ -623,7 +646,7 @@ namespace UOCFilenet
                 CboUoc[1].Text = @Globals.UOC1;
             }
             XArchivo = String.Empty;
-            oLib = null;
+            oLibrary = null;
 
             if (@Globals.VarCom >= 1 && @Globals.VarCom <= 6 && (Conversion.Val(@Globals.XFolio) > 0 || Conversion.Val(@Globals.XFolio2) > 0))
             {
@@ -709,7 +732,7 @@ namespace UOCFilenet
                 @Globals.gcHeadings = new Collection();
                 @Globals.gcPropNames = new Collection();
                 SetLVHeaders(@Globals.gcHeadings, @Globals.gcPropNames);
-                @Globals.clsQuery.BindToLib(@Globals.oLibrary, @Globals.gcHeadings, sClass);
+                @Globals.clsQuery.BindToLib(oLibrary, @Globals.gcHeadings, sClass);
                 Cursor = Cursors.WaitCursor;
                 AxIDMListView.AxIDMListView tempRefParam = this.IDMListView1[0];
                 @Globals.clsQuery.ExecQuery(ref tempRefParam, sWhere, "", 20);
@@ -719,7 +742,7 @@ namespace UOCFilenet
                 if (@Globals.VarCom == 2 || @Globals.VarCom == 3 || @Globals.VarCom == 6)
                 { //update parameters
                     this.Hide();
-                    @Globals.clsQuery.UpdateQuery(@Globals.oLibrary, sClass, IDMListView1[DocAct]);
+                    @Globals.clsQuery.UpdateQuery(oLibrary, sClass, IDMListView1[DocAct]);
                     this.Close();
                     Environment.Exit(0);
                 }
@@ -740,7 +763,7 @@ namespace UOCFilenet
                             int tempRefParam2 = i + 2;
                             IDMListView1_DblClick(tempRefParam2);
                             Artinsoft.VB6.Gui.SSTabHelper.SetTabEnabled(SSTab1, 0, true);                            
-                            @Globals.clsQuery.UpdateQuery(@Globals.oLibrary, sClass, IDMListView1[DocAct]);
+                            @Globals.clsQuery.UpdateQuery(oLibrary, sClass, IDMListView1[DocAct]);
                             IDMViewerCtrl1[i].ZoomMode = IDMViewerCtrl.idmZoomMode.idmZoomModeFitToWidth;
                             try
                             {
@@ -776,7 +799,7 @@ namespace UOCFilenet
                             IDMListView1_DblClick(tempRefParam4);
                             Artinsoft.VB6.Gui.SSTabHelper.SetTabEnabled(SSTab1, 1, true);
                             Artinsoft.VB6.Gui.SSTabHelper.SetTabEnabled(SSTab1, 2, true);                            
-                            @Globals.clsQuery.UpdateQuery(@Globals.oLibrary, sClass, IDMListView1[DocAct]);
+                            @Globals.clsQuery.UpdateQuery(oLibrary, sClass, IDMListView1[DocAct]);
                             IDMViewerCtrl1[i].ZoomMode = IDMViewerCtrl.idmZoomMode.idmZoomModeFitToWidth;
                             @Globals.Pag = IDMViewerCtrl1[i].Pages.Count;
                             try
@@ -798,8 +821,8 @@ namespace UOCFilenet
                     string[] sClasses = new string[2];
                     sClasses[0] = sClass;
 
-                    IDMObjects.PropertyDescriptions oPropDescs = null;
-                    oPropDescs = (IDMObjects.PropertyDescriptions)@Globals.oLibrary.FilterPropertyDescriptions(IDMObjects.idmObjectType.idmObjTypeDocument, sClasses);
+                    IPropertyDescriptionList oPropDescs = null;
+                    oPropDescs =ceConnection.getPropertiesDescriptions(oLibrary, sClasses);
                     if ((Double.TryParse(@Globals.XFolio, out tmpDouble) && (tmpDouble > 0))
                         || ((!Double.TryParse(@Globals.XFolio, out tmpDouble)) && (@Globals.XFolio != null)))
                     {
@@ -817,11 +840,12 @@ namespace UOCFilenet
                             IDMListView1_DblClick(2);
                             Artinsoft.VB6.Gui.SSTabHelper.SetTabEnabled(SSTab1, 0, true);
 
-                            Cade = @Globals.oDocument.GetCachedFile(0, "", null);
+                            //Cade = @Globals.oDocument.GetCachedFile(0, "", null);
+                            MessageBox.Show("Get Cached file...");
                             cade2 = Cade;
                             Cade1 = @Globals.GetFileName(ref cade2);
                             PosPunto = (byte)Cade1.IndexOf(".FOB");
-                            XtipDoc = @Globals.oDocument.Properties[oPropDescs["TipoDoc"].Name].Value.ToString();
+                            XtipDoc = @Globals.oDocument.Properties.GetProperty("TipoDoc").GetObjectValue().ToString();
                             Cade1 = @Globals.TmpImg + Cade1.Substring(0, Math.Min(Cade1.Length, PosPunto)) + "-" + XtipDoc.Trim() + ".tif";
 
                             if (File.Exists(Cade1))
@@ -864,8 +888,8 @@ namespace UOCFilenet
                     string[] sClasses = new string[2];
                     sClasses[0] = sClass;
 
-                    IDMObjects.PropertyDescriptions oPropDescs = null;
-                    oPropDescs = (IDMObjects.PropertyDescriptions)@Globals.oLibrary.FilterPropertyDescriptions(IDMObjects.idmObjectType.idmObjTypeDocument, sClasses);
+                    IPropertyDescriptionList oPropDescs = null;
+                    oPropDescs = ceConnection.getPropertiesDescriptions(oLibrary, sClasses);
                     if ((Double.TryParse(@Globals.XFolio, out tmpDouble) && (tmpDouble > 0))
                         || ((!Double.TryParse(@Globals.XFolio, out tmpDouble)) && (@Globals.XFolio != null)))
                     {
@@ -906,8 +930,8 @@ namespace UOCFilenet
                     string[] sClasses = new string[2];
                     sClasses[0] = sClass;
 
-                    IDMObjects.PropertyDescriptions oPropDescs = null;
-                    oPropDescs = (IDMObjects.PropertyDescriptions)@Globals.oLibrary.FilterPropertyDescriptions(IDMObjects.idmObjectType.idmObjTypeDocument, sClasses);
+                    IPropertyDescriptionList oPropDescs = null;
+                    oPropDescs = ceConnection.getPropertiesDescriptions(oLibrary, sClasses);
                     if ((Double.TryParse(@Globals.XFolio, out tmpDouble) && (tmpDouble > 0))
                         || ((!Double.TryParse(@Globals.XFolio, out tmpDouble)) && (@Globals.XFolio != null)))
                     {
@@ -1045,13 +1069,15 @@ namespace UOCFilenet
         // Log off from libraries on termination
         private void FrmFileNET_Closed(Object eventSender, EventArgs eventArgs)
         {
-            if (@Globals.gbISLogOff)
+            //TODO perform logout
+            /*if (@Globals.gbISLogOff)
             {
-                if (@Globals.oLibrary.GetState(IDMObjects.idmLibraryState.idmLibraryLoggedOn))
+                if (oLibrary.GetState(IDMObjects.idmLibraryState.idmLibraryLoggedOn))
                 {
                     @Globals.oLibrary.Logoff();
                 }
             }
+            */
             if (XArchivo.Trim().Length > 0)
             {
                 try
@@ -1085,7 +1111,10 @@ namespace UOCFilenet
             {
                 IndexTemp = Index;
             }
-            if (IndexTemp == 0 && IDMListView1[IndexTemp].SelectedItem != null)
+
+            //TODO perform click
+            MessageBox.Show("Show...." + Index);
+            /*if (IndexTemp == 0 && IDMListView1[IndexTemp].SelectedItem != null)
             {
                 @Globals.oDocument = (IDMObjects.Document)IDMListView1[IndexTemp].SelectedItem;
                 IDMListView2.ClearItems();
@@ -1110,13 +1139,15 @@ namespace UOCFilenet
                 IDMViewerCtrl1[Index].Brightness = (IDMViewerCtrl.idmBrightness)IDMObjects.idmBrightness.idmBrightnessDarker;
                 IDMViewerCtrl1[Index].Rotation = Rotar;
                 ExportArchivo(2);
-            }
+            }*/
         }
 
         // Double click on annotation => advance Viewer to correct page
         private void IDMListView2_DblClick(object sender, EventArgs e)
         {
-            IDMObjects.Annotation oAnno = null;
+            //TODO perform click
+            MessageBox.Show("Show anotations...." );
+            /*IDMObjects.Annotation oAnno = null;
             if (IDMListView2.SelectedItem != null)
             {
                 oAnno = (IDMObjects.Annotation)IDMListView2.SelectedItem;
@@ -1130,7 +1161,7 @@ namespace UOCFilenet
                 catch
                 {
                 }
-            }
+            }*/
         }
 
         private void IDMViewerCtrl1_ClickEvent(object sender, EventArgs e)
@@ -1148,6 +1179,9 @@ namespace UOCFilenet
         private void ShowAnnotations_Click(Object eventSender, EventArgs eventArgs)
         {
 
+            //TODO perform click
+            MessageBox.Show("Show anotations...." );
+            /*
             IDMObjects.ObjectSet oAnnos = null;
             if ((ShowAnnotations.CheckState == CheckState.Checked) && (IDMViewerCtrl1[DocAct].IsOperationSupported(IDMViewerCtrl.idmDocumentOperation.idmOpAnnotations)))
             {
@@ -1219,7 +1253,7 @@ namespace UOCFilenet
                 {
                     viewImage2.Visible = true;
                 }
-            }
+            }*/
         }
         private void ShowAnnotations_CheckStateChanged(Object eventSender, EventArgs eventArgs)
         {
@@ -1228,6 +1262,8 @@ namespace UOCFilenet
         // Subroutines for handling annotation creation...
         private void AddNote_Click(Object eventSender, EventArgs eventArgs)
         {
+            MessageBox.Show("add note...");
+            /*
             IDMObjects.Annotation oAnno = new IDMObjects.Annotation();
             int pg = IDMViewerCtrl1[DocAct].PageNumber;
             if (DocAct == 0 || DocAct == 2)
@@ -1272,9 +1308,13 @@ namespace UOCFilenet
                 @Globals.oDocument2.Refresh(IDMObjects.idmDocRefreshOptions.idmRefreshAnnotations);
             }
             IDMListView2.AddItem(oAnno, -1);
+            */
         }
         private void MyCreateStamp(string AnnoText)
         {
+            MessageBox.Show("add MyCreateStamp...");
+
+            /*
             IDMObjects.Annotation oAnno = null;
             //UPGRADE_TODO:Member PageNumber is not defined in type IDMViewerCtrl.IDMViewerCtrl. Click for more: 'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="vbup1067"'
             int pg = IDMViewerCtrl1[DocAct].PageNumber;
@@ -1295,12 +1335,14 @@ namespace UOCFilenet
                 @Globals.oDocument2.Refresh(IDMObjects.idmDocRefreshOptions.idmRefreshAnnotations);
             }
             IDMListView2.AddItem(oAnno, -1);
+            */
         }
 
         private void Highlight_Click(Object eventSender, EventArgs eventArgs)
         {
             IDMViewerCtrl1[DocAct].LeftButtonAction = IDMViewerCtrl.idmAction.idmActionHighlight;
-            IDMViewerCtrl1[DocAct].Document.Save();
+            //IDMViewerCtrl1[DocAct].Document.Save();
+            MessageBox.Show("Save...");
         }
 
         private void Reject_Click(Object eventSender, EventArgs eventArgs)
@@ -1361,10 +1403,11 @@ namespace UOCFilenet
             TxtCriterio[Array.IndexOf(TxtCriterio, eventSender)].SelectionLength = (int)TxtCriterio[Array.IndexOf(TxtCriterio, eventSender)].Text.Length;
         }
         // Handle the logon, catch any errors here
-        private void MyLogon(IDMObjects.Library oLibrary)
+        private void MyLogon(String oLibraryName)
         {
             try
             { // Enable error-handling routine.
+                /*
                 if (!(oLibrary.GetState(IDMObjects.idmLibraryState.idmLibraryLoggedOn)))
                 {
                     //Module1.ObtPassSapuf();
@@ -1373,7 +1416,8 @@ namespace UOCFilenet
                         oLibrary.Logon("c406_090", @Globals.Pass_Sapuf.Trim(), "", (IDMObjects.idmLibraryLogon)@Globals.dmLogonOptNoUI);
                         @Globals.gbISLogOff = true;
                     }
-                }
+                }*/
+                oLibrary = ceConnection.FetchOS(@Globals.gfSettings.txtIMSLibName.Text);
             }
             catch 
             {
@@ -1723,6 +1767,7 @@ namespace UOCFilenet
 
         private void ExportArchivo(byte opc)
         {
+
             string Cade1 = String.Empty;
             string Cade = String.Empty;
             string cade2 = String.Empty;
@@ -1731,15 +1776,19 @@ namespace UOCFilenet
             string sClass = "ExpedientesDC";
             string[] sClasses = new string[2];
             sClasses[0] = sClass;
-            IDMObjects.PropertyDescriptions oPropDescs = null;            
-            oPropDescs = (IDMObjects.PropertyDescriptions)@Globals.oLibrary.FilterPropertyDescriptions(IDMObjects.idmObjectType.idmObjTypeDocument, sClasses);
+            IPropertyDescriptionList oPropDescs = null;
+            oPropDescs=ceConnection.getPropertiesDescriptions(oLibrary, sClasses);
+            //oPropDescs = (IDMObjects.PropertyDescriptions)@Globals.oLibrary.FilterPropertyDescriptions(IDMObjects.idmObjectType.idmObjTypeDocument, sClasses);
+
             if (opc == 1)
             {
-                Cade = @Globals.oDocument.GetCachedFile(0, "", null);
+                //Cade = @Globals.oDocument.GetCachedFile(0, "", null);
+                MessageBox.Show("Get Cached file...");
             }
             else
             {
-                Cade = @Globals.oDocument2.GetCachedFile(0, "", null);
+                //Cade = @Globals.oDocument2.GetCachedFile(0, "", null);
+                MessageBox.Show("Get Cached file2...");
             }
             cade2 = Cade;
             Cade1 = @Globals.GetFileName(ref cade2);

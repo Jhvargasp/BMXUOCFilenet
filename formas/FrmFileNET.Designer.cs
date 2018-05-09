@@ -100,9 +100,9 @@ namespace UOCFilenet
             this._SSTab1_TabPage1 = new System.Windows.Forms.TabPage();
             this.viewImage2 = new ViewImages.ViewImage();
             this._SSTab1_TabPage2 = new System.Windows.Forms.TabPage();
-            this.c1SplitContainer1 = new C1.Win.C1SplitContainer.C1SplitContainer();
-            this.c1SplitterPanel1 = new C1.Win.C1SplitContainer.C1SplitterPanel();
-            this.c1SplitterPanel2 = new C1.Win.C1SplitContainer.C1SplitterPanel();
+            //this.c1SplitContainer1 = new C1.Win.C1SplitContainer.C1SplitContainer();
+            //this.c1SplitterPanel1 = new C1.Win.C1SplitContainer.C1SplitterPanel();
+            //this.c1SplitterPanel2 = new C1.Win.C1SplitContainer.C1SplitterPanel();
             this.SSPanel2 = new System.Windows.Forms.Panel();
             this.BtnSalvar = new System.Windows.Forms.Button();
             this.Highlight = new System.Windows.Forms.Button();
@@ -153,10 +153,10 @@ namespace UOCFilenet
             this._SSTab1_TabPage0.SuspendLayout();
             this._SSTab1_TabPage1.SuspendLayout();
             this._SSTab1_TabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.c1SplitContainer1)).BeginInit();
+            /*((System.ComponentModel.ISupportInitialize)(this.c1SplitContainer1)).BeginInit();
             this.c1SplitContainer1.SuspendLayout();
             this.c1SplitterPanel1.SuspendLayout();
-            this.c1SplitterPanel2.SuspendLayout();
+            this.c1SplitterPanel2.SuspendLayout();*/
             this.SSPanel2.SuspendLayout();
             this.SSPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._IDMListView1_0)).BeginInit();
@@ -352,8 +352,8 @@ namespace UOCFilenet
             // 
             // SPCont2.Panel1
             // 
-            this.SPCont2.Panel1.Controls.Add(this._IDMListView1_0);
-            this.SPCont2.Panel1.Controls.Add(this._IDMListView1_1);
+//            this.SPCont2.Panel1.Controls.Add(this._IDMListView1_0);
+//            this.SPCont2.Panel1.Controls.Add(this._IDMListView1_1);
             // 
             // SPCont2.Panel2
             // 
@@ -380,8 +380,8 @@ namespace UOCFilenet
             // 
             // _SSTab1_TabPage0
             // 
-            this._SSTab1_TabPage0.Controls.Add(this.viewImage1);
-            this._SSTab1_TabPage0.Controls.Add(this._IDMViewerCtrl1_0);
+            //this._SSTab1_TabPage0.Controls.Add(this.viewImage1);
+//            this._SSTab1_TabPage0.Controls.Add(this._IDMViewerCtrl1_0);
             this._SSTab1_TabPage0.Location = new System.Drawing.Point(4, 21);
             this._SSTab1_TabPage0.Name = "_SSTab1_TabPage0";
             this._SSTab1_TabPage0.Size = new System.Drawing.Size(764, 605);
@@ -389,7 +389,8 @@ namespace UOCFilenet
             this._SSTab1_TabPage0.Text = "Docto 1";
             // 
             // viewImage1
-            // 
+            //
+            
             this.viewImage1.AutoScroll = true;
             this.viewImage1.AutoSize = true;
             this.viewImage1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -402,7 +403,7 @@ namespace UOCFilenet
             // _SSTab1_TabPage1
             // 
             this._SSTab1_TabPage1.Controls.Add(this.viewImage2);
-            this._SSTab1_TabPage1.Controls.Add(this._IDMViewerCtrl1_1);
+//            this._SSTab1_TabPage1.Controls.Add(this._IDMViewerCtrl1_1);
             this._SSTab1_TabPage1.Location = new System.Drawing.Point(4, 21);
             this._SSTab1_TabPage1.Name = "_SSTab1_TabPage1";
             this._SSTab1_TabPage1.Size = new System.Drawing.Size(764, 605);
@@ -410,7 +411,8 @@ namespace UOCFilenet
             this._SSTab1_TabPage1.Text = "Docto 2";
             // 
             // viewImage2
-            // 
+            //
+            
             this.viewImage2.AutoScroll = true;
             this.viewImage2.AutoSize = true;
             this.viewImage2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -422,7 +424,8 @@ namespace UOCFilenet
             // 
             // _SSTab1_TabPage2
             // 
-            this._SSTab1_TabPage2.Controls.Add(this.c1SplitContainer1);
+            //this._SSTab1_TabPage2.Controls.Add(this.c1SplitContainer1);
+            
             this._SSTab1_TabPage2.Location = new System.Drawing.Point(4, 21);
             this._SSTab1_TabPage2.Name = "_SSTab1_TabPage2";
             this._SSTab1_TabPage2.Size = new System.Drawing.Size(764, 605);
@@ -431,6 +434,7 @@ namespace UOCFilenet
             // 
             // c1SplitContainer1
             // 
+            /*
             this.c1SplitContainer1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(221)))), ((int)(((byte)(238)))));
             this.c1SplitContainer1.CollapsingAreaColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(245)))), ((int)(((byte)(250)))));
             this.c1SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -474,7 +478,7 @@ namespace UOCFilenet
             this.c1SplitterPanel2.Size = new System.Drawing.Size(764, 312);
             this.c1SplitterPanel2.SizeRatio = 20D;
             this.c1SplitterPanel2.TabIndex = 1;
-            this.c1SplitterPanel2.Width = 764;
+            this.c1SplitterPanel2.Width = 764; */
             // 
             // SSPanel2
             // 
@@ -488,7 +492,7 @@ namespace UOCFilenet
             this.SSPanel2.Controls.Add(this.Reject);
             this.SSPanel2.Controls.Add(this.Approve);
             this.SSPanel2.Controls.Add(this.BtnZoom);
-            this.SSPanel2.Controls.Add(this.IDMListView2);
+//            this.SSPanel2.Controls.Add(this.IDMListView2);
             this.SSPanel2.Controls.Add(this.BtnZoomIn);
             this.SSPanel2.Controls.Add(this.BtnZoomOut);
             this.SSPanel2.Controls.Add(this.BtnNave);
@@ -1128,10 +1132,10 @@ namespace UOCFilenet
             this._SSTab1_TabPage1.ResumeLayout(false);
             this._SSTab1_TabPage1.PerformLayout();
             this._SSTab1_TabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.c1SplitContainer1)).EndInit();
-            this.c1SplitContainer1.ResumeLayout(false);
-            this.c1SplitterPanel1.ResumeLayout(false);
-            this.c1SplitterPanel2.ResumeLayout(false);
+           // ((System.ComponentModel.ISupportInitialize)(this.c1SplitContainer1)).EndInit();
+            //this.c1SplitContainer1.ResumeLayout(false);
+            //this.c1SplitterPanel1.ResumeLayout(false);
+            //this.c1SplitterPanel2.ResumeLayout(false);
             this.SSPanel2.ResumeLayout(false);
             this.SSPanel1.ResumeLayout(false);
             this.SSPanel1.PerformLayout();
@@ -1238,10 +1242,10 @@ namespace UOCFilenet
         public System.Windows.Forms.Button BtnSalir;
         private ViewImages.ViewImage viewImage1;
         private ViewImages.ViewImage viewImage2;
-        private C1.Win.C1SplitContainer.C1SplitContainer c1SplitContainer1;
-        private C1.Win.C1SplitContainer.C1SplitterPanel c1SplitterPanel1;
+        //private C1.Win.C1SplitContainer.C1SplitContainer c1SplitContainer1;
+        //private C1.Win.C1SplitContainer.C1SplitterPanel c1SplitterPanel1;
         private AxIDMViewerCtrl.AxIDMViewerCtrl _IDMViewerCtrl1_2;
-        private C1.Win.C1SplitContainer.C1SplitterPanel c1SplitterPanel2;
+        //private C1.Win.C1SplitContainer.C1SplitterPanel c1SplitterPanel2;
         private AxIDMViewerCtrl.AxIDMViewerCtrl _IDMViewerCtrl1_3;
         private System.Windows.Forms.TextBox TxtSubFol1;
         private System.Windows.Forms.Label LblSubFolio1;

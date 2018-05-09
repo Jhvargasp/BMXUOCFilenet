@@ -112,30 +112,12 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="frmSettings.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        AAABAAEAICAQdwAAAADoAgAAFgAAACgAAAAgAAAAQAAAAAEABAAAAAAAgAIAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAACAAACAAAAAgIAAgAAAAIAAgACAgAAAgICAAMDAwAAAAP8AAP8AAAD//wD/AAAA/wD/AP//
-        AAD///8AAAAIiIiIiIiIiIiIiIiIiAAAAAAAAAAAAAAAAAAAAAgAh3d3d3d3d3d3d3d3d3cIAIiIiIiI
-        iIiIiIiIiIh3CACPiIiIiIiIh3AAeIBwdwgAj/iIiIiIh3d3d3AHcHcIAI+PiIiIiHd3d3d3dwh3CACP
-        +PiIiId3eIiId3CIdwgAj/+PiIiHd4iIiIdweHcIAI//+PiId3iIiIiIdwh3CACP//+PiHd4iIiIiHcI
-        dwgAj///+Ph3CIiIlYh3CHcIAI////+Pdw+IiflYd3h3CACP////+HcI+IiZlXd4dwgAj//////3cI+I
-        iZlXiHcIAI//////93cI+IiZlYh3CACP//////93cAB3ifmIdwgAj///////93d3d3iYiHcIAIiIiIiI
-        iI/3d3eIiIh3CAD///////+I+IiIiIiIdwgAiIiIiIiP+IiIiIiIiIgAAIiIiIiIiP//////////AACI
-        iIiIiIiIiIiIiIiIiAAACIiIiIiIgAAAAAAAAAAAAAB3d3d3dwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4AAAAgAAAAIAAAACAAAAAgAAAAIAA
-        AACAAAAAgAAAAIAAAACAAAAAgAAAAIAAAACAAAAAgAAAAIAAAACAAAAAgAAAAIAAAACAAAAAgAAAAIAA
-        AAGAAAABgAAAAcAAAAPgAf//8AP//////////////////////////////////w==
-</value>
-  </data>
-  <data name="ToolTip1.Location" type="System.Drawing.Point, System.Drawing">
+  <metadata name="ToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
-  </data>
+  </metadata>
 </root>
