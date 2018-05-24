@@ -20,11 +20,12 @@
     <RootNamespace>UOCFileNET</RootNamespace>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>2.0</OldToolsVersion>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -37,7 +38,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -78,59 +78,20 @@
       <HintPath>..\C406_020\Dlls\Artinsoft.VB6.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="axinterop.idmlistview">
-      <HintPath>..\C406_020\Dlls\axinterop.idmlistview.dll</HintPath>
-    </Reference>
-    <Reference Include="AxInterop.IDMViewerCtrl">
-      <HintPath>..\C406_020\Dlls\AxInterop.IDMViewerCtrl.dll</HintPath>
-    </Reference>
-    <Reference Include="C1.Win.C1SplitContainer.4, Version=4.0.20141.55, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL">
-      <HintPath>..\CreditoEmpresarial\OperaNET\C1.Win.C1SplitContainer.4.dll</HintPath>
-    </Reference>
-    <Reference Include="AxIDMListView, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-      <HintPath>..\CreditoEmpresarial\OperaNET\AxInterop.IDMListView.dll</HintPath>
-    </Reference>
-    <Reference Include="AxIDMViewerCtrl, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-      <HintPath>..\CreditoEmpresarial\OperaNET\AxInterop.IDMViewerCtrl.dll</HintPath>
-      <WrapperTool>aximp</WrapperTool>
-    </Reference>
     <Reference Include="FileNet.Api">
       <HintPath>..\..\..\FileNet.Api.dll</HintPath>
     </Reference>
-    <Reference Include="IDMObjects, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\CreditoEmpresarial\OperaNET\Interop.IDMObjects.dll</HintPath>
-      <WrapperTool>aximp</WrapperTool>
+    <Reference Include="igwinformsv15n">
+      <HintPath>..\C406_020\Dlls\igwinformsv15n.dll</HintPath>
     </Reference>
-    <Reference Include="IDMError, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="imagegearv15n, Version=15.1.0.0, Culture=neutral, PublicKeyToken=90cb718bcf54d1b2, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\CreditoEmpresarial\OperaNET\Interop.IDMError.dll</HintPath>
-    </Reference>
-    <Reference Include="IDMListView, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\CreditoEmpresarial\OperaNET\Interop.IDMListView.dll</HintPath>
-    </Reference>
-    <Reference Include="IDMViewerCtrl, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\CreditoEmpresarial\OperaNET\Interop.IDMViewerCtrl.dll</HintPath>
-    </Reference>
-    <Reference Include="Interop.IDMViewerCtrl">
-      <HintPath>..\C406_020\Dlls\Interop.IDMViewerCtrl.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\C406_020\Dlls\imagegearv15n.dll</HintPath>
     </Reference>
     <Reference Include="interop.tuxserver">
       <HintPath>..\C406_020\Dlls\interop.tuxserver.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualBasic">
       <Name>Microsoft.VisualBasic</Name>
     </Reference>
@@ -149,15 +110,6 @@
     </Reference>
     <Reference Include="System.XML">
       <Name>System.XML</Name>
-    </Reference>
-    <Reference Include="TuxServer, Version=5.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <ExecutableExtension>.exe</ExecutableExtension>
-      <HintPath>..\CreditoEmpresarial\OperaNET\TuxServer.exe</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="ViewImages, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ViewImages\ViewImages\obj\Debug\ViewImages.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

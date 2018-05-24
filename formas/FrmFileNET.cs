@@ -99,22 +99,22 @@ namespace UOCFilenet
             //'asClasses)
             @Globals.goPropDescs = ceConnection.getPropertiesDescriptions(oLibrary, asClasses);
                 //(IDMObjects.PropertyDescriptions)@Globals.oLibrary.FilterPropertyDescriptions(IDMObjects.idmObjectType.idmObjTypeDocument, asClasses);
-            IDMListView1[DocAct].ClearColumnHeaders(oLibrary);
-            IDMListView1[DocAct].ClearItems();
+            //IDMListView1[DocAct].ClearColumnHeaders(oLibrary);
+            //IDMListView1[DocAct].ClearItems();
             foreach (IPropertyDescription oPropDesc in @Globals.goPropDescs)
             {
                 if (oPropDesc.Name.Substring(0, Math.Min(oPropDesc.Name.Length, 2)) != "F_" && (oPropDesc.Name == "UOC" || oPropDesc.Name == "Folio" || oPropDesc.Name == "Contrato" || oPropDesc.Name == "NumCliente" || oPropDesc.Name == "Linea" || oPropDesc.Name == "TipoDoc" || oPropDesc.Name == "FolioS403" || oPropDesc.Name == "Producto" || oPropDesc.Name == "Instrumento" || oPropDesc.Name == "XfolioS"))
                 {
                     if (Bande == 0)
                     {
-                        IDMListView1[DocAct].AddColumnHeader(oLibrary, oPropDesc);
+              //          IDMListView1[DocAct].AddColumnHeader(oLibrary, oPropDesc);
                         cHeadings.Add(oPropDesc.DisplayName, null, null, null);
                         cPropNames.Add(oPropDesc.Name, null, null, null);
                     }
                 }
             }
             Bande = 1;
-            IDMListView1[DocAct].SwitchColumnHeaders(oLibrary);
+            //IDMListView1[DocAct].SwitchColumnHeaders(oLibrary);
         }
 
         //Dim oLibrary As IDMObjects.Library
@@ -204,7 +204,7 @@ namespace UOCFilenet
 
         private void BtnNave_ClickEvent(Object eventSender, EventArgs eventArgs)
         {
-            if (IDMViewerCtrl1[DocAct].ShowNavigator == true)
+            /*if (IDMViewerCtrl1[DocAct].ShowNavigator == true)
             {
                 IDMViewerCtrl1[DocAct].ShowNavigator = false;
             }
@@ -213,12 +213,12 @@ namespace UOCFilenet
                 IDMViewerCtrl1[DocAct].ShowNavigator = true;
             }
             IDMViewerCtrl1[DocAct].NavigatorWindowWidth = 175;
-            IDMViewerCtrl1[DocAct].NavigatorWindowHeight = 175;
+            IDMViewerCtrl1[DocAct].NavigatorWindowHeight = 175; */
         }
 
         private void BtnPrint_Click(Object eventSender, EventArgs eventArgs)
         {
-            IDMViewerCtrl1[DocAct].LocalPrint.DoPrint(true);
+            //IDMViewerCtrl1[DocAct].LocalPrint.DoPrint(true);
         }
 
         private void BtnRotar1_ClickEvent(Object eventSender, EventArgs eventArgs)
@@ -231,15 +231,15 @@ namespace UOCFilenet
             {
                 Rotar += 90;
             }
-            IDMViewerCtrl1[DocAct].Rotation = Rotar;
+            //IDMViewerCtrl1[DocAct].Rotation = Rotar;
 
             if (DocAct == 0)
             {
-                viewImage1.FlitHorizontal();
+               // viewImage1.FlitHorizontal();
             }
             else if (DocAct == 1)
             {
-                viewImage2.FlitHorizontal();
+               // viewImage2.FlitHorizontal();
             }
         }
 
@@ -253,14 +253,14 @@ namespace UOCFilenet
             {
                 Rotar -= 90;
             }
-            IDMViewerCtrl1[DocAct].Rotation = Rotar;
+            //IDMViewerCtrl1[DocAct].Rotation = Rotar;
             if (DocAct == 0)
             {
-                viewImage1.FlitVertical();
+                //viewImage1.FlitVertical();
             }
             else if (DocAct == 1)
             {
-                viewImage2.FlitVertical();
+                //viewImage2.FlitVertical();
             }
         }
 
@@ -284,7 +284,7 @@ namespace UOCFilenet
         private void BtnSalvar_Click(Object eventSender, EventArgs eventArgs)
         {
             //UPGRADE_TODO:Member PageNumber is not defined in type IDMViewerCtrl.IDMViewerCtrl. Click for more: 'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="vbup1067"'
-            int pg = IDMViewerCtrl1[DocAct].PageNumber;
+           // int pg = IDMViewerCtrl1[DocAct].PageNumber;
             if (DocAct == 0 || DocAct == 2)
             {
                 //@Globals.oDocument.Save();
@@ -295,7 +295,7 @@ namespace UOCFilenet
 //                @Globals.oDocument2.Save();
                 MessageBox.Show("Save file...");
             }
-            IDMListView2.ClearItems();
+            //IDMListView2.ClearItems();
             ShowAnnotations_Click(ShowAnnotations, new EventArgs());
             if (DocAct == 0 || DocAct == 2)
             {
@@ -318,19 +318,19 @@ namespace UOCFilenet
                 MessageBox.Show("IDMViewerCtrl1 document...");
                 DocumentID.Text = @Globals.oDocument2.Name;
             }
-            if (pg > 1)
+            //if (pg > 1)
             {
                 //UPGRADE_TODO:Member PageNumber is not defined in type IDMViewerCtrl.IDMViewerCtrl. Click for more: 'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="vbup1067"'
                 //AIS - DVega
                 //Artinsoft.VB6.Utils.ReflectionHelper.SetMember(IDMViewerCtrl1[DocAct], "PageNumber", pg);
-                IDMViewerCtrl1[DocAct].PageNumber = pg;
+               // IDMViewerCtrl1[DocAct].PageNumber = pg;
             }
-            else
+            //else
             {
                 //UPGRADE_TODO:Member PageNumber is not defined in type IDMViewerCtrl.IDMViewerCtrl. Click for more: 'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="vbup1067"'
                 //AIS - DVega
                 //Artinsoft.VB6.Utils.ReflectionHelper.SetMember(IDMViewerCtrl1[DocAct], "PageNumber", 1);
-                IDMViewerCtrl1[DocAct].PageNumber = 1;
+             //   IDMViewerCtrl1[DocAct].PageNumber = 1;
             }
         }
 
@@ -405,41 +405,41 @@ namespace UOCFilenet
 
         private void BtnZoom_ClickEvent(Object eventSender, EventArgs eventArgs)
         {            
-            IDMViewerCtrl1[DocAct].CustomZoom = 1;
+           // IDMViewerCtrl1[DocAct].CustomZoom = 1;
             if (DocAct == 0)
             {
-                viewImage1.ZoomReset();
+               // viewImage1.ZoomReset();
             }
             else if (DocAct == 1)
             {
-                viewImage2.ZoomReset();
+                //viewImage2.ZoomReset();
             }
         }
 
         private void BtnZoomIn_ClickEvent(Object eventSender, EventArgs eventArgs)
         {
-            IDMViewerCtrl1[DocAct].ZoomIn();
+           // IDMViewerCtrl1[DocAct].ZoomIn();
 
             if (DocAct == 0)
             {
-                viewImage1.ZoomIn(); 
+                //viewImage1.ZoomIn(); 
             }
             else if (DocAct == 1)
             {
-                viewImage2.ZoomIn();
+                //viewImage2.ZoomIn();
             }
         }
 
         private void BtnZoomOut_ClickEvent(Object eventSender, EventArgs eventArgs)
         {
-            IDMViewerCtrl1[DocAct].ZoomOut();
+           // IDMViewerCtrl1[DocAct].ZoomOut();
             if (DocAct == 0)
             {
-                viewImage1.ZoomOut();
+                //viewImage1.ZoomOut();
             }
             else if (DocAct == 1)
             {
-                viewImage2.ZoomOut();
+                //viewImage2.ZoomOut();
             }
         }
 
@@ -511,8 +511,8 @@ namespace UOCFilenet
             DirWinTemp = @Globals.DirLog;
 
             @Globals.Genera_Archivo_Control();
-            
-            string Libreria = @Globals.fncParmIniGet("C406090", "FileNET", @Globals.DirConf + "C406090.ini");
+
+            string Libreria = "";// @Globals.fncParmIniGet("C406090", "FileNET", @Globals.DirConf + "C406090.ini");
 
             if ((Libreria == null) || (Libreria.Length == 0))
             {
@@ -585,11 +585,11 @@ namespace UOCFilenet
             //AVG Fin 25-04-2012
 
             //Clear the list view items
-            IDMListView1[DocAct].ClearItems();
+            //IDMListView1[DocAct].ClearItems();
             //Clear viewer
-            IDMViewerCtrl1[DocAct].Clear();
+            //IDMViewerCtrl1[DocAct].Clear();
             //Clear annotation list
-            IDMListView2.ClearItems();
+            //IDMListView2.ClearItems();
             //Blank out the document id
             DocumentID.Text = "";
             SSPanel2.Visible = false;
@@ -685,13 +685,13 @@ namespace UOCFilenet
                 Collection cHeadings = new Collection();
                 clsSimpleQuery oQuery = new clsSimpleQuery();
                 int i = 0;
-                IDMListView1[0].ClearItems();
+                /*IDMListView1[0].ClearItems();
                 IDMListView1[1].ClearItems();
                 IDMListView2.ClearItems();
                 IDMViewerCtrl1[0].Clear();
                 IDMViewerCtrl1[1].Clear();
                 IDMViewerCtrl1[2].Clear();
-                IDMViewerCtrl1[3].Clear();
+                IDMViewerCtrl1[3].Clear(); */
                 ShowAnnotations.CheckState = CheckState.Unchecked;
                 if (String.IsNullOrEmpty(TxtCriterio[0].Text) && String.IsNullOrEmpty(TxtCriterio[1].Text) && String.IsNullOrEmpty(TxtCriterio[2].Text) && String.IsNullOrEmpty(TxtCriterio[3].Text) && String.IsNullOrEmpty(TxtCriterio[4].Text) && String.IsNullOrEmpty(TxtCriterio[5].Text))
                 {
@@ -734,15 +734,15 @@ namespace UOCFilenet
                 SetLVHeaders(@Globals.gcHeadings, @Globals.gcPropNames);
                 @Globals.clsQuery.BindToLib(oLibrary, @Globals.gcHeadings, sClass);
                 Cursor = Cursors.WaitCursor;
-                AxIDMListView.AxIDMListView tempRefParam = this.IDMListView1[0];
-                @Globals.clsQuery.ExecQuery(ref tempRefParam, sWhere, "", 20);
+                //AxIDMListView.AxIDMListView tempRefParam = this.IDMListView1[0];
+               // @Globals.clsQuery.ExecQuery(ref tempRefParam, sWhere, "", 20);
                 SSPanel2.Visible = false;
                 Cursor = Cursors.Arrow;
                 Rotar = 0;
                 if (@Globals.VarCom == 2 || @Globals.VarCom == 3 || @Globals.VarCom == 6)
                 { //update parameters
                     this.Hide();
-                    @Globals.clsQuery.UpdateQuery(oLibrary, sClass, IDMListView1[DocAct]);
+                    //@Globals.clsQuery.UpdateQuery(oLibrary, sClass, IDMListView1[DocAct]);
                     this.Close();
                     Environment.Exit(0);
                 }
@@ -756,18 +756,18 @@ namespace UOCFilenet
                         || ((!Double.TryParse(@Globals.XFolio, out tmpDouble)) && (@Globals.XFolio != null)))
                     {
                         i = 0;
-                        if (IDMListView1[i].CountItems() > 0)
+                       // if (IDMListView1[i].CountItems() > 0)
                         {
-                            IDMListView1[i].SelectItem(1);
+                         //   IDMListView1[i].SelectItem(1);
                             IDMListView1_DblClick(i);
                             int tempRefParam2 = i + 2;
                             IDMListView1_DblClick(tempRefParam2);
                             Artinsoft.VB6.Gui.SSTabHelper.SetTabEnabled(SSTab1, 0, true);                            
-                            @Globals.clsQuery.UpdateQuery(oLibrary, sClass, IDMListView1[DocAct]);
-                            IDMViewerCtrl1[i].ZoomMode = IDMViewerCtrl.idmZoomMode.idmZoomModeFitToWidth;
+                           // @Globals.clsQuery.UpdateQuery(oLibrary, sClass, IDMListView1[DocAct]);
+                            //IDMViewerCtrl1[i].ZoomMode = IDMViewerCtrl.idmZoomMode.idmZoomModeFitToWidth;
                             try
                             {
-                                @Globals.Pag = IDMViewerCtrl1[i].Pages.Count;
+                                @Globals.Pag = 1;// IDMViewerCtrl1[i].Pages.Count;
                             }
                             catch {
                                 @Globals.Pag = 1;
@@ -788,23 +788,23 @@ namespace UOCFilenet
                         sWhere = Procesa_Folio(@Globals.XFolio2, @Globals.UOC1, @Globals.SubFol2);
                         //AVG Fin Sept-2015
 
-                        AxIDMListView.AxIDMListView tempRefParam3 = this.IDMListView1[1];
-                        @Globals.clsQuery.ExecQuery(ref tempRefParam3, sWhere, "", 20);
+                        //AxIDMListView.AxIDMListView tempRefParam3 = this.IDMListView1[1];
+                       // @Globals.clsQuery.ExecQuery(ref tempRefParam3, sWhere, "", 20);
                         i = 1;
-                        if (IDMListView1[i].CountItems() > 0)
+                        //if (IDMListView1[i].CountItems() > 0)
                         {
-                            IDMListView1[i].SelectItem(1);
+                          //  IDMListView1[i].SelectItem(1);
                             IDMListView1_DblClick(i);
                             int tempRefParam4 = i + 2;
                             IDMListView1_DblClick(tempRefParam4);
                             Artinsoft.VB6.Gui.SSTabHelper.SetTabEnabled(SSTab1, 1, true);
                             Artinsoft.VB6.Gui.SSTabHelper.SetTabEnabled(SSTab1, 2, true);                            
-                            @Globals.clsQuery.UpdateQuery(oLibrary, sClass, IDMListView1[DocAct]);
-                            IDMViewerCtrl1[i].ZoomMode = IDMViewerCtrl.idmZoomMode.idmZoomModeFitToWidth;
-                            @Globals.Pag = IDMViewerCtrl1[i].Pages.Count;
+                            //@Globals.clsQuery.UpdateQuery(oLibrary, sClass, IDMListView1[DocAct]);
+                            //IDMViewerCtrl1[i].ZoomMode = IDMViewerCtrl.idmZoomMode.idmZoomModeFitToWidth;
+                            @Globals.Pag = 0;// IDMViewerCtrl1[i].Pages.Count;
                             try
                             {
-                                @Globals.Pag = IDMViewerCtrl1[i].Pages.Count;
+                                @Globals.Pag = 1;// IDMViewerCtrl1[i].Pages.Count;
                             }
                             catch
                             {
@@ -833,9 +833,9 @@ namespace UOCFilenet
                         string XtipDoc = String.Empty;
                         byte PosPunto = 0;
 
-                        for (i = 0; i < IDMListView1[0].CountItems(); i++)
+                       // for (i = 0; i < IDMListView1[0].CountItems(); i++)
                         {
-                            IDMListView1[0].SelectItem(i + 1);
+                         //   IDMListView1[0].SelectItem(i + 1);
                             IDMListView1_DblClick(0);
                             IDMListView1_DblClick(2);
                             Artinsoft.VB6.Gui.SSTabHelper.SetTabEnabled(SSTab1, 0, true);
@@ -864,14 +864,14 @@ namespace UOCFilenet
                             }
                             catch { }
                         }
-                        if (IDMListView1[0].CountItems() == 0)
+                       // if (IDMListView1[0].CountItems() == 0)
                         {
                             @Globals.fncParmIniSet("UOCFileNet", "Execute", "8", DirWinTemp + "UOCFileNet.ini");
                             @Globals.fncParmIniSet("Error", "ErrNumber", "8", DirWinTemp + "UOCFileNet.ini");
                             @Globals.fncParmIniSet("Error", "DescError", "Error No hay Imágenes con esos parámetros", DirWinTemp + "UOCFileNet.ini");
                             @Globals.fncParmIniSet("Cadena", "Cadena", Interaction.Command().Trim(), DirWinTemp + "UOCFileNet.ini");
                         }
-                        else
+                       // else
                         {
                             @Globals.fncParmIniSet("UOCFileNet", "Execute", "1", DirWinTemp + "UOCFileNet.ini");
                         }
@@ -894,9 +894,9 @@ namespace UOCFilenet
                         || ((!Double.TryParse(@Globals.XFolio, out tmpDouble)) && (@Globals.XFolio != null)))
                     {
 
-                        for (i = 0; i < IDMListView1[0].CountItems(); i++)
+                       // for (i = 0; i < IDMListView1[0].CountItems(); i++)
                         {
-                            IDMListView1[0].SelectItem(i + 1);
+                           // IDMListView1[0].SelectItem(i + 1);
                             IDMListView1_DblClick(0);
                             IDMListView1_DblClick(2);
                             Artinsoft.VB6.Gui.SSTabHelper.SetTabEnabled(SSTab1, 0, true);
@@ -906,14 +906,14 @@ namespace UOCFilenet
                             }
                             catch { }
                         }
-                        if (IDMListView1[0].CountItems() == 0)
+                       // if (IDMListView1[0].CountItems() == 0)
                         {
                             @Globals.fncParmIniSet("UOCFileNet", "Execute", "9", DirWinTemp + "UOCFileNet.ini");
                             @Globals.fncParmIniSet("Error", "ErrNumber", "9", DirWinTemp + "UOCFileNet.ini");
                             @Globals.fncParmIniSet("Error", "DescError", "Error No hay Imágenes con esos parámetros", DirWinTemp + "UOCFileNet.ini");
                             @Globals.fncParmIniSet("Cadena", "Cadena", Interaction.Command().Trim(), DirWinTemp + "UOCFileNet.ini");
                         }
-                        else
+                       // else
                         {
                             @Globals.fncParmIniSet("UOCFileNet", "Execute", "1", DirWinTemp + "UOCFileNet.ini");
                         }
@@ -936,14 +936,14 @@ namespace UOCFilenet
                         || ((!Double.TryParse(@Globals.XFolio, out tmpDouble)) && (@Globals.XFolio != null)))
                     {
 
-                        if (IDMListView1[0].CountItems() == 0)
+                       // if (IDMListView1[0].CountItems() == 0)
                         {
                             @Globals.fncParmIniSet("UOCFileNet", "Execute", "10", DirWinTemp + "UOCFileNet.ini");
                             @Globals.fncParmIniSet("Error", "ErrNumber", "10", DirWinTemp + "UOCFileNet.ini");
                             @Globals.fncParmIniSet("Error", "DescError", "Error No hay Imágenes con esos parámetros", DirWinTemp + "UOCFileNet.ini");
                             @Globals.fncParmIniSet("Cadena", "Cadena", Interaction.Command().Trim(), DirWinTemp + "UOCFileNet.ini");
                         }
-                        else
+                        //else
                         {
                             @Globals.fncParmIniSet("UOCFileNet", "Execute", "1", DirWinTemp + "UOCFileNet.ini");
                         }
@@ -1094,7 +1094,7 @@ namespace UOCFilenet
 
         private void IDMListView1_DblClick(object sender, EventArgs e)
         {
-            IDMListView1_DblClick(Array.IndexOf(IDMListView1, sender));
+           // IDMListView1_DblClick(Array.IndexOf(IDMListView1, sender));
         }
 
 
@@ -1166,7 +1166,7 @@ namespace UOCFilenet
 
         private void IDMViewerCtrl1_ClickEvent(object sender, EventArgs e)
         {
-            IDMViewerCtrl1_Click(Array.IndexOf(IDMViewerCtrl1, sender));
+            //IDMViewerCtrl1_Click(Array.IndexOf(IDMViewerCtrl1, sender));
         }
 
 
@@ -1340,7 +1340,7 @@ namespace UOCFilenet
 
         private void Highlight_Click(Object eventSender, EventArgs eventArgs)
         {
-            IDMViewerCtrl1[DocAct].LeftButtonAction = IDMViewerCtrl.idmAction.idmActionHighlight;
+            //IDMViewerCtrl1[DocAct].LeftButtonAction = IDMViewerCtrl.idmAction.idmActionHighlight;
             //IDMViewerCtrl1[DocAct].Document.Save();
             MessageBox.Show("Save...");
         }
@@ -1359,27 +1359,27 @@ namespace UOCFilenet
         {
             int i = SSTab1.SelectedIndex;
             ShowAnnotations.Enabled = true;
-            IDMListView2.ClearItems();
+            //IDMListView2.ClearItems();
             switch (i)
             {
                 case 1:
-                    IDMListView1[0].Visible = false;
-                    IDMListView1[1].Visible = true;
+                //    IDMListView1[0].Visible = false;
+                  //  IDMListView1[1].Visible = true;
                     DocAct = (byte)SSTab1.SelectedIndex;
                     //ShowAnnotations.CheckState = CheckState.Checked;
                     //ShowAnnotations_Click(ShowAnnotations, new EventArgs());
                     break;
                 case 0:
-                    IDMListView1[0].Visible = true;
-                    IDMListView1[1].Visible = false;
+                    //IDMListView1[0].Visible = true;
+                    //IDMListView1[1].Visible = false;
                     DocAct = (byte)SSTab1.SelectedIndex;
-                    IDMListView2.ClearItems();
+                    //IDMListView2.ClearItems();
                     //ShowAnnotations.CheckState = CheckState.Checked;
                     //ShowAnnotations_Click(ShowAnnotations, new EventArgs());
                     break;
                 default:
-                    IDMListView1[0].Visible = false;
-                    IDMListView1[1].Visible = false;
+                    //IDMListView1[0].Visible = false;
+                    //IDMListView1[1].Visible = false;
                     DocAct = (byte)SSTab1.SelectedIndex;
                     ShowAnnotations.CheckState = CheckState.Unchecked;
                     ShowAnnotations.Enabled = false;
@@ -1812,7 +1812,7 @@ namespace UOCFilenet
             }
             catch { }
 
-            if (opc == 1)
+           /* if (opc == 1)
             {
                 viewImage1.CloseDocument();
                 viewImage1.pArchivo = Cade1;
@@ -1823,7 +1823,7 @@ namespace UOCFilenet
                 viewImage2.CloseDocument();
                 viewImage2.pArchivo = Cade1;
                 viewImage2.LoadDocument();
-            }
+            }*/
         }
 
         private void ShowAnnotations_CheckedChanged(object sender, EventArgs e)
@@ -1899,5 +1899,9 @@ namespace UOCFilenet
 
         }
 
+        private void SPCont2_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

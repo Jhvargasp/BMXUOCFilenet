@@ -71,7 +71,7 @@ namespace UOCFilenet
             }
         }
 
-        public void UpdateQuery(IObjectStore objObjectStore, string sClass, AxIDMListView.AxIDMListView IDMLView)
+        public void UpdateQuery(IObjectStore objObjectStore, string sClass, Object IDMLView) //AxIDMListView.AxIDMListView
         {
             string[] sClasses = new string[2];
             //IDMObjects.PropertyDescription PropDesc = null;
@@ -84,7 +84,7 @@ namespace UOCFilenet
             IClassDescription objClassDesc = ClassDescription.FetchInstance(objObjectStore, sClass, null);
             oPropDescs = objClassDesc.PropertyDescriptions;
 
-            if (IDMLView.CountItems() == 0)
+            //if (IDMLView.CountItems() == 0)
             {
                 @Globals.fncParmIniSet("UOCFileNet", "Execute", "5", DirWinTemp + "UOCFileNet.ini");
                 @Globals.fncParmIniSet("Error", "ErrNumber", "5", DirWinTemp + "UOCFileNet.ini");
@@ -92,9 +92,9 @@ namespace UOCFilenet
                 @Globals.fncParmIniSet("Cadena", "Cadena", Interaction.Command().Trim(), DirWinTemp + "UOCFileNet.ini");
                 return;
             }
-            for (int i = 1; i <= IDMLView.CountItems(); i++)
+            //for (int i = 1; i <= IDMLView.CountItems(); i++)
             {
-                IDMLView.SelectItem(i);
+              //  IDMLView.SelectItem(i);
                 //TODO validate with Filenet
                 //@Globals.oDocument = (Document)IDMLView.SelectedItem;
                 switch (@Globals.VarCom)
@@ -306,14 +306,14 @@ namespace UOCFilenet
         }
 
         // Private subroutine for building up IDMListView
-        private void ShowResults(AxIDMListView.AxIDMListView IDMLView)
+        private void ShowResults(Object IDMLView) //AxIDMListView.AxIDMListView
         {
             bool OnErrorResumeNext = false;
             double VarPaso = 0;
             // Do basic IDMLView initialization
             //TODO validate AxIDMListView with Filenet
             //IDMLView.DefaultLibrary = oQueryLib;
-            IDMLView.ClearItems();
+            //IDMLView.ClearItems();
             if (cColHeadings.Count > 0)
             {
                 //IDMLView.ClearColumnHeaders(oQueryLib);
@@ -342,7 +342,7 @@ namespace UOCFilenet
             // Now for the easy part - slam in the actual items
             if (oRS.RecordCount > 0)
             {
-                IDMLView.AddItems(oRS.Fields["ObjSet"].Value, 1);
+              //  IDMLView.AddItems(oRS.Fields["ObjSet"].Value, 1);
             }
             else
             {
@@ -378,7 +378,7 @@ namespace UOCFilenet
         // Executes query using passed params, places results in
         // passed IDMListView control
         // Calls must be preceded by a BindToLib
-        public void ExecQuery(ref  AxIDMListView.AxIDMListView IDMLView, string sWhereClause, string sFolderName, int iMaxRows)
+        public void ExecQuery(ref  Object IDMLView, string sWhereClause, string sFolderName, int iMaxRows)//AxIDMListView.AxIDMListView
         {
             IObjectStore objObjectStore=null;
             if (objObjectStore != null)
