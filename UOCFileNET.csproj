@@ -78,8 +78,9 @@
       <HintPath>..\C406_020\Dlls\Artinsoft.VB6.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="FileNet.Api">
-      <HintPath>..\..\..\FileNet.Api.dll</HintPath>
+    <Reference Include="FileNet.Api, Version=5.0.0.0, Culture=neutral, PublicKeyToken=63fc2fb3fdeef4f1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\minasdll\FileNet.Api.dll</HintPath>
     </Reference>
     <Reference Include="igwinformsv15n">
       <HintPath>..\C406_020\Dlls\igwinformsv15n.dll</HintPath>

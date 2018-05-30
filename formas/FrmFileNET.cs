@@ -125,7 +125,7 @@ namespace UOCFilenet
             try
             {
 
-                RestoreSettings(false);
+                RestoreSettings(true);
                 // Make sure we have some valid library ID's
                 if (@Globals.gfSettings.txtIMSLibName.Text == "")
                 {
@@ -153,7 +153,8 @@ namespace UOCFilenet
                 //if (!@Globals.oLibrary.GetState(IDMObjects.idmLibraryState.idmLibraryLoggedOn))
                 {
                     //@Globals.oLibrary.Logon(@Globals.gfSettings.txtIMSUser, @Globals.gfSettings.txtIMSPassword, Type.Missing, IDMObjects.idmLibraryLogon.idmLogonOptNoUI);
-                    ceConnection.EstablishCredentials(@Globals.gfSettings.txtIMSUser.Text, @Globals.gfSettings.txtIMSPassword.Text, @Globals.gfSettings.textResUrl.Text);
+                    ceConnection.EstablishCredentials(@Globals.gfSettings.txtIMSUser.Text, @Globals.gfSettings.txtIMSPassword.Text,
+                        @Globals.gfSettings.textResUrl.Text, @Globals.gfSettings.txtIMSLibName.Text);
                     oLibrary= ceConnection.FetchOS(@Globals.gfSettings.txtIMSLibName.Text);
                     @Globals.gbISLogOff = true;
                 }
@@ -177,6 +178,7 @@ namespace UOCFilenet
         {
             if (bForceUi)
             {
+                @Globals.goPersist.GetSettings(@Globals.gsAppName, @Globals.gsSectionName, @Globals.gfSettings);
                 @Globals.gfSettings.ShowDialog();
             }
             else
@@ -477,6 +479,13 @@ namespace UOCFilenet
         // On start-up, populate the combo box with candidate libraries
         private void FrmFileNET_Load(Object eventSender, EventArgs eventArgs)
         {
+            ConnectToLibraries();
+            setHeaderColumnNames();
+            if (true)
+            {
+                return;
+            }
+
             /*@Globals.oLibraries = (IDMObjects.ObjectSet)@Globals.oNeighborhood.Libraries;
             IDMObjects.Library oLib;
             oLib = new IDMObjects.Library();//Activator.CreateInstance(Type.GetTypeFromProgID("idmObjects.Library"));
@@ -518,12 +527,12 @@ namespace UOCFilenet
             {
                 MessageBox.Show(this, "No se encuentra el archivo de inicio de FileNET", Application.ProductName);
                 oLibrary = null;
-                @Globals.fncParmIniSet("UOCFileNet", "Execute", "2", DirWinTemp + "UOCFileNet.ini");
-                @Globals.fncParmIniSet("Error", "ErrNumber", "2", DirWinTemp + "UOCFileNet.ini");
-                @Globals.fncParmIniSet("Error", "DescError", "No se encuentra el archivo de inicio de FileNET", DirWinTemp + "UOCFileNet.ini");
+                //@Globals.fncParmIniSet("UOCFileNet", "Execute", "2", DirWinTemp + "UOCFileNet.ini");
+                //@Globals.fncParmIniSet("Error", "ErrNumber", "2", DirWinTemp + "UOCFileNet.ini");
+                //@Globals.fncParmIniSet("Error", "DescError", "No se encuentra el archivo de inicio de FileNET", DirWinTemp + "UOCFileNet.ini");
                 //AIS-867 ebonilla
                 //throw new ExitEnvironmentException();
-                Environment.Exit(0);
+                //Environment.Exit(0);
             }
 
             /*
@@ -685,6 +694,7 @@ namespace UOCFilenet
                 Collection cHeadings = new Collection();
                 clsSimpleQuery oQuery = new clsSimpleQuery();
                 int i = 0;
+               
                 /*IDMListView1[0].ClearItems();
                 IDMListView1[1].ClearItems();
                 IDMListView2.ClearItems();
@@ -955,6 +965,80 @@ namespace UOCFilenet
 
             }
             catch { }
+        }
+
+        private void setHeaderColumnNames()
+        {
+            /* dataGridView1.Columns[0].HeaderText = " ";
+             dataGridView1.Columns[1].HeaderText = "Contrato";
+             dataGridView1.Columns[2].HeaderText = "Folio";
+             dataGridView1.Columns[3].HeaderText = "Folio S403";
+             dataGridView1.Columns[4].HeaderText = "Instrumento";
+             dataGridView1.Columns[5].HeaderText = "Linea";
+             dataGridView1.Columns[6].HeaderText = "NumCliente";
+             dataGridView1.Columns[7].HeaderText = "Producto";
+             dataGridView1.Columns[8].HeaderText = "TipoDoc";
+             dataGridView1.Columns[9].HeaderText = "UOC";
+             dataGridView1.Columns[9].HeaderText = "XFolioS";
+             */
+
+            dataGridView1.ColumnCount = 5;
+
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy;
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font =
+                new Font(dataGridView1.Font, FontStyle.Bold);
+
+            //dataGridView1.Name = "dataGridView1";
+            dataGridView1.Location = new Point(8, 8);
+            dataGridView1.Size = new Size(500, 250);
+            dataGridView1.AutoSizeRowsMode =
+                DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
+            dataGridView1.ColumnHeadersBorderStyle =
+                DataGridViewHeaderBorderStyle.Single;
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.Single;
+            dataGridView1.GridColor = Color.Black;
+            dataGridView1.RowHeadersVisible = false;
+
+            /*dataGridView1.Columns[0].Name = "Release Date";
+            dataGridView1.Columns[1].Name = "Track";
+            dataGridView1.Columns[2].Name = "Title";
+            dataGridView1.Columns[3].Name = "Artist";
+            dataGridView1.Columns[4].Name = "Album";*/
+            dataGridView1.Columns[4].DefaultCellStyle.Font =
+                new Font(dataGridView1.DefaultCellStyle.Font, FontStyle.Italic);
+
+            dataGridView1.SelectionMode =
+                DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.MultiSelect = false;
+            dataGridView1.Dock = DockStyle.Fill;
+
+           /* dataGridView1.CellFormatting += new
+                DataGridViewCellFormattingEventHandler(
+                dataGridView1_CellFormatting);
+                */
+            string[] row0 = { "11/22/1968", "29", "Revolution 9",
+            "Beatles", "The Beatles [White Album]" };
+            string[] row1 = { "1960", "6", "Fools Rush In",
+            "Frank Sinatra", "Nice 'N' Easy" };
+            string[] row2 = { "11/11/1971", "1", "One of These Days",
+            "Pink Floyd", "Meddle" };
+            string[] row3 = { "1988", "7", "Where Is My Mind?",
+            "Pixies", "Surfer Rosa" };
+            string[] row4 = { "5/1981", "9", "Can't Find My Mind",
+            "Cramps", "Psychedelic Jungle" };
+            string[] row5 = { "6/10/2003", "13",
+            "Scatterbrain. (As Dead As Leaves.)",
+            "Radiohead", "Hail to the Thief" };
+            string[] row6 = { "6/30/1992", "3", "Dress", "P J Harvey", "Dry" };
+
+            dataGridView1.Rows.Add(row0);
+            dataGridView1.Rows.Add(row1);
+            dataGridView1.Rows.Add(row2);
+            dataGridView1.Rows.Add(row3);
+            // dataGridView1.DataMember.Insert(1, "bbb");
+
+
         }
 
 
@@ -1422,12 +1506,12 @@ namespace UOCFilenet
             catch 
             {
                 //MessageBox.Show(this, "Error en logon a librería", Application.ProductName);
-                @Globals.gbISLogOff = false;
-                @Globals.fncParmIniSet("UOCFileNet", "Execute", "4", DirWinTemp + "UOCFileNet.ini");
-                @Globals.fncParmIniSet("Error", "ErrNumber", "4", DirWinTemp + "UOCFileNet.ini");
-                @Globals.fncParmIniSet("Error", "DescError", "Error en logon a librería", DirWinTemp + "UOCFileNet.ini");
-                this.Close();
-                Environment.Exit(0);
+               // @Globals.gbISLogOff = false;
+               // @Globals.fncParmIniSet("UOCFileNet", "Execute", "4", DirWinTemp + "UOCFileNet.ini");
+               // @Globals.fncParmIniSet("Error", "ErrNumber", "4", DirWinTemp + "UOCFileNet.ini");
+                //@Globals.fncParmIniSet("Error", "DescError", "Error en logon a librería", DirWinTemp + "UOCFileNet.ini");
+                //this.Close();
+                //Environment.Exit(0);
             }
         }
 

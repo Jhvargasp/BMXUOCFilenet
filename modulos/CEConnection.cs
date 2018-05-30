@@ -56,27 +56,25 @@ namespace BulkLoader
         // This method establishes user credentials with the Content Engine on a process basis.
         // Once credentials are established, you can make API calls to CE.
         //
-        public void EstablishCredentials(String userName, String password, String uri)
+        public void EstablishCredentials(String userName, String password, String uri,String osName)
         {
+            //IConnection  conn = Factory.Connection.GetConnection(uri);
+            //Subject subject = UserContext.createSubject(conn, username, password, null);
+            //UserContext.get().pushSubject(subject);
+
             UsernameCredentials cred = new UsernameCredentials(userName, password);
             // now associate this Credentials with the whole process
             ClientContext.SetProcessCredentials(cred);
             IConnection connection = Factory.Connection.GetConnection(uri);
+            IDomain domain = Factory.Domain.GetInstance(connection, null);
             isCredetialsEstablished = true;
-            IntializeVariables(connection);
-        }
+            IObjectStore os = Factory.ObjectStore.FetchInstance(domain, osName, null);
 
-        //
-        // Retrieves the Domain and ObjectStore information from CE represented by
-        // IConnection object. 
-        //
-        private void IntializeVariables(IConnection connection)
-        {
-            domain = Factory.Domain.FetchInstance(connection, null, null);
             domainName = domain.Name;
             ost = domain.ObjectStores;
             SetOSNames();
         }
+
 
         //
         // Intializes the ArrayList osNames with object store names.
