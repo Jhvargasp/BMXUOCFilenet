@@ -56,6 +56,7 @@ namespace BulkLoader
         // This method establishes user credentials with the Content Engine on a process basis.
         // Once credentials are established, you can make API calls to CE.
         //
+        IObjectStore os;
         public void EstablishCredentials(String userName, String password, String uri,String osName)
         {
             //IConnection  conn = Factory.Connection.GetConnection(uri);
@@ -68,11 +69,11 @@ namespace BulkLoader
             IConnection connection = Factory.Connection.GetConnection(uri);
             IDomain domain = Factory.Domain.GetInstance(connection, null);
             isCredetialsEstablished = true;
-            IObjectStore os = Factory.ObjectStore.FetchInstance(domain, osName, null);
+            os = Factory.ObjectStore.FetchInstance(domain, osName, null);
 
-            domainName = domain.Name;
-            ost = domain.ObjectStores;
-            SetOSNames();
+            //domainName = domain.Name;
+            //ost = domain.ObjectStores;
+            //SetOSNames();
         }
 
 
@@ -127,13 +128,14 @@ namespace BulkLoader
         //
         public IObjectStore FetchOS(String name)
         {
-            IObjectStore os = Factory.ObjectStore.FetchInstance(domain, name, null);
+            //IObjectStore os = Factory.ObjectStore.FetchInstance(domain, name, null);
             return os;
         }
 
         internal IPropertyDescriptionList getPropertiesDescriptions(IObjectStore oLibrary, string[] asClasses)
         {
             IClassDescription objClassDesc = ClassDescription.FetchInstance(oLibrary, asClasses[0], null);
+            //IClassDescription objClassDesc = ClassDescription.FetchInstance(oLibrary, "Document", null);
             return objClassDesc.PropertyDescriptions;
 
         }

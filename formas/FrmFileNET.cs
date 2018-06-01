@@ -162,6 +162,7 @@ namespace UOCFilenet
                 {
                    // @Globals.gbISLogOff = false;
                 }
+                MessageBox.Show(this, "Connected to "+oLibrary.DisplayName , Application.ProductName);
                 return true;
             }
             catch (Exception excep)
@@ -481,11 +482,7 @@ namespace UOCFilenet
         {
             ConnectToLibraries();
             setHeaderColumnNames();
-            if (true)
-            {
-                return;
-            }
-
+            
             /*@Globals.oLibraries = (IDMObjects.ObjectSet)@Globals.oNeighborhood.Libraries;
             IDMObjects.Library oLib;
             oLib = new IDMObjects.Library();//Activator.CreateInstance(Type.GetTypeFromProgID("idmObjects.Library"));
@@ -521,7 +518,7 @@ namespace UOCFilenet
 
             @Globals.Genera_Archivo_Control();
 
-            string Libreria = "";// @Globals.fncParmIniGet("C406090", "FileNET", @Globals.DirConf + "C406090.ini");
+            string Libreria = oLibrary.Name ;// @Globals.fncParmIniGet("C406090", "FileNET", @Globals.DirConf + "C406090.ini");
 
             if ((Libreria == null) || (Libreria.Length == 0))
             {
@@ -570,7 +567,7 @@ namespace UOCFilenet
             }
 
             MyLogon(""); // Hace LOGON a librería
-            if (!(oLibrary.RootFolder.FolderName.Contains("/")))
+            if (!(oLibrary.RootFolder.PathName .Contains("/")))
             {
                 MessageBox.Show(this, "Error en logon a librería", Application.ProductName);
                 @Globals.gbISLogOff = false;
@@ -655,7 +652,7 @@ namespace UOCFilenet
                 CboUoc[1].Text = @Globals.UOC1;
             }
             XArchivo = String.Empty;
-            oLibrary = null;
+            //oLibrary = null;
 
             if (@Globals.VarCom >= 1 && @Globals.VarCom <= 6 && (Conversion.Val(@Globals.XFolio) > 0 || Conversion.Val(@Globals.XFolio2) > 0))
             {
@@ -680,6 +677,7 @@ namespace UOCFilenet
             if (@Globals.VarCom == 10 && (Conversion.Val(@Globals.XFolio) > 0 || Conversion.Val(@Globals.XFolio2) > 0))
             {
                 Command1_Click(Command1, eventArgs);
+                
             }
             // AVG Fin 2017
             
@@ -756,9 +754,9 @@ namespace UOCFilenet
                     this.Close();
                     Environment.Exit(0);
                 }
-                Artinsoft.VB6.Gui.SSTabHelper.SetTabEnabled(SSTab1, 0, false);
-                Artinsoft.VB6.Gui.SSTabHelper.SetTabEnabled(SSTab1, 1, false);
-                Artinsoft.VB6.Gui.SSTabHelper.SetTabEnabled(SSTab1, 2, false);
+               // Artinsoft.VB6.Gui.SSTabHelper.SetTabEnabled(SSTab1, 0, false);
+                //Artinsoft.VB6.Gui.SSTabHelper.SetTabEnabled(SSTab1, 1, false);
+                //Artinsoft.VB6.Gui.SSTabHelper.SetTabEnabled(SSTab1, 2, false);
                 if (@Globals.VarCom == 1 || @Globals.VarCom == 4 || @Globals.VarCom == 5)
                 {
 
@@ -772,7 +770,7 @@ namespace UOCFilenet
                             IDMListView1_DblClick(i);
                             int tempRefParam2 = i + 2;
                             IDMListView1_DblClick(tempRefParam2);
-                            Artinsoft.VB6.Gui.SSTabHelper.SetTabEnabled(SSTab1, 0, true);                            
+                            //Artinsoft.VB6.Gui.SSTabHelper.SetTabEnabled(SSTab1, 0, true);                            
                            // @Globals.clsQuery.UpdateQuery(oLibrary, sClass, IDMListView1[DocAct]);
                             //IDMViewerCtrl1[i].ZoomMode = IDMViewerCtrl.idmZoomMode.idmZoomModeFitToWidth;
                             try
@@ -807,8 +805,8 @@ namespace UOCFilenet
                             IDMListView1_DblClick(i);
                             int tempRefParam4 = i + 2;
                             IDMListView1_DblClick(tempRefParam4);
-                            Artinsoft.VB6.Gui.SSTabHelper.SetTabEnabled(SSTab1, 1, true);
-                            Artinsoft.VB6.Gui.SSTabHelper.SetTabEnabled(SSTab1, 2, true);                            
+                            //Artinsoft.VB6.Gui.SSTabHelper.SetTabEnabled(SSTab1, 1, true);
+                            //Artinsoft.VB6.Gui.SSTabHelper.SetTabEnabled(SSTab1, 2, true);                            
                             //@Globals.clsQuery.UpdateQuery(oLibrary, sClass, IDMListView1[DocAct]);
                             //IDMViewerCtrl1[i].ZoomMode = IDMViewerCtrl.idmZoomMode.idmZoomModeFitToWidth;
                             @Globals.Pag = 0;// IDMViewerCtrl1[i].Pages.Count;
@@ -848,7 +846,7 @@ namespace UOCFilenet
                          //   IDMListView1[0].SelectItem(i + 1);
                             IDMListView1_DblClick(0);
                             IDMListView1_DblClick(2);
-                            Artinsoft.VB6.Gui.SSTabHelper.SetTabEnabled(SSTab1, 0, true);
+                            //Artinsoft.VB6.Gui.SSTabHelper.SetTabEnabled(SSTab1, 0, true);
 
                             //Cade = @Globals.oDocument.GetCachedFile(0, "", null);
                             MessageBox.Show("Get Cached file...");
@@ -909,7 +907,7 @@ namespace UOCFilenet
                            // IDMListView1[0].SelectItem(i + 1);
                             IDMListView1_DblClick(0);
                             IDMListView1_DblClick(2);
-                            Artinsoft.VB6.Gui.SSTabHelper.SetTabEnabled(SSTab1, 0, true);
+                           // Artinsoft.VB6.Gui.SSTabHelper.SetTabEnabled(SSTab1, 0, true);
                             try
                             {
                                 @Globals.oDocument.Delete();
@@ -964,7 +962,11 @@ namespace UOCFilenet
                 // AVG Fin 2017
 
             }
-            catch { }
+            catch (Exception excep)
+            {
+
+                MessageBox.Show(this, excep.Message, Application.ProductName);
+            }
         }
 
         private void setHeaderColumnNames()
