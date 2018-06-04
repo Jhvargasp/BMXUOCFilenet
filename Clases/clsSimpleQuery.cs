@@ -36,7 +36,8 @@ namespace UOCFilenet
         //        must be bracketed with quotes, e.g. AccountName = 'Bruce'
 
 
-        private ADODB.Recordset oRS = null;
+        //private ADODB.Recordset oRS = null;
+        IRepositoryRowSet oRS = null;
         //AIS-469 FGUEVARA
         //private ADODB.Connection oMiBD = null;
         private ADODB.Command CmdEjec = new ADODB.Command();
@@ -71,7 +72,7 @@ namespace UOCFilenet
             }
         }
 
-        public void UpdateQuery(IObjectStore objObjectStore, string sClass, Object IDMLView) //AxIDMListView.AxIDMListView
+        public void UpdateQuery(IObjectStore objObjectStore, string sClass, DataGridView IDMLView) //AxIDMListView.AxIDMListView
         {
             string[] sClasses = new string[2];
             //IDMObjects.PropertyDescription PropDesc = null;
@@ -84,19 +85,20 @@ namespace UOCFilenet
             IClassDescription objClassDesc = ClassDescription.FetchInstance(objObjectStore, sClass, null);
             oPropDescs = objClassDesc.PropertyDescriptions;
 
-            //if (IDMLView.CountItems() == 0)
+            if (IDMLView.RowCount == 0)
             {
-                @Globals.fncParmIniSet("UOCFileNet", "Execute", "5", DirWinTemp + "UOCFileNet.ini");
-                @Globals.fncParmIniSet("Error", "ErrNumber", "5", DirWinTemp + "UOCFileNet.ini");
-                @Globals.fncParmIniSet("Error", "DescError", "Error No hay Imágenes con esos parámetros", DirWinTemp + "UOCFileNet.ini");
-                @Globals.fncParmIniSet("Cadena", "Cadena", Interaction.Command().Trim(), DirWinTemp + "UOCFileNet.ini");
+                //@Globals.fncParmIniSet("UOCFileNet", "Execute", "5", DirWinTemp + "UOCFileNet.ini");
+                //@Globals.fncParmIniSet("Error", "ErrNumber", "5", DirWinTemp + "UOCFileNet.ini");
+                //@Globals.fncParmIniSet("Error", "DescError", "Error No hay Imágenes con esos parámetros", DirWinTemp + "UOCFileNet.ini");
+                //@Globals.fncParmIniSet("Cadena", "Cadena", Interaction.Command().Trim(), DirWinTemp + "UOCFileNet.ini");
+                MessageBox.Show("Error No hay Imágenes con esos parámetros");
                 return;
             }
-            //for (int i = 1; i <= IDMLView.CountItems(); i++)
+            for (int i = 1; i <= IDMLView.RowCount; i++)
             {
               //  IDMLView.SelectItem(i);
                 //TODO validate with Filenet
-                //@Globals.oDocument = (Document)IDMLView.SelectedItem;
+                @Globals.oDocument = (IDocument)objObjectStore.FetchObject("Document", (String)IDMLView.Rows[i].Cells[0].Value,null);
                 switch (@Globals.VarCom)
                 {
                     case 1:
@@ -285,8 +287,8 @@ namespace UOCFilenet
             }
             if (Salvar)
             {
-                //@Globals.oDocument.Refresh(RefreshMode.REFRESH);
-                oRS.Requery(-1);
+                @Globals.oDocument.Refresh();
+                //oRS.Requery(-1);
             }
         }
 
@@ -306,14 +308,14 @@ namespace UOCFilenet
         }
 
         // Private subroutine for building up IDMListView
-        private void ShowResults(Object IDMLView) //AxIDMListView.AxIDMListView
+        private void ShowResults(ref DataGridView IDMLView) //AxIDMListView.AxIDMListView
         {
             bool OnErrorResumeNext = false;
             double VarPaso = 0;
             // Do basic IDMLView initialization
             //TODO validate AxIDMListView with Filenet
             //IDMLView.DefaultLibrary = oQueryLib;
-            //IDMLView.ClearItems();
+            IDMLView.Rows.Clear();
             if (cColHeadings.Count > 0)
             {
                 //IDMLView.ClearColumnHeaders(oQueryLib);
@@ -340,9 +342,22 @@ namespace UOCFilenet
                 //IDMLView.View = IDMListView.idmView.idmViewList;
             }
             // Now for the easy part - slam in the actual items
-            if (oRS.RecordCount > 0)
+           
+            if ( !oRS.IsEmpty() )
             {
-              //  IDMLView.AddItems(oRS.Fields["ObjSet"].Value, 1);
+                int i = 0;
+                foreach (IRepositoryRow row in oRS)
+                {
+                    
+                    string[] rowData = { row.Properties.GetProperty("Id").GetIdValue().ToString(), row.Properties.GetProperty("DocumentTitle").GetStringValue() };
+                    if (i > 20) {
+                        break;
+                    }
+                    i++;
+                    IDMLView.Rows.Add(rowData);
+                }
+               
+                //  IDMLView.AddItems(oRS.Fields["ObjSet"].Value, 1);
             }
             else
             {
@@ -374,13 +389,14 @@ namespace UOCFilenet
             }
 
         }
+        public IObjectStore objObjectStore;
 
         // Executes query using passed params, places results in
         // passed IDMListView control
         // Calls must be preceded by a BindToLib
-        public void ExecQuery(ref  Object IDMLView, string sWhereClause, string sFolderName, int iMaxRows)//AxIDMListView.AxIDMListView
+        public void ExecQuery(ref  DataGridView IDMLView, string sWhereClause, string sFolderName, int iMaxRows)//AxIDMListView.AxIDMListView
         {
-            IObjectStore objObjectStore=null;
+           
             if (objObjectStore != null)
             {
                 // Build the string necessary to bind to the database connection
@@ -388,9 +404,9 @@ namespace UOCFilenet
                 // Build the query string
 
                 //sQuery = "SELECT * FROM FnDocument ";
-                String mySQLString = "SELECT This FROM Document ";
+                String mySQLString = "SELECT * FROM Document  ";
                 SearchSQL sqlObject = new SearchSQL();
-                sqlObject.SetQueryString(mySQLString);
+                
 
                 // The SearchSQL instance (sqlObject) can then be specified in the 
                 // SearchScope parameter list to execute the search. Uses fetchRows to test the SQL 
@@ -399,14 +415,15 @@ namespace UOCFilenet
             
                 if (sWhereClause.Length > 0)
                 {
-                    sQuery = sQuery + "WHERE " + sWhereClause;
+                    //sQuery = sQuery + "WHERE VersionStatus=1 AND " + sWhereClause;
+                    sQuery = sQuery + "WHERE VersionStatus=1 ";
                 }
 
                 // Set up the properties on the record set
-                if (oRS != null)
-                {
+                //if (oRS != null)
+                //{
                     oRS = null;
-                }
+                //}
                 //Set oMiBD = New ADODB.Connection
                 //oMiBD.ConnectionString = sConnect
                 //oMiBD.Open
@@ -418,7 +435,7 @@ namespace UOCFilenet
                 {
                     //searchScope.
                     //oRS.MaxRecords = iMaxRows;
-                    sQuery = sQuery + " OPTIONS(COUNT_LIMIT "+iMaxRows+")";
+                    sQuery = sQuery + " OPTIONS ( BATCHSIZE "+iMaxRows+" )";
                 }
                 //oRS.Properties["SearchFolderName"].Value = sFolderName;
                 // All set up - pull the trigger
@@ -427,10 +444,12 @@ namespace UOCFilenet
                 //oRS.Open sQuery, oMiBD, adOpenKeyset
                 //oRS.Open(sQuery, Type.Missing, ADODB.CursorTypeEnum.adOpenKeyset, ADODB.LockTypeEnum.adLockUnspecified, -1);
 
-                IRepositoryRowSet rowSet = searchScope.FetchRows(sqlObject, null, null, true);
+                sqlObject.SetQueryString(mySQLString + sQuery);
+                //sqlObject.SetQueryString(mySQLString);
+                oRS = searchScope.FetchRows(sqlObject, null, null, true);
 
-
-                ShowResults(IDMLView);
+                
+                ShowResults(ref IDMLView);
             }
             else
             {

@@ -16,9 +16,11 @@ using FileNet.Api.Collection;
 namespace UOCFilenet
 {
 
+    
     public partial class FrmFileNET
         : System.Windows.Forms.Form
     {
+        string sClassExpedientesDC = "Document";// "ExpedientesDC";
 
         //class ExitEnvironmentException : Exception { }
         CEConnection ceConnection = new CEConnection();
@@ -32,7 +34,7 @@ namespace UOCFilenet
         {
             string sWhere = "F_DOCTYPE = 'IMAGE'";
             //sWhere = sWhere & " AND F_DOCCLASSNAME = '" & gfSettings.txtResDocClass & "'"
-            sWhere = sWhere + " AND F_DOCCLASSNAME = 'ExpedientesDC'";
+            sWhere = sWhere + " AND F_DOCCLASSNAME = '"+sClassExpedientesDC+"'";
             if (Double.Parse(@Globals.UOC) > 0)
             {
                 sWhere = sWhere + " AND UOC = '" + UOCX + "'";
@@ -94,7 +96,7 @@ namespace UOCFilenet
         {
             string[] asClasses = new string[2];
             //asClasses(0) = gfSettings.txtResDocClass
-            asClasses[0] = "ExpedientesDC";
+            asClasses[0] = sClassExpedientesDC;
             //Set goPropDescs = oLibrary.FilterPropertyDescriptions(idmObjTypeDocument, _
             //'asClasses)
             @Globals.goPropDescs = ceConnection.getPropertiesDescriptions(oLibrary, asClasses);
@@ -113,6 +115,7 @@ namespace UOCFilenet
                     }
                 }
             }
+
             Bande = 1;
             //IDMListView1[DocAct].SwitchColumnHeaders(oLibrary);
         }
@@ -560,9 +563,9 @@ namespace UOCFilenet
             {
                 MessageBox.Show(this, "Parámetros No decuados para Ejecutar el Programa", Application.ProductName);
                 oLibrary = null;
-                @Globals.fncParmIniSet("UOCFileNet", "Execute", "3", DirWinTemp + "UOCFileNet.ini");
-                @Globals.fncParmIniSet("Error", "ErrNumber", "3", DirWinTemp + "UOCFileNet.ini");
-                @Globals.fncParmIniSet("Error", "DescError", "Parámetros No decuados para Ejecutar el Programa", DirWinTemp + "UOCFileNet.ini");
+                //@Globals.fncParmIniSet("UOCFileNet", "Execute", "3", DirWinTemp + "UOCFileNet.ini");
+                //@Globals.fncParmIniSet("Error", "ErrNumber", "3", DirWinTemp + "UOCFileNet.ini");
+                //@Globals.fncParmIniSet("Error", "DescError", "Parámetros No decuados para Ejecutar el Programa", DirWinTemp + "UOCFileNet.ini");
                 this.Close();
             }
 
@@ -571,9 +574,9 @@ namespace UOCFilenet
             {
                 MessageBox.Show(this, "Error en logon a librería", Application.ProductName);
                 @Globals.gbISLogOff = false;
-                @Globals.fncParmIniSet("UOCFileNet", "Execute", "4", DirWinTemp + "UOCFileNet.ini");
-                @Globals.fncParmIniSet("Error", "ErrNumber", "4", DirWinTemp + "UOCFileNet.ini");
-                @Globals.fncParmIniSet("Error", "DescError", "Error en logon a librería", DirWinTemp + "UOCFileNet.ini");
+                //@Globals.fncParmIniSet("UOCFileNet", "Execute", "4", DirWinTemp + "UOCFileNet.ini");
+                //@Globals.fncParmIniSet("Error", "ErrNumber", "4", DirWinTemp + "UOCFileNet.ini");
+                //@Globals.fncParmIniSet("Error", "DescError", "Error en logon a librería", DirWinTemp + "UOCFileNet.ini");
                 //throw new ExitEnvironmentException();
                 Environment.Exit(0);
             }
@@ -611,9 +614,11 @@ namespace UOCFilenet
             // Se agrega 
             if (@Globals.VarCom == 7) // Modo de Espera para hacer actualizaciones en segundo plano
             {
-                @Globals.fncParmIniSet("UOCFileNet", "Execute", "7", DirWinTemp + "UOCFileNet.ini");
-                @Globals.fncParmIniSet("Error", "ErrNumber", "7", DirWinTemp + "UOCFileNet.ini");
-                @Globals.fncParmIniSet("Error", "DescError", "Logon en modo de espera", DirWinTemp + "UOCFileNet.ini");
+               
+                //@Globals.fncParmIniSet("UOCFileNet", "Execute", "7", DirWinTemp + "UOCFileNet.ini");
+                //@Globals.fncParmIniSet("Error", "ErrNumber", "7", DirWinTemp + "UOCFileNet.ini");
+                //@Globals.fncParmIniSet("Error", "DescError", "Logon en modo de espera", DirWinTemp + "UOCFileNet.ini");
+                MessageBox.Show(this,"Logon en modo de espera");
                 this.Visible = false;
                 this.Hide();
 
@@ -736,21 +741,22 @@ namespace UOCFilenet
                 {
                     @Globals.XFolio2 = TxtCriterio[5].Text;
                 }
-                string sClass = "ExpedientesDC";
+                string sClass = sClassExpedientesDC;
                 @Globals.gcHeadings = new Collection();
                 @Globals.gcPropNames = new Collection();
                 SetLVHeaders(@Globals.gcHeadings, @Globals.gcPropNames);
                 @Globals.clsQuery.BindToLib(oLibrary, @Globals.gcHeadings, sClass);
                 Cursor = Cursors.WaitCursor;
                 //AxIDMListView.AxIDMListView tempRefParam = this.IDMListView1[0];
-               // @Globals.clsQuery.ExecQuery(ref tempRefParam, sWhere, "", 20);
+                @Globals.clsQuery.objObjectStore = oLibrary;
+                @Globals.clsQuery.ExecQuery(ref dataGridView1, sWhere, "", 20);
                 SSPanel2.Visible = false;
                 Cursor = Cursors.Arrow;
                 Rotar = 0;
                 if (@Globals.VarCom == 2 || @Globals.VarCom == 3 || @Globals.VarCom == 6)
                 { //update parameters
                     this.Hide();
-                    //@Globals.clsQuery.UpdateQuery(oLibrary, sClass, IDMListView1[DocAct]);
+                    @Globals.clsQuery.UpdateQuery(oLibrary, sClass, dataGridView1 );
                     this.Close();
                     Environment.Exit(0);
                 }
@@ -764,9 +770,9 @@ namespace UOCFilenet
                         || ((!Double.TryParse(@Globals.XFolio, out tmpDouble)) && (@Globals.XFolio != null)))
                     {
                         i = 0;
-                       // if (IDMListView1[i].CountItems() > 0)
+                        if (dataGridView1.RowCount > 0)
                         {
-                         //   IDMListView1[i].SelectItem(1);
+                            //IDMListView1[i].SelectItem(1);
                             IDMListView1_DblClick(i);
                             int tempRefParam2 = i + 2;
                             IDMListView1_DblClick(tempRefParam2);
@@ -797,7 +803,7 @@ namespace UOCFilenet
                         //AVG Fin Sept-2015
 
                         //AxIDMListView.AxIDMListView tempRefParam3 = this.IDMListView1[1];
-                       // @Globals.clsQuery.ExecQuery(ref tempRefParam3, sWhere, "", 20);
+                        @Globals.clsQuery.ExecQuery(ref dataGridView1, sWhere, "", 20);
                         i = 1;
                         //if (IDMListView1[i].CountItems() > 0)
                         {
@@ -872,14 +878,15 @@ namespace UOCFilenet
                             }
                             catch { }
                         }
-                       // if (IDMListView1[0].CountItems() == 0)
+                        if (dataGridView1.Rows.Count == 0)
                         {
-                            @Globals.fncParmIniSet("UOCFileNet", "Execute", "8", DirWinTemp + "UOCFileNet.ini");
-                            @Globals.fncParmIniSet("Error", "ErrNumber", "8", DirWinTemp + "UOCFileNet.ini");
-                            @Globals.fncParmIniSet("Error", "DescError", "Error No hay Imágenes con esos parámetros", DirWinTemp + "UOCFileNet.ini");
-                            @Globals.fncParmIniSet("Cadena", "Cadena", Interaction.Command().Trim(), DirWinTemp + "UOCFileNet.ini");
+                            //@Globals.fncParmIniSet("UOCFileNet", "Execute", "8", DirWinTemp + "UOCFileNet.ini");
+                            //@Globals.fncParmIniSet("Error", "ErrNumber", "8", DirWinTemp + "UOCFileNet.ini");
+                            //@Globals.fncParmIniSet("Error", "DescError", "Error No hay Imágenes con esos parámetros", DirWinTemp + "UOCFileNet.ini");
+                            //@Globals.fncParmIniSet("Cadena", "Cadena", Interaction.Command().Trim(), DirWinTemp + "UOCFileNet.ini");
+                            MessageBox.Show("Error No hay Imágenes con esos parámetros");
                         }
-                       // else
+                        else
                         {
                             @Globals.fncParmIniSet("UOCFileNet", "Execute", "1", DirWinTemp + "UOCFileNet.ini");
                         }
@@ -902,7 +909,7 @@ namespace UOCFilenet
                         || ((!Double.TryParse(@Globals.XFolio, out tmpDouble)) && (@Globals.XFolio != null)))
                     {
 
-                       // for (i = 0; i < IDMListView1[0].CountItems(); i++)
+                        for (i = 0; i < dataGridView1.Rows.Count; i++)
                         {
                            // IDMListView1[0].SelectItem(i + 1);
                             IDMListView1_DblClick(0);
@@ -914,14 +921,15 @@ namespace UOCFilenet
                             }
                             catch { }
                         }
-                       // if (IDMListView1[0].CountItems() == 0)
+                        if (dataGridView1.Rows.Count == 0)
                         {
-                            @Globals.fncParmIniSet("UOCFileNet", "Execute", "9", DirWinTemp + "UOCFileNet.ini");
-                            @Globals.fncParmIniSet("Error", "ErrNumber", "9", DirWinTemp + "UOCFileNet.ini");
-                            @Globals.fncParmIniSet("Error", "DescError", "Error No hay Imágenes con esos parámetros", DirWinTemp + "UOCFileNet.ini");
-                            @Globals.fncParmIniSet("Cadena", "Cadena", Interaction.Command().Trim(), DirWinTemp + "UOCFileNet.ini");
+                            //@Globals.fncParmIniSet("UOCFileNet", "Execute", "9", DirWinTemp + "UOCFileNet.ini");
+                            //@Globals.fncParmIniSet("Error", "ErrNumber", "9", DirWinTemp + "UOCFileNet.ini");
+                            //@Globals.fncParmIniSet("Error", "DescError", "Error No hay Imágenes con esos parámetros", DirWinTemp + "UOCFileNet.ini");
+                            //@Globals.fncParmIniSet("Cadena", "Cadena", Interaction.Command().Trim(), DirWinTemp + "UOCFileNet.ini");
+                            MessageBox.Show("Error No hay Imágenes con esos parámetros");
                         }
-                       // else
+                        else
                         {
                             @Globals.fncParmIniSet("UOCFileNet", "Execute", "1", DirWinTemp + "UOCFileNet.ini");
                         }
@@ -944,20 +952,25 @@ namespace UOCFilenet
                         || ((!Double.TryParse(@Globals.XFolio, out tmpDouble)) && (@Globals.XFolio != null)))
                     {
 
-                       // if (IDMListView1[0].CountItems() == 0)
+                        if (dataGridView1.Rows.Count == 0)
                         {
-                            @Globals.fncParmIniSet("UOCFileNet", "Execute", "10", DirWinTemp + "UOCFileNet.ini");
-                            @Globals.fncParmIniSet("Error", "ErrNumber", "10", DirWinTemp + "UOCFileNet.ini");
-                            @Globals.fncParmIniSet("Error", "DescError", "Error No hay Imágenes con esos parámetros", DirWinTemp + "UOCFileNet.ini");
-                            @Globals.fncParmIniSet("Cadena", "Cadena", Interaction.Command().Trim(), DirWinTemp + "UOCFileNet.ini");
+                            //@Globals.fncParmIniSet("UOCFileNet", "Execute", "10", DirWinTemp + "UOCFileNet.ini");
+                            //@Globals.fncParmIniSet("Error", "ErrNumber", "10", DirWinTemp + "UOCFileNet.ini");
+                            //@Globals.fncParmIniSet("Error", "DescError", "Error No hay Imágenes con esos parámetros", DirWinTemp + "UOCFileNet.ini");
+                            //@Globals.fncParmIniSet("Cadena", "Cadena", Interaction.Command().Trim(), DirWinTemp + "UOCFileNet.ini");
+                            MessageBox.Show("Error No hay Imágenes con esos parámetros");
                         }
-                        //else
+                        else
                         {
-                            @Globals.fncParmIniSet("UOCFileNet", "Execute", "1", DirWinTemp + "UOCFileNet.ini");
+                            //show to see results
+                            this.Show();
+                            //TODO ??
+                            //@Globals.fncParmIniSet("UOCFileNet", "Execute", "1", DirWinTemp + "UOCFileNet.ini");
                         }
                     }
-                    this.Close();
-                    Environment.Exit(0);
+                    //TODO why close
+                    //this.Close();
+                    //Environment.Exit(0);
                 }
                 // AVG Fin 2017
 
@@ -1859,9 +1872,8 @@ namespace UOCFilenet
             string cade2 = String.Empty;
             string XtipDoc = String.Empty;
             byte PosPunto = 0;
-            string sClass = "ExpedientesDC";
             string[] sClasses = new string[2];
-            sClasses[0] = sClass;
+            sClasses[0] = sClassExpedientesDC;
             IPropertyDescriptionList oPropDescs = null;
             oPropDescs=ceConnection.getPropertiesDescriptions(oLibrary, sClasses);
             //oPropDescs = (IDMObjects.PropertyDescriptions)@Globals.oLibrary.FilterPropertyDescriptions(IDMObjects.idmObjectType.idmObjTypeDocument, sClasses);
@@ -1988,6 +2000,32 @@ namespace UOCFilenet
         private void SPCont2_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            if(dataGridView1.SelectedRows.Count>0)
+            {
+                try {
+                    //MessageBox.Show(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+                    FileNet.Api.Property.PropertyFilter pf = new FileNet.Api.Property.PropertyFilter();
+                pf.AddIncludeProperty (new FileNet.Api.Property.FilterElement(null, null, null, "VersionSeries Name", null));
+
+                // Get a document from the version series to be checked for downloads.
+                IDocument documentObj = Factory.Document.FetchInstance(oLibrary, (dataGridView1.SelectedRows[0].Cells[0].Value.ToString()), pf);
+
+                // Get version series Id from document, which will be used
+                // to compare with the version series property in download record objects.
+                String vsId = documentObj.VersionSeries.Id.ToString();
+                   //oLibrary.
+                    //Session session = ObjectFactory.getSession("UserToken", null, "jDoe", "amico");
+                    //String token = session.getToken(false);
+                    webBrowser1.Navigate("http://serv-testcor.minminas.gov.co:9080/Workplace/getContent?vsId="+vsId+"&objectStoreName="+ @Globals.gfSettings.txtIMSLibName.Text + "&objectType=document");
+                }catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
     }
 }

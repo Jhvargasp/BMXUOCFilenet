@@ -125,9 +125,6 @@ namespace UOCFilenet
             this.DocumentID = new System.Windows.Forms.Label();
             this.SPCont2 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.SSTab1 = new System.Windows.Forms.TabControl();
-            this._SSTab1_TabPage0 = new System.Windows.Forms.TabPage();
-            this.SPCont = new System.Windows.Forms.SplitContainer();
             this.Image = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Contrato = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Folio = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -139,6 +136,10 @@ namespace UOCFilenet
             this.TipoDoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.XFolioS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SSTab1 = new System.Windows.Forms.TabControl();
+            this._SSTab1_TabPage0 = new System.Windows.Forms.TabPage();
+            this.SPCont = new System.Windows.Forms.SplitContainer();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.SSPanel1.SuspendLayout();
             this.SSPanel2.SuspendLayout();
             this.SPCont2.Panel1.SuspendLayout();
@@ -146,6 +147,7 @@ namespace UOCFilenet
             this.SPCont2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SSTab1.SuspendLayout();
+            this._SSTab1_TabPage0.SuspendLayout();
             this.SPCont.Panel1.SuspendLayout();
             this.SPCont.Panel2.SuspendLayout();
             this.SPCont.SuspendLayout();
@@ -890,48 +892,7 @@ namespace UOCFilenet
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(772, 76);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // SSTab1
-            // 
-            this.SSTab1.Controls.Add(this._SSTab1_TabPage0);
-            this.SSTab1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SSTab1.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SSTab1.ItemSize = new System.Drawing.Size(42, 17);
-            this.SSTab1.Location = new System.Drawing.Point(0, 0);
-            this.SSTab1.Name = "SSTab1";
-            this.SSTab1.SelectedIndex = 0;
-            this.SSTab1.Size = new System.Drawing.Size(772, 630);
-            this.SSTab1.TabIndex = 34;
-            this.SSTab1.SelectedIndexChanged += new System.EventHandler(this.SSTab1_SelectedIndexChanged);
-            // 
-            // _SSTab1_TabPage0
-            // 
-            this._SSTab1_TabPage0.Location = new System.Drawing.Point(4, 21);
-            this._SSTab1_TabPage0.Name = "_SSTab1_TabPage0";
-            this._SSTab1_TabPage0.Size = new System.Drawing.Size(764, 605);
-            this._SSTab1_TabPage0.TabIndex = 0;
-            this._SSTab1_TabPage0.Text = "Docto 1";
-            // 
-            // SPCont
-            // 
-            this.SPCont.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.SPCont.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SPCont.Location = new System.Drawing.Point(0, 0);
-            this.SPCont.Margin = new System.Windows.Forms.Padding(2);
-            this.SPCont.Name = "SPCont";
-            // 
-            // SPCont.Panel1
-            // 
-            this.SPCont.Panel1.Controls.Add(this.SPCont2);
-            // 
-            // SPCont.Panel2
-            // 
-            this.SPCont.Panel2.Controls.Add(this.SSPanel2);
-            this.SPCont.Panel2.Controls.Add(this.SSPanel1);
-            this.SPCont.Size = new System.Drawing.Size(942, 716);
-            this.SPCont.SplitterDistance = 776;
-            this.SPCont.SplitterWidth = 2;
-            this.SPCont.TabIndex = 38;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // Image
             // 
@@ -999,6 +960,58 @@ namespace UOCFilenet
             this.XFolioS.Name = "XFolioS";
             this.XFolioS.ReadOnly = true;
             // 
+            // SSTab1
+            // 
+            this.SSTab1.Controls.Add(this._SSTab1_TabPage0);
+            this.SSTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SSTab1.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SSTab1.ItemSize = new System.Drawing.Size(42, 17);
+            this.SSTab1.Location = new System.Drawing.Point(0, 0);
+            this.SSTab1.Name = "SSTab1";
+            this.SSTab1.SelectedIndex = 0;
+            this.SSTab1.Size = new System.Drawing.Size(772, 630);
+            this.SSTab1.TabIndex = 34;
+            this.SSTab1.SelectedIndexChanged += new System.EventHandler(this.SSTab1_SelectedIndexChanged);
+            // 
+            // _SSTab1_TabPage0
+            // 
+            this._SSTab1_TabPage0.Controls.Add(this.webBrowser1);
+            this._SSTab1_TabPage0.Location = new System.Drawing.Point(4, 21);
+            this._SSTab1_TabPage0.Name = "_SSTab1_TabPage0";
+            this._SSTab1_TabPage0.Size = new System.Drawing.Size(764, 605);
+            this._SSTab1_TabPage0.TabIndex = 0;
+            this._SSTab1_TabPage0.Text = "Docto 1";
+            // 
+            // SPCont
+            // 
+            this.SPCont.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.SPCont.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SPCont.Location = new System.Drawing.Point(0, 0);
+            this.SPCont.Margin = new System.Windows.Forms.Padding(2);
+            this.SPCont.Name = "SPCont";
+            // 
+            // SPCont.Panel1
+            // 
+            this.SPCont.Panel1.Controls.Add(this.SPCont2);
+            // 
+            // SPCont.Panel2
+            // 
+            this.SPCont.Panel2.Controls.Add(this.SSPanel2);
+            this.SPCont.Panel2.Controls.Add(this.SSPanel1);
+            this.SPCont.Size = new System.Drawing.Size(942, 716);
+            this.SPCont.SplitterDistance = 776;
+            this.SPCont.SplitterWidth = 2;
+            this.SPCont.TabIndex = 38;
+            // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser1.Location = new System.Drawing.Point(0, 0);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(764, 605);
+            this.webBrowser1.TabIndex = 0;
+            // 
             // FrmFileNET
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -1026,6 +1039,7 @@ namespace UOCFilenet
             this.SPCont2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.SSTab1.ResumeLayout(false);
+            this._SSTab1_TabPage0.ResumeLayout(false);
             this.SPCont.Panel1.ResumeLayout(false);
             this.SPCont.Panel2.ResumeLayout(false);
             this.SPCont.ResumeLayout(false);
@@ -1142,6 +1156,7 @@ namespace UOCFilenet
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoDoc;
         private System.Windows.Forms.DataGridViewTextBoxColumn UOC;
         private System.Windows.Forms.DataGridViewTextBoxColumn XFolioS;
+        private System.Windows.Forms.WebBrowser webBrowser1;
         // private AxIDMListView.AxIDMListView IDMListView2;
     }
 }
