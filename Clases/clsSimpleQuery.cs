@@ -348,8 +348,23 @@ namespace UOCFilenet
                 int i = 0;
                 foreach (IRepositoryRow row in oRS)
                 {
-                    
-                    string[] rowData = { row.Properties.GetProperty("Id").GetIdValue().ToString(), row.Properties.GetProperty("DocumentTitle").GetStringValue() };
+                    string[] rowData = { row.Properties.GetProperty("Id").GetIdValue().ToString(),
+                        row.Properties.GetProperty("XfolioP").GetStringValue(),
+                    row.Properties.GetProperty("FolioS403").GetStringValue(),
+                    row.Properties.GetProperty("SecLote").GetStringValue(),
+                    row.Properties.GetProperty("Instrumento").GetStringValue(),
+                    row.Properties.GetProperty("Producto").GetStringValue(),
+                    row.Properties.GetProperty("XfolioS").GetStringValue(),
+                    row.Properties.GetProperty("CalificaOnDemand").GetStringValue(),
+                    row.Properties.GetProperty("FechaOperacion").GetStringValue(),
+                    row.Properties.GetProperty("StatusImagen").GetStringValue(),
+                    row.Properties.GetProperty("Status").GetStringValue(),
+                    row.Properties.GetProperty("Linea").GetStringValue(),
+                    row.Properties.GetProperty("Contrato").GetStringValue(),
+                    row.Properties.GetProperty("NumCliente").GetStringValue(),
+                    row.Properties.GetProperty("Folio").GetStringValue(),
+                    row.Properties.GetProperty("TipoDoc").GetStringValue(),
+                    row.Properties.GetProperty("UOC").GetStringValue()};
                     if (i > 20) {
                         break;
                     }
@@ -404,7 +419,7 @@ namespace UOCFilenet
                 // Build the query string
 
                 //sQuery = "SELECT * FROM FnDocument ";
-                String mySQLString = "SELECT * FROM Document  ";
+                String mySQLString = "SELECT * FROM ExpedientesDC  ";
                 SearchSQL sqlObject = new SearchSQL();
                 
 
@@ -415,8 +430,8 @@ namespace UOCFilenet
             
                 if (sWhereClause.Length > 0)
                 {
-                    //sQuery = sQuery + "WHERE VersionStatus=1 AND " + sWhereClause;
-                    sQuery = sQuery + "WHERE VersionStatus=1 ";
+                    sQuery = sQuery + "WHERE VersionStatus=1 AND " + sWhereClause;
+                    //sQuery = sQuery + "WHERE VersionStatus=1 ";
                 }
 
                 // Set up the properties on the record set

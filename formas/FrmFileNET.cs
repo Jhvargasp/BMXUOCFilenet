@@ -20,7 +20,7 @@ namespace UOCFilenet
     public partial class FrmFileNET
         : System.Windows.Forms.Form
     {
-        string sClassExpedientesDC = "Document";// "ExpedientesDC";
+        string sClassExpedientesDC = "ExpedientesDC";//;
 
         //class ExitEnvironmentException : Exception { }
         CEConnection ceConnection = new CEConnection();
@@ -32,9 +32,9 @@ namespace UOCFilenet
 
         private string Procesa_Folio(string FolioD, string UOCX, string XSubFol)
         {
-            string sWhere = "F_DOCTYPE = 'IMAGE'";
+            string sWhere = "";// "F_DOCTYPE = 'IMAGE'";
             //sWhere = sWhere & " AND F_DOCCLASSNAME = '" & gfSettings.txtResDocClass & "'"
-            sWhere = sWhere + " AND F_DOCCLASSNAME = '"+sClassExpedientesDC+"'";
+            //sWhere = sWhere + " AND F_DOCCLASSNAME = '"+sClassExpedientesDC+"'";
             if (Double.Parse(@Globals.UOC) > 0)
             {
                 sWhere = sWhere + " AND UOC = '" + UOCX + "'";
