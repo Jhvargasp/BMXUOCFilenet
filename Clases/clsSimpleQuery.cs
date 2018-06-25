@@ -342,36 +342,45 @@ namespace UOCFilenet
                 //IDMLView.View = IDMListView.idmView.idmViewList;
             }
             // Now for the easy part - slam in the actual items
-           
+
+            //MessageBox.Show("Consulta con Resultados " + oRS.IsEmpty());
+
             if ( !oRS.IsEmpty() )
             {
                 int i = 0;
+                try { 
                 foreach (IRepositoryRow row in oRS)
                 {
                     string[] rowData = { row.Properties.GetProperty("Id").GetIdValue().ToString(),
-                        row.Properties.GetProperty("XfolioP").GetStringValue(),
-                    row.Properties.GetProperty("FolioS403").GetStringValue(),
-                    row.Properties.GetProperty("SecLote").GetStringValue(),
-                    row.Properties.GetProperty("Instrumento").GetStringValue(),
-                    row.Properties.GetProperty("Producto").GetStringValue(),
-                    row.Properties.GetProperty("XfolioS").GetStringValue(),
-                    row.Properties.GetProperty("CalificaOnDemand").GetStringValue(),
-                    row.Properties.GetProperty("FechaOperacion").GetStringValue(),
-                    row.Properties.GetProperty("StatusImagen").GetStringValue(),
-                    row.Properties.GetProperty("Status").GetStringValue(),
-                    row.Properties.GetProperty("Linea").GetStringValue(),
+                       row.Properties.GetProperty("XfolioP").GetInteger32Value().ToString(),
+                    row.Properties.GetProperty("FolioS403").GetInteger32Value().ToString(),
+                    row.Properties.GetProperty("SecLote").GetInteger32Value().ToString(),
+                    row.Properties.GetProperty("Instrumento").GetInteger32Value().ToString(),
+                    row.Properties.GetProperty("Producto").GetInteger32Value().ToString(),
+                    row.Properties.GetProperty("XfolioS").GetInteger32Value().ToString(),
+                    row.Properties.GetProperty("CalificaOnDemand").GetInteger32Value().ToString(),
+                    row.Properties.GetProperty("FechaOperacion").GetDateTimeValue().ToString(),
+                    row.Properties.GetProperty("StatusImagen").GetInteger32Value().ToString(),
+                    row.Properties.GetProperty("Status").GetInteger32Value().ToString(),
+                    row.Properties.GetProperty("Linea").GetInteger32Value().ToString(),
                     row.Properties.GetProperty("Contrato").GetStringValue(),
-                    row.Properties.GetProperty("NumCliente").GetStringValue(),
-                    row.Properties.GetProperty("Folio").GetStringValue(),
-                    row.Properties.GetProperty("TipoDoc").GetStringValue(),
-                    row.Properties.GetProperty("UOC").GetStringValue()};
+                    row.Properties.GetProperty("NumCliente").GetInteger32Value().ToString(),
+                    row.Properties.GetProperty("Folio").GetInteger32Value().ToString(),
+                    row.Properties.GetProperty("TipoDoc").GetInteger32Value().ToString(),
+                    row.Properties.GetProperty("UOC").GetInteger32Value().ToString()
+                    
+                    //row.Properties.GetProperty("DocumentTitle").GetStringValue()
+                            };
                     if (i > 20) {
                         break;
                     }
                     i++;
                     IDMLView.Rows.Add(rowData);
                 }
-               
+                }catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
                 //  IDMLView.AddItems(oRS.Fields["ObjSet"].Value, 1);
             }
             else
@@ -418,8 +427,8 @@ namespace UOCFilenet
                 //sConnect = "provider=FnDBProvider;data source=" + oQueryLib.Name + ";Prompt=4;SystemType=" + ((int)oQueryLib.SystemType) + ";";
                 // Build the query string
 
-                //sQuery = "SELECT * FROM FnDocument ";
                 String mySQLString = "SELECT * FROM ExpedientesDC  ";
+                //String mySQLString = "SELECT * FROM Document  ";
                 SearchSQL sqlObject = new SearchSQL();
                 
 
@@ -430,7 +439,8 @@ namespace UOCFilenet
             
                 if (sWhereClause.Length > 0)
                 {
-                    sQuery = sQuery + "WHERE VersionStatus=1 AND " + sWhereClause;
+                    sQuery = "";
+                    sQuery = sQuery + "WHERE VersionStatus=1 " + sWhereClause;
                     //sQuery = sQuery + "WHERE VersionStatus=1 ";
                 }
 
@@ -459,12 +469,19 @@ namespace UOCFilenet
                 //oRS.Open sQuery, oMiBD, adOpenKeyset
                 //oRS.Open(sQuery, Type.Missing, ADODB.CursorTypeEnum.adOpenKeyset, ADODB.LockTypeEnum.adLockUnspecified, -1);
 
-                sqlObject.SetQueryString(mySQLString + sQuery);
-                //sqlObject.SetQueryString(mySQLString);
-                oRS = searchScope.FetchRows(sqlObject, null, null, true);
+                try
+                {
 
-                
-                ShowResults(ref IDMLView);
+                    sqlObject.SetQueryString(mySQLString + sQuery);
+                    //sqlObject.SetQueryString(mySQLString);
+                    oRS = searchScope.FetchRows(sqlObject, null, null, true);
+
+
+                    ShowResults(ref IDMLView);
+                }
+                catch (Exception ex) {
+                    MessageBox.Show(ex.Message);           
+                }
             }
             else
             {

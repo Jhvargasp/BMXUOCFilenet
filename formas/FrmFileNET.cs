@@ -20,7 +20,8 @@ namespace UOCFilenet
     public partial class FrmFileNET
         : System.Windows.Forms.Form
     {
-        string sClassExpedientesDC = "ExpedientesDC";//;
+        //string sClassExpedientesDC = "Document";// "ExpedientesDC";//;
+        string sClassExpedientesDC =  "ExpedientesDC";//;
 
         //class ExitEnvironmentException : Exception { }
         CEConnection ceConnection = new CEConnection();
@@ -172,6 +173,8 @@ namespace UOCFilenet
             {
 
                 MessageBox.Show(this, excep.Message, Application.ProductName);
+                //MessageBox.Show(this, "The application will be closed", Application.ProductName);
+                //Application.Exit();
                 result = false;
             }
             return result;
@@ -521,9 +524,9 @@ namespace UOCFilenet
 
             @Globals.Genera_Archivo_Control();
 
-            string Libreria = oLibrary.Name ;// @Globals.fncParmIniGet("C406090", "FileNET", @Globals.DirConf + "C406090.ini");
+            //string Libreria = oLibrary.Name ;// @Globals.fncParmIniGet("C406090", "FileNET", @Globals.DirConf + "C406090.ini");
 
-            if ((Libreria == null) || (Libreria.Length == 0))
+            if ((oLibrary == null) || (oLibrary.Name.Length == 0))
             {
                 MessageBox.Show(this, "No se encuentra el archivo de inicio de FileNET", Application.ProductName);
                 oLibrary = null;
@@ -559,18 +562,20 @@ namespace UOCFilenet
                 this.Hide();
             }
 
+            /*
+
             if (@Globals.VarCom == 0)
             {
-                MessageBox.Show(this, "Parámetros No decuados para Ejecutar el Programa", Application.ProductName);
+                MessageBox.Show(this, "Parámetros No adecuados para Ejecutar el Programa", Application.ProductName);
                 oLibrary = null;
                 //@Globals.fncParmIniSet("UOCFileNet", "Execute", "3", DirWinTemp + "UOCFileNet.ini");
                 //@Globals.fncParmIniSet("Error", "ErrNumber", "3", DirWinTemp + "UOCFileNet.ini");
                 //@Globals.fncParmIniSet("Error", "DescError", "Parámetros No decuados para Ejecutar el Programa", DirWinTemp + "UOCFileNet.ini");
                 this.Close();
             }
-
+            */
             MyLogon(""); // Hace LOGON a librería
-            if (!(oLibrary.RootFolder.PathName .Contains("/")))
+            if (oLibrary==null || !(oLibrary.RootFolder.PathName .Contains("/")))
             {
                 MessageBox.Show(this, "Error en logon a librería", Application.ProductName);
                 @Globals.gbISLogOff = false;
@@ -984,27 +989,13 @@ namespace UOCFilenet
 
         private void setHeaderColumnNames()
         {
-            /* dataGridView1.Columns[0].HeaderText = " ";
-             dataGridView1.Columns[1].HeaderText = "Contrato";
-             dataGridView1.Columns[2].HeaderText = "Folio";
-             dataGridView1.Columns[3].HeaderText = "Folio S403";
-             dataGridView1.Columns[4].HeaderText = "Instrumento";
-             dataGridView1.Columns[5].HeaderText = "Linea";
-             dataGridView1.Columns[6].HeaderText = "NumCliente";
-             dataGridView1.Columns[7].HeaderText = "Producto";
-             dataGridView1.Columns[8].HeaderText = "TipoDoc";
-             dataGridView1.Columns[9].HeaderText = "UOC";
-             dataGridView1.Columns[9].HeaderText = "XFolioS";
-             */
-
-            dataGridView1.ColumnCount = 5;
-
+            
+            
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy;
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dataGridView1.ColumnHeadersDefaultCellStyle.Font =
                 new Font(dataGridView1.Font, FontStyle.Bold);
 
-            //dataGridView1.Name = "dataGridView1";
             dataGridView1.Location = new Point(8, 8);
             dataGridView1.Size = new Size(500, 250);
             dataGridView1.AutoSizeRowsMode =
@@ -1015,44 +1006,16 @@ namespace UOCFilenet
             dataGridView1.GridColor = Color.Black;
             dataGridView1.RowHeadersVisible = false;
 
-            /*dataGridView1.Columns[0].Name = "Release Date";
-            dataGridView1.Columns[1].Name = "Track";
-            dataGridView1.Columns[2].Name = "Title";
-            dataGridView1.Columns[3].Name = "Artist";
-            dataGridView1.Columns[4].Name = "Album";*/
-            dataGridView1.Columns[4].DefaultCellStyle.Font =
-                new Font(dataGridView1.DefaultCellStyle.Font, FontStyle.Italic);
+
+           // dataGridView1.Columns[4].DefaultCellStyle.Font =
+             //   new Font(dataGridView1.DefaultCellStyle.Font, FontStyle.Italic);
 
             dataGridView1.SelectionMode =
                 DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.MultiSelect = false;
             dataGridView1.Dock = DockStyle.Fill;
 
-           /* dataGridView1.CellFormatting += new
-                DataGridViewCellFormattingEventHandler(
-                dataGridView1_CellFormatting);
-                */
-            string[] row0 = { "11/22/1968", "29", "Revolution 9",
-            "Beatles", "The Beatles [White Album]" };
-            string[] row1 = { "1960", "6", "Fools Rush In",
-            "Frank Sinatra", "Nice 'N' Easy" };
-            string[] row2 = { "11/11/1971", "1", "One of These Days",
-            "Pink Floyd", "Meddle" };
-            string[] row3 = { "1988", "7", "Where Is My Mind?",
-            "Pixies", "Surfer Rosa" };
-            string[] row4 = { "5/1981", "9", "Can't Find My Mind",
-            "Cramps", "Psychedelic Jungle" };
-            string[] row5 = { "6/10/2003", "13",
-            "Scatterbrain. (As Dead As Leaves.)",
-            "Radiohead", "Hail to the Thief" };
-            string[] row6 = { "6/30/1992", "3", "Dress", "P J Harvey", "Dry" };
-
-            dataGridView1.Rows.Add(row0);
-            dataGridView1.Rows.Add(row1);
-            dataGridView1.Rows.Add(row2);
-            dataGridView1.Rows.Add(row3);
-            // dataGridView1.DataMember.Insert(1, "bbb");
-
+           
 
         }
 
@@ -2017,10 +1980,15 @@ namespace UOCFilenet
                 // Get version series Id from document, which will be used
                 // to compare with the version series property in download record objects.
                 String vsId = documentObj.VersionSeries.Id.ToString();
-                   //oLibrary.
+                    //oLibrary.
                     //Session session = ObjectFactory.getSession("UserToken", null, "jDoe", "amico");
                     //String token = session.getToken(false);
-                    webBrowser1.Navigate("http://serv-testcor.minminas.gov.co:9080/Workplace/getContent?vsId="+vsId+"&objectStoreName="+ @Globals.gfSettings.txtIMSLibName.Text + "&objectType=document");
+                    // WORKPLACE http://serv-testcor.minminas.gov.co:9080/Workplace
+
+
+                    //navigator http://localhost:9080/navigator/bookmark.jsp?desktop=WilfredoDesktop&repositoryId=Correspondencia&repositoryType=p8&docid={1399240E-FE19-48FC-802B-7F128042CD86}&mimeType=image%2Fjpeg&template_name=CorrespondenciaRecibida&version=released&vsId=%7B0B8F4B11-16A7-CBA1-875B-5DCD57900000%7D
+
+                    webBrowser1.Navigate(@Globals.gfSettings.textWorkplace.Text+"&vsId=" +vsId+ "&repositoryId=" + @Globals.gfSettings.txtIMSLibName.Text + "&docid="+ dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
                 }catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);

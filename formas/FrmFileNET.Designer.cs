@@ -125,8 +125,12 @@ namespace UOCFilenet
             this.DocumentID = new System.Windows.Forms.Label();
             this.SPCont2 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.SSTab1 = new System.Windows.Forms.TabControl();
+            this._SSTab1_TabPage0 = new System.Windows.Forms.TabPage();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.SPCont = new System.Windows.Forms.SplitContainer();
             this.Image = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Contrato = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.XfolioP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Folio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FolioS403 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Instrumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -136,10 +140,12 @@ namespace UOCFilenet
             this.TipoDoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.XFolioS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SSTab1 = new System.Windows.Forms.TabControl();
-            this._SSTab1_TabPage0 = new System.Windows.Forms.TabPage();
-            this.SPCont = new System.Windows.Forms.SplitContainer();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SSPanel1.SuspendLayout();
             this.SSPanel2.SuspendLayout();
             this.SPCont2.Panel1.SuspendLayout();
@@ -876,7 +882,7 @@ namespace UOCFilenet
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Image,
-            this.Contrato,
+            this.XfolioP,
             this.Folio,
             this.FolioS403,
             this.Instrumento,
@@ -885,7 +891,13 @@ namespace UOCFilenet
             this.Producto,
             this.TipoDoc,
             this.UOC,
-            this.XFolioS});
+            this.XFolioS,
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4,
+            this.Column5,
+            this.Column6});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
@@ -893,72 +905,6 @@ namespace UOCFilenet
             this.dataGridView1.Size = new System.Drawing.Size(772, 76);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
-            // 
-            // Image
-            // 
-            this.Image.HeaderText = "Column1";
-            this.Image.Name = "Image";
-            this.Image.ReadOnly = true;
-            // 
-            // Contrato
-            // 
-            this.Contrato.HeaderText = "Contrato";
-            this.Contrato.Name = "Contrato";
-            this.Contrato.ReadOnly = true;
-            // 
-            // Folio
-            // 
-            this.Folio.HeaderText = "Folio";
-            this.Folio.Name = "Folio";
-            this.Folio.ReadOnly = true;
-            // 
-            // FolioS403
-            // 
-            this.FolioS403.HeaderText = "Folio S403";
-            this.FolioS403.Name = "FolioS403";
-            this.FolioS403.ReadOnly = true;
-            // 
-            // Instrumento
-            // 
-            this.Instrumento.HeaderText = "Instrumento";
-            this.Instrumento.Name = "Instrumento";
-            this.Instrumento.ReadOnly = true;
-            // 
-            // Linea
-            // 
-            this.Linea.HeaderText = "Linea";
-            this.Linea.Name = "Linea";
-            this.Linea.ReadOnly = true;
-            // 
-            // NumCliente
-            // 
-            this.NumCliente.HeaderText = "NumCliente";
-            this.NumCliente.Name = "NumCliente";
-            this.NumCliente.ReadOnly = true;
-            // 
-            // Producto
-            // 
-            this.Producto.HeaderText = "Producto";
-            this.Producto.Name = "Producto";
-            this.Producto.ReadOnly = true;
-            // 
-            // TipoDoc
-            // 
-            this.TipoDoc.HeaderText = "TipoDoc";
-            this.TipoDoc.Name = "TipoDoc";
-            this.TipoDoc.ReadOnly = true;
-            // 
-            // UOC
-            // 
-            this.UOC.HeaderText = "UOC";
-            this.UOC.Name = "UOC";
-            this.UOC.ReadOnly = true;
-            // 
-            // XFolioS
-            // 
-            this.XFolioS.HeaderText = "XFolioS";
-            this.XFolioS.Name = "XFolioS";
-            this.XFolioS.ReadOnly = true;
             // 
             // SSTab1
             // 
@@ -982,6 +928,15 @@ namespace UOCFilenet
             this._SSTab1_TabPage0.TabIndex = 0;
             this._SSTab1_TabPage0.Text = "Docto 1";
             // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser1.Location = new System.Drawing.Point(0, 0);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(764, 605);
+            this.webBrowser1.TabIndex = 0;
+            // 
             // SPCont
             // 
             this.SPCont.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -1003,14 +958,107 @@ namespace UOCFilenet
             this.SPCont.SplitterWidth = 2;
             this.SPCont.TabIndex = 38;
             // 
-            // webBrowser1
+            // Image
             // 
-            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowser1.Location = new System.Drawing.Point(0, 0);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(764, 605);
-            this.webBrowser1.TabIndex = 0;
+            this.Image.HeaderText = "ID Imagen";
+            this.Image.Name = "Image";
+            this.Image.ReadOnly = true;
+            // 
+            // XfolioP
+            // 
+            this.XfolioP.HeaderText = "XfolioP";
+            this.XfolioP.Name = "XfolioP";
+            this.XfolioP.ReadOnly = true;
+            // 
+            // Folio
+            // 
+            this.Folio.HeaderText = "FolioS403";
+            this.Folio.Name = "Folio";
+            this.Folio.ReadOnly = true;
+            // 
+            // FolioS403
+            // 
+            this.FolioS403.HeaderText = "SecLote";
+            this.FolioS403.Name = "FolioS403";
+            this.FolioS403.ReadOnly = true;
+            // 
+            // Instrumento
+            // 
+            this.Instrumento.HeaderText = "Instrumento";
+            this.Instrumento.Name = "Instrumento";
+            this.Instrumento.ReadOnly = true;
+            // 
+            // Linea
+            // 
+            this.Linea.HeaderText = "Producto";
+            this.Linea.Name = "Linea";
+            this.Linea.ReadOnly = true;
+            // 
+            // NumCliente
+            // 
+            this.NumCliente.HeaderText = "XfolioS";
+            this.NumCliente.Name = "NumCliente";
+            this.NumCliente.ReadOnly = true;
+            // 
+            // Producto
+            // 
+            this.Producto.HeaderText = "CalificaOnDemand";
+            this.Producto.Name = "Producto";
+            this.Producto.ReadOnly = true;
+            // 
+            // TipoDoc
+            // 
+            this.TipoDoc.HeaderText = "FechaOperacion";
+            this.TipoDoc.Name = "TipoDoc";
+            this.TipoDoc.ReadOnly = true;
+            // 
+            // UOC
+            // 
+            this.UOC.HeaderText = "StatusImagen";
+            this.UOC.Name = "UOC";
+            this.UOC.ReadOnly = true;
+            // 
+            // XFolioS
+            // 
+            this.XFolioS.HeaderText = "Status";
+            this.XFolioS.Name = "XFolioS";
+            this.XFolioS.ReadOnly = true;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Linea";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Contrato";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "NumCliente";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Folio";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "TipoDoc";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "UOC";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
             // 
             // FrmFileNET
             // 
@@ -1145,8 +1193,9 @@ namespace UOCFilenet
         private System.Windows.Forms.TabPage _SSTab1_TabPage0;
         private System.Windows.Forms.SplitContainer SPCont;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Image;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Contrato;
+        private System.Windows.Forms.DataGridViewTextBoxColumn XfolioP;
         private System.Windows.Forms.DataGridViewTextBoxColumn Folio;
         private System.Windows.Forms.DataGridViewTextBoxColumn FolioS403;
         private System.Windows.Forms.DataGridViewTextBoxColumn Instrumento;
@@ -1156,7 +1205,12 @@ namespace UOCFilenet
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoDoc;
         private System.Windows.Forms.DataGridViewTextBoxColumn UOC;
         private System.Windows.Forms.DataGridViewTextBoxColumn XFolioS;
-        private System.Windows.Forms.WebBrowser webBrowser1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         // private AxIDMListView.AxIDMListView IDMListView2;
     }
 }

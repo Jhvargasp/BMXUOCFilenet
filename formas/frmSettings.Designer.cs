@@ -106,6 +106,8 @@ namespace UOCFilenet
             this.Label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.textResUrl = new System.Windows.Forms.TextBox();
+            this.textWorkplace = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -115,7 +117,7 @@ namespace UOCFilenet
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnCancel.Location = new System.Drawing.Point(324, 218);
+            this.btnCancel.Location = new System.Drawing.Point(324, 260);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnCancel.Size = new System.Drawing.Size(97, 41);
@@ -130,7 +132,7 @@ namespace UOCFilenet
             this.btnOk.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnOk.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOk.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnOk.Location = new System.Drawing.Point(224, 218);
+            this.btnOk.Location = new System.Drawing.Point(224, 260);
             this.btnOk.Name = "btnOk";
             this.btnOk.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnOk.Size = new System.Drawing.Size(97, 41);
@@ -150,7 +152,7 @@ namespace UOCFilenet
             this.txtResDocClass.MaxLength = 0;
             this.txtResDocClass.Name = "txtResDocClass";
             this.txtResDocClass.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtResDocClass.Size = new System.Drawing.Size(177, 25);
+            this.txtResDocClass.Size = new System.Drawing.Size(177, 20);
             this.txtResDocClass.TabIndex = 5;
             // 
             // txtIMSLibName
@@ -164,7 +166,7 @@ namespace UOCFilenet
             this.txtIMSLibName.MaxLength = 0;
             this.txtIMSLibName.Name = "txtIMSLibName";
             this.txtIMSLibName.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtIMSLibName.Size = new System.Drawing.Size(177, 25);
+            this.txtIMSLibName.Size = new System.Drawing.Size(177, 20);
             this.txtIMSLibName.TabIndex = 1;
             // 
             // cmdClear
@@ -173,7 +175,7 @@ namespace UOCFilenet
             this.cmdClear.Cursor = System.Windows.Forms.Cursors.Default;
             this.cmdClear.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdClear.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cmdClear.Location = new System.Drawing.Point(122, 218);
+            this.cmdClear.Location = new System.Drawing.Point(122, 260);
             this.cmdClear.Name = "cmdClear";
             this.cmdClear.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.cmdClear.Size = new System.Drawing.Size(97, 41);
@@ -188,7 +190,7 @@ namespace UOCFilenet
             this.cmdSave.Cursor = System.Windows.Forms.Cursors.Default;
             this.cmdSave.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdSave.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cmdSave.Location = new System.Drawing.Point(20, 218);
+            this.cmdSave.Location = new System.Drawing.Point(20, 260);
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.cmdSave.Size = new System.Drawing.Size(97, 41);
@@ -208,7 +210,7 @@ namespace UOCFilenet
             this.txtResFolder.MaxLength = 0;
             this.txtResFolder.Name = "txtResFolder";
             this.txtResFolder.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtResFolder.Size = new System.Drawing.Size(177, 25);
+            this.txtResFolder.Size = new System.Drawing.Size(177, 20);
             this.txtResFolder.TabIndex = 4;
             // 
             // txtIMSPassword
@@ -222,7 +224,7 @@ namespace UOCFilenet
             this.txtIMSPassword.MaxLength = 0;
             this.txtIMSPassword.Name = "txtIMSPassword";
             this.txtIMSPassword.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtIMSPassword.Size = new System.Drawing.Size(177, 25);
+            this.txtIMSPassword.Size = new System.Drawing.Size(177, 20);
             this.txtIMSPassword.TabIndex = 3;
             // 
             // txtIMSUser
@@ -236,7 +238,7 @@ namespace UOCFilenet
             this.txtIMSUser.MaxLength = 0;
             this.txtIMSUser.Name = "txtIMSUser";
             this.txtIMSUser.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtIMSUser.Size = new System.Drawing.Size(177, 25);
+            this.txtIMSUser.Size = new System.Drawing.Size(177, 20);
             this.txtIMSUser.TabIndex = 2;
             // 
             // Label9
@@ -310,12 +312,12 @@ namespace UOCFilenet
             this.label4.Cursor = System.Windows.Forms.Cursors.Default;
             this.label4.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label4.Location = new System.Drawing.Point(50, 190);
+            this.label4.Location = new System.Drawing.Point(50, 196);
             this.label4.Name = "label4";
             this.label4.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label4.Size = new System.Drawing.Size(105, 25);
             this.label4.TabIndex = 14;
-            this.label4.Text = "URL:";
+            this.label4.Text = "URL Soap WS:";
             // 
             // textResUrl
             // 
@@ -331,12 +333,41 @@ namespace UOCFilenet
             this.textResUrl.Size = new System.Drawing.Size(177, 20);
             this.textResUrl.TabIndex = 15;
             // 
+            // textWorkplace
+            // 
+            this.textWorkplace.AcceptsReturn = true;
+            this.textWorkplace.BackColor = System.Drawing.SystemColors.Window;
+            this.textWorkplace.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.textWorkplace.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textWorkplace.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.textWorkplace.Location = new System.Drawing.Point(192, 234);
+            this.textWorkplace.MaxLength = 0;
+            this.textWorkplace.Name = "textWorkplace";
+            this.textWorkplace.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.textWorkplace.Size = new System.Drawing.Size(177, 20);
+            this.textWorkplace.TabIndex = 17;
+            // 
+            // label5
+            // 
+            this.label5.BackColor = System.Drawing.SystemColors.Control;
+            this.label5.Cursor = System.Windows.Forms.Cursors.Default;
+            this.label5.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label5.Location = new System.Drawing.Point(50, 235);
+            this.label5.Name = "label5";
+            this.label5.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label5.Size = new System.Drawing.Size(105, 25);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "URL Workplace:";
+            // 
             // frmSettings
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.BackColor = System.Drawing.SystemColors.Control;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(441, 267);
+            this.ClientSize = new System.Drawing.Size(441, 310);
+            this.Controls.Add(this.textWorkplace);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.textResUrl);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnCancel);
@@ -368,5 +399,7 @@ namespace UOCFilenet
 
         public System.Windows.Forms.Label label4;
         public System.Windows.Forms.TextBox textResUrl;
+        public System.Windows.Forms.TextBox textWorkplace;
+        public System.Windows.Forms.Label label5;
     }
 }
