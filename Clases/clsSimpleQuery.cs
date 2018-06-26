@@ -351,8 +351,10 @@ namespace UOCFilenet
                 try { 
                 foreach (IRepositoryRow row in oRS)
                 {
+                        
+
                     string[] rowData = { row.Properties.GetProperty("Id").GetIdValue().ToString(),
-                       row.Properties.GetProperty("XfolioP").GetInteger32Value().ToString(),
+                       row.Properties.GetProperty("XfolioP").GetStringValue(),
                     row.Properties.GetProperty("FolioS403").GetInteger32Value().ToString(),
                     row.Properties.GetProperty("SecLote").GetInteger32Value().ToString(),
                     row.Properties.GetProperty("Instrumento").GetInteger32Value().ToString(),
@@ -471,7 +473,7 @@ namespace UOCFilenet
 
                 try
                 {
-
+                    MessageBox.Show("Query: " + mySQLString + sQuery);
                     sqlObject.SetQueryString(mySQLString + sQuery);
                     //sqlObject.SetQueryString(mySQLString);
                     oRS = searchScope.FetchRows(sqlObject, null, null, true);

@@ -38,7 +38,7 @@ namespace UOCFilenet
             //sWhere = sWhere + " AND F_DOCCLASSNAME = '"+sClassExpedientesDC+"'";
             if (Double.Parse(@Globals.UOC) > 0)
             {
-                sWhere = sWhere + " AND UOC = '" + UOCX + "'";
+                sWhere = sWhere + " AND UOC = " + UOCX + "";
             }
             //Since we're looking at annotations, just grab images
             switch (@Globals.VarCom)
@@ -51,12 +51,12 @@ namespace UOCFilenet
                 case 10://Select 
                     if (Conversion.Val(TxtCriterio[0].Text) > 0 && TxtCriterio[0].Text.Trim().Length > 0)
                     {
-                        sWhere = sWhere + " AND NumCliente = '" + TxtCriterio[0].Text + "'";
+                        sWhere = sWhere + " AND NumCliente = " + TxtCriterio[0].Text + "";
                     }
                     if (Conversion.Val(TxtCriterio[1].Text) > 0 && TxtCriterio[1].Text.Trim().Length > 0)
                     {
                         //XFolio = TxtCriterio(1)
-                        sWhere = sWhere + " AND Folio = '" + FolioD + "'";
+                        sWhere = sWhere + " AND Folio = " + FolioD + "";
                     }
                     if (Conversion.Val(TxtCriterio[2].Text) > 0 && TxtCriterio[2].Text.Trim().Length > 0)
                     {
@@ -64,13 +64,15 @@ namespace UOCFilenet
                     }
                     if (Conversion.Val(TxtCriterio[3].Text) > 0 && TxtCriterio[3].Text.Trim().Length > 0)
                     {
-                        sWhere = sWhere + " AND Linea = '" + TxtCriterio[3].Text + "'";
+                        sWhere = sWhere + " AND Linea = " + TxtCriterio[3].Text + "";
                     }
                     //AVG Ini Sept-2015
                     if (Conversion.Val(XSubFol) > 0 && XSubFol.Trim().Length > 0)
                     {
-                        if (@Globals.VarCom == 9) sWhere = sWhere + " AND XfolioP >= '" + XSubFol.ToString()  + "'";
-                        else sWhere = sWhere + " AND XfolioP = '" + XSubFol.ToString() + "'";
+                        if (@Globals.VarCom == 9)
+                            sWhere = sWhere + " AND XfolioP >= " + XSubFol.ToString()  + "";
+                        else
+                            sWhere = sWhere + " AND XfolioP = " + XSubFol.ToString() + "";
                     }
                     //AVG Fin Sept-2015
                     break;
@@ -80,12 +82,12 @@ namespace UOCFilenet
                 case 6:  //Update 
                     if (Conversion.Val(TxtCriterio[1].Text) > 0 && TxtCriterio[1].Text.Trim().Length > 0)
                     {
-                        sWhere = sWhere + " AND Folio = '" + TxtCriterio[1].Text + "'";
+                        sWhere = sWhere + " AND Folio = " + TxtCriterio[1].Text + "";
                     }
                     //AVG Ini Sept-2015
                     if (Conversion.Val(XSubFol) > 0 && XSubFol.Trim().Length > 0)
                     {
-                        sWhere = sWhere + " AND XFolioP = '" + XSubFol.ToString() + "'";
+                        sWhere = sWhere + " AND XfolioP = " + XSubFol.ToString() + "";
                     }
                     //AVG Fin Sept-2015
                     break;
