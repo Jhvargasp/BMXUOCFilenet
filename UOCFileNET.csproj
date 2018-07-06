@@ -70,27 +70,27 @@
     <Reference Include="adodb, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="API, Version=1.1.3106.16993, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\C406_020\Dlls\API.dll</HintPath>
+      <HintPath>..\..\Desktop\Documentos FileNet\Desarrollos\c406vs\C406_020\Mod 92 Transacciones\bin\API.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Artinsoft.VB6, Version=2.1.3125.32454, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\C406_020\Dlls\Artinsoft.VB6.dll</HintPath>
+      <HintPath>..\..\Desktop\Documentos FileNet\Desarrollos\OperaNET 27 jun\OperaNET\Artinsoft.VB6.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="FileNet.Api, Version=5.0.0.0, Culture=neutral, PublicKeyToken=63fc2fb3fdeef4f1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\minasdll\FileNet.Api.dll</HintPath>
+      <HintPath>..\..\Desktop\Documentos FileNet\Desarrollos\OperaNET 28 jun\OperaNET\FileNet.Api.dll</HintPath>
     </Reference>
     <Reference Include="igwinformsv15n">
-      <HintPath>..\C406_020\Dlls\igwinformsv15n.dll</HintPath>
+      <HintPath>..\..\Desktop\Documentos FileNet\Desarrollos\OperaNET 27 jun\OperaNET\igwinformsv15n.dll</HintPath>
     </Reference>
     <Reference Include="imagegearv15n, Version=15.1.0.0, Culture=neutral, PublicKeyToken=90cb718bcf54d1b2, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\C406_020\Dlls\imagegearv15n.dll</HintPath>
+      <HintPath>..\..\Desktop\Documentos FileNet\Desarrollos\OperaNET 27 jun\OperaNET\ImageGearV15n.dll</HintPath>
     </Reference>
     <Reference Include="interop.tuxserver">
-      <HintPath>..\C406_020\Dlls\interop.tuxserver.dll</HintPath>
+      <HintPath>..\..\Desktop\Documentos FileNet\Desarrollos\OperaNET 27 jun\OperaNET\interop.tuxserver.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.VisualBasic">
@@ -101,7 +101,7 @@
     </Reference>
     <Reference Include="Microsoft.Web.Services3, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Program Files (x86)\Microsoft WSE\v3.0\Microsoft.Web.Services3.dll</HintPath>
+      <HintPath>..\..\Desktop\Documentos FileNet\OperaNET-20180619T223414Z-001\OperaNET\Microsoft.Web.Services3.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>

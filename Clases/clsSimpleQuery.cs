@@ -388,7 +388,8 @@ namespace UOCFilenet
             else
             {
                 if (!OnErrorResumeNext)
-                    throw new Exception((Constants.vbObjectError + 27).ToString() + ", UOCFileNet, " + null + ", " + null + ", " + null);
+                    //throw new Exception((Constants.vbObjectError + 27).ToString() + ", UOCFileNet, " + null + ", " + null + ", " + null);
+                    throw new Exception("No hay registros para los campos indicados");
 
                 if (@Globals.VarCom != 2 && @Globals.VarCom != 3 && @Globals.VarCom != 6 && @Globals.VarCom != 8 && @Globals.VarCom != 9 && @Globals.VarCom != 10)
                 {
@@ -473,7 +474,7 @@ namespace UOCFilenet
 
                 try
                 {
-                    MessageBox.Show("Query: " + mySQLString + sQuery);
+                    //MessageBox.Show("Query: " + mySQLString + sQuery);
                     sqlObject.SetQueryString(mySQLString + sQuery);
                     //sqlObject.SetQueryString(mySQLString);
                     oRS = searchScope.FetchRows(sqlObject, null, null, true);
