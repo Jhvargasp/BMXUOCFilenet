@@ -12,6 +12,7 @@ using VB6 = Microsoft.VisualBasic.Compatibility.VB6.Support;
 using FileNet.Api.Core;
 using FileNet.Api.Meta;
 using FileNet.Api.Collection;
+using System.Net.Mail;
 
 namespace UOCFilenet
 {
@@ -40,7 +41,35 @@ namespace UOCFilenet
             {
                 sWhere = sWhere + " AND UOC = " + UOCX + "";
             }
+
+            //INCLUDE ALL FILTERS
             //Since we're looking at annotations, just grab images
+            if (Conversion.Val(TxtCriterio[0].Text) > 0 && TxtCriterio[0].Text.Trim().Length > 0)
+            {
+                sWhere = sWhere + " AND NumCliente = " + TxtCriterio[0].Text + "";
+            }
+            if (Conversion.Val(TxtCriterio[1].Text) > 0 && TxtCriterio[1].Text.Trim().Length > 0)
+            {
+                //XFolio = TxtCriterio(1)
+                sWhere = sWhere + " AND Folio = " + FolioD + "";
+            }
+            if (Conversion.Val(TxtCriterio[2].Text) > 0 && TxtCriterio[2].Text.Trim().Length > 0)
+            {
+                sWhere = sWhere + " AND Contrato = '" + TxtCriterio[2].Text + "'";
+            }
+            if (Conversion.Val(TxtCriterio[3].Text) > 0 && TxtCriterio[3].Text.Trim().Length > 0)
+            {
+                sWhere = sWhere + " AND Linea = " + TxtCriterio[3].Text + "";
+            }
+            //AVG Ini Sept-2015
+            if (Conversion.Val(XSubFol) > 0 && XSubFol.Trim().Length > 0)
+            {
+                if (@Globals.VarCom == 9)
+                    sWhere = sWhere + " AND XfolioP >= " + XSubFol.ToString() + "";
+                else
+                    sWhere = sWhere + " AND XfolioP = " + XSubFol.ToString() + "";
+            }
+
             switch (@Globals.VarCom)
             {
                 case 1:
@@ -207,9 +236,37 @@ namespace UOCFilenet
 
         private void BtnMail_ClickEvent(Object eventSender, EventArgs eventArgs)
         {
-            
+
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                String fName = ceConnection.GetContentElement(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+
+
                 //TODO define what does email option
-            //@Globals.oDocument.Send(Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, (IDMObjects.idmSendOptions)(((int)IDMObjects.idmSendOptions.idmSendWithUI) + ((int)IDMObjects.idmSendOptions.idmSendCopy)));
+                //@Globals.oDocument.Send(Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, (IDMObjects.idmSendOptions)(((int)IDMObjects.idmSendOptions.idmSendWithUI) + ((int)IDMObjects.idmSendOptions.idmSendCopy)));
+                // Create an object of type Outlook.Application
+                Microsoft.Office.Interop.Outlook.Application objOutlook = new Microsoft.Office.Interop.Outlook.Application();
+
+                //Create an object of type olMailItem
+                Microsoft.Office.Interop.Outlook.MailItem oIMailItem = (Microsoft.Office.Interop.Outlook.MailItem)objOutlook.CreateItem(Microsoft.Office.Interop.Outlook.OlItemType.olMailItem);
+
+                //Set properties of the message file e.g. subject, body and to address
+                //Set subject
+                oIMailItem.Subject = "This MSG file is created using UOCFilenet Automation.";
+                //Set to (recipient) address
+                //oIMailItem.To = "to@domain.com";
+                //Set body of the email message
+                oIMailItem.HTMLBody = "<html><p>This MSG file is created using UOCFilenet Utility.</p>";
+
+                //Add attachments to the message
+                oIMailItem.Attachments.Add(fName);
+
+                //Save as Outlook MSG file
+                oIMailItem.SaveAs("UOCFilenet.msg");
+
+                //Open the MSG file
+                oIMailItem.Display();
+            }
 
         }
 
@@ -608,7 +665,7 @@ namespace UOCFilenet
             //IDMListView2.ClearItems();
             //Blank out the document id
             DocumentID.Text = "";
-            SSPanel2.Visible = false;
+            //SSPanel2.Visible = false;
             BtnPrint.Enabled = false;
             BtnDelete.Enabled = false;
             /*DirWinTemp = @Globals.GetWindowsDir();
@@ -757,8 +814,9 @@ namespace UOCFilenet
                 //AxIDMListView.AxIDMListView tempRefParam = this.IDMListView1[0];
                 @Globals.clsQuery.objObjectStore = oLibrary;
                 @Globals.clsQuery.ExecQuery(ref dataGridView1, sWhere, "", 20);
-                SSPanel2.Visible = false;
-                Cursor = Cursors.Arrow;
+                //SSPanel2.Visible = false;
+                
+                    Cursor = Cursors.Arrow;
                 Rotar = 0;
                 if (@Globals.VarCom == 2 || @Globals.VarCom == 3 || @Globals.VarCom == 6)
                 { //update parameters
@@ -1177,7 +1235,7 @@ namespace UOCFilenet
             }
 
             //TODO perform click
-            MessageBox.Show("Show...." + Index);
+            //MessageBox.Show("Show...." + Index);
             /*if (IndexTemp == 0 && IDMListView1[IndexTemp].SelectedItem != null)
             {
                 @Globals.oDocument = (IDMObjects.Document)IDMListView1[IndexTemp].SelectedItem;
@@ -1734,6 +1792,7 @@ namespace UOCFilenet
 
         private object Llena_UOCs()
         {
+            /*
             string REGISTROACTUAL = String.Empty;
 
             string Archivo = @Globals.DirConf + "UOCs.ini";
@@ -1750,6 +1809,7 @@ namespace UOCFilenet
                 }
                 FileSystem.FileClose(1);
             }
+            */
             return null;
         }
 
@@ -1991,7 +2051,8 @@ namespace UOCFilenet
                     //navigator http://localhost:9080/navigator/bookmark.jsp?desktop=WilfredoDesktop&repositoryId=Correspondencia&repositoryType=p8&docid={1399240E-FE19-48FC-802B-7F128042CD86}&mimeType=image%2Fjpeg&template_name=CorrespondenciaRecibida&version=released&vsId=%7B0B8F4B11-16A7-CBA1-875B-5DCD57900000%7D
 
                     webBrowser1.Navigate(@Globals.gfSettings.textWorkplace.Text+"&vsId=" +vsId+ "&repositoryId=" + @Globals.gfSettings.txtIMSLibName.Text + "&docid="+ dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
-                }catch (Exception ex)
+                    //SSPanel2.Visible = true;
+                } catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }

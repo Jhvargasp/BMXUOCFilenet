@@ -26,6 +26,7 @@ using FileNet.Api.Util;
 using FileNet.Api.Authentication;
 using FileNet.Api.Meta;
 using static FileNet.Api.Core.Factory;
+using System.IO;
 
 namespace BulkLoader
 {
@@ -138,6 +139,40 @@ namespace BulkLoader
             //IClassDescription objClassDesc = ClassDescription.FetchInstance(oLibrary, "Document", null);
             return objClassDesc.PropertyDescriptions;
 
+        }
+
+
+        public String GetContentElement(String id) {
+
+            //MessageBox.Show(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+            //FileNet.Api.Property.PropertyFilter pf = new FileNet.Api.Property.PropertyFilter();
+            //pf.AddIncludeProperty(new FileNet.Api.Property.FilterElement(null, null, null, "Cont", null));
+
+            // Get a document from the version series to be checked for downloads.
+            IDocument documentObj = Factory.Document.FetchInstance(os, id, null);
+
+            IContentTransfer cTransfer = (IContentTransfer)documentObj.ContentElements[0];
+
+            String name = cTransfer.RetrievalName;
+            Stream stream = cTransfer.AccessContentStream();
+            double size = writeContent(stream, Path.GetTempPath()+"/"+ name);
+
+            return Path.GetTempPath() + "/" + name;
+        }
+
+        private double writeContent(Stream stream, string name)
+        {
+            byte[] buffer = new byte[4096];
+            int bufferSize;
+            double size = 0;
+            BinaryWriter wr = new BinaryWriter(File.Open(name, FileMode.Create));
+            while ((bufferSize=stream.Read(buffer,0,buffer.Length))!=0) {
+                size += bufferSize;
+                wr.Write(buffer, 0, bufferSize);
+            }
+            wr.Close();
+            stream.Close();
+            return size;
         }
     }
 }

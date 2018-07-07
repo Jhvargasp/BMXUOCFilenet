@@ -67,7 +67,7 @@ namespace UOCFilenet
         //Required by the Windows Form Designer
         private System.ComponentModel.IContainer components;
         public System.Windows.Forms.ToolTip ToolTip1;
-        public System.Windows.Forms.ComboBox[] CboUoc = new System.Windows.Forms.ComboBox[2];
+        public System.Windows.Forms.TextBox[] CboUoc = new System.Windows.Forms.TextBox[2];
         //public AxIDMListView.AxIDMListView[] IDMListView1 = new AxIDMListView.AxIDMListView[2];
         //public AxIDMViewerCtrl.AxIDMViewerCtrl[] IDMViewerCtrl1 = new AxIDMViewerCtrl.AxIDMViewerCtrl[4];
         public System.Windows.Forms.Label[] LblCriterio = new System.Windows.Forms.Label[6];
@@ -93,12 +93,12 @@ namespace UOCFilenet
             this.BtnZoom = new System.Windows.Forms.Button();
             this.BtnPrint = new System.Windows.Forms.Button();
             this.SSPanel1 = new System.Windows.Forms.Panel();
+            this._CboUoc_1 = new System.Windows.Forms.TextBox();
+            this._CboUoc_0 = new System.Windows.Forms.TextBox();
             this.TxtSubFol2 = new System.Windows.Forms.TextBox();
             this.LblsubFol2 = new System.Windows.Forms.Label();
             this.TxtSubFol1 = new System.Windows.Forms.TextBox();
             this.LblSubFolio1 = new System.Windows.Forms.Label();
-            this._CboUoc_1 = new System.Windows.Forms.ComboBox();
-            this._CboUoc_0 = new System.Windows.Forms.ComboBox();
             this._TxtCriterio_5 = new System.Windows.Forms.TextBox();
             this._TxtCriterio_4 = new System.Windows.Forms.TextBox();
             this._TxtCriterio_3 = new System.Windows.Forms.TextBox();
@@ -125,10 +125,6 @@ namespace UOCFilenet
             this.DocumentID = new System.Windows.Forms.Label();
             this.SPCont2 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.SSTab1 = new System.Windows.Forms.TabControl();
-            this._SSTab1_TabPage0 = new System.Windows.Forms.TabPage();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.SPCont = new System.Windows.Forms.SplitContainer();
             this.Image = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.XfolioP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Folio = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -146,6 +142,10 @@ namespace UOCFilenet
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SSTab1 = new System.Windows.Forms.TabControl();
+            this._SSTab1_TabPage0 = new System.Windows.Forms.TabPage();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.SPCont = new System.Windows.Forms.SplitContainer();
             this.SSPanel1.SuspendLayout();
             this.SSPanel2.SuspendLayout();
             this.SPCont2.Panel1.SuspendLayout();
@@ -188,6 +188,7 @@ namespace UOCFilenet
             this.BtnTextBridge.Text = "Mandar Archivo Texto";
             this.ToolTip1.SetToolTip(this.BtnTextBridge, "Mandar por Correo Electrónico");
             this.BtnTextBridge.UseVisualStyleBackColor = false;
+            this.BtnTextBridge.Visible = false;
             this.BtnTextBridge.Click += new System.EventHandler(this.BtnTextBridge_ClickEvent);
             // 
             // BtnMail
@@ -234,6 +235,7 @@ namespace UOCFilenet
             this.BtnRotar2.Text = "Rotar <-";
             this.ToolTip1.SetToolTip(this.BtnRotar2, "Rotar <-");
             this.BtnRotar2.UseVisualStyleBackColor = false;
+            this.BtnRotar2.Visible = false;
             this.BtnRotar2.Click += new System.EventHandler(this.BtnRotar2_ClickEvent);
             // 
             // BtnRotar1
@@ -248,6 +250,7 @@ namespace UOCFilenet
             this.BtnRotar1.Text = "Rotar ->";
             this.ToolTip1.SetToolTip(this.BtnRotar1, "Rotar ->");
             this.BtnRotar1.UseVisualStyleBackColor = false;
+            this.BtnRotar1.Visible = false;
             this.BtnRotar1.Click += new System.EventHandler(this.BtnRotar1_ClickEvent);
             // 
             // BtnZoomOut
@@ -262,6 +265,7 @@ namespace UOCFilenet
             this.BtnZoomOut.Text = "Zoom Out";
             this.ToolTip1.SetToolTip(this.BtnZoomOut, "zoom Out");
             this.BtnZoomOut.UseVisualStyleBackColor = false;
+            this.BtnZoomOut.Visible = false;
             this.BtnZoomOut.Click += new System.EventHandler(this.BtnZoomOut_ClickEvent);
             // 
             // BtnZoomIn
@@ -276,6 +280,7 @@ namespace UOCFilenet
             this.BtnZoomIn.Text = "Zoom In";
             this.ToolTip1.SetToolTip(this.BtnZoomIn, "Zoom In");
             this.BtnZoomIn.UseVisualStyleBackColor = false;
+            this.BtnZoomIn.Visible = false;
             this.BtnZoomIn.Click += new System.EventHandler(this.BtnZoomIn_ClickEvent);
             // 
             // BtnZoom
@@ -292,6 +297,7 @@ namespace UOCFilenet
             this.BtnZoom.Text = "Zoom";
             this.ToolTip1.SetToolTip(this.BtnZoom, "zoom normal");
             this.BtnZoom.UseVisualStyleBackColor = false;
+            this.BtnZoom.Visible = false;
             this.BtnZoom.Click += new System.EventHandler(this.BtnZoom_ClickEvent);
             // 
             // BtnPrint
@@ -316,13 +322,13 @@ namespace UOCFilenet
             // 
             this.SSPanel1.BackColor = System.Drawing.SystemColors.Window;
             this.SSPanel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.SSPanel1.Controls.Add(this._CboUoc_1);
+            this.SSPanel1.Controls.Add(this._CboUoc_0);
             this.SSPanel1.Controls.Add(this.TxtSubFol2);
             this.SSPanel1.Controls.Add(this.LblsubFol2);
             this.SSPanel1.Controls.Add(this.TxtSubFol1);
             this.SSPanel1.Controls.Add(this.LblSubFolio1);
             this.SSPanel1.Controls.Add(this.BtnSalir);
-            this.SSPanel1.Controls.Add(this._CboUoc_1);
-            this.SSPanel1.Controls.Add(this._CboUoc_0);
             this.SSPanel1.Controls.Add(this._TxtCriterio_5);
             this.SSPanel1.Controls.Add(this._TxtCriterio_4);
             this.SSPanel1.Controls.Add(this._TxtCriterio_3);
@@ -343,6 +349,40 @@ namespace UOCFilenet
             this.SSPanel1.Name = "SSPanel1";
             this.SSPanel1.Size = new System.Drawing.Size(160, 264);
             this.SSPanel1.TabIndex = 2;
+            // 
+            // _CboUoc_1
+            // 
+            this._CboUoc_1.AcceptsReturn = true;
+            this._CboUoc_1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._CboUoc_1.BackColor = System.Drawing.SystemColors.Window;
+            this._CboUoc_1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this._CboUoc_1.Enabled = false;
+            this._CboUoc_1.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._CboUoc_1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this._CboUoc_1.Location = new System.Drawing.Point(61, 95);
+            this._CboUoc_1.MaxLength = 18;
+            this._CboUoc_1.Name = "_CboUoc_1";
+            this._CboUoc_1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._CboUoc_1.Size = new System.Drawing.Size(85, 18);
+            this._CboUoc_1.TabIndex = 50;
+            // 
+            // _CboUoc_0
+            // 
+            this._CboUoc_0.AcceptsReturn = true;
+            this._CboUoc_0.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._CboUoc_0.BackColor = System.Drawing.SystemColors.Window;
+            this._CboUoc_0.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this._CboUoc_0.Enabled = false;
+            this._CboUoc_0.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._CboUoc_0.ForeColor = System.Drawing.SystemColors.WindowText;
+            this._CboUoc_0.Location = new System.Drawing.Point(61, 34);
+            this._CboUoc_0.MaxLength = 18;
+            this._CboUoc_0.Name = "_CboUoc_0";
+            this._CboUoc_0.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._CboUoc_0.Size = new System.Drawing.Size(85, 18);
+            this._CboUoc_0.TabIndex = 49;
             // 
             // TxtSubFol2
             // 
@@ -405,49 +445,6 @@ namespace UOCFilenet
             this.LblSubFolio1.TabIndex = 45;
             this.LblSubFolio1.Text = "Sub Folio:";
             this.LblSubFolio1.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // _CboUoc_1
-            // 
-            this._CboUoc_1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this._CboUoc_1.BackColor = System.Drawing.SystemColors.Window;
-            this._CboUoc_1.Cursor = System.Windows.Forms.Cursors.Default;
-            this._CboUoc_1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this._CboUoc_1.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._CboUoc_1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this._CboUoc_1.Items.AddRange(new object[] {
-            "4519",
-            "4520",
-            "4521",
-            "2557",
-            "3236"});
-            this._CboUoc_1.Location = new System.Drawing.Point(62, 90);
-            this._CboUoc_1.Margin = new System.Windows.Forms.Padding(2, 3, 3, 3);
-            this._CboUoc_1.Name = "_CboUoc_1";
-            this._CboUoc_1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this._CboUoc_1.Size = new System.Drawing.Size(85, 22);
-            this._CboUoc_1.TabIndex = 44;
-            // 
-            // _CboUoc_0
-            // 
-            this._CboUoc_0.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this._CboUoc_0.BackColor = System.Drawing.SystemColors.Window;
-            this._CboUoc_0.Cursor = System.Windows.Forms.Cursors.Default;
-            this._CboUoc_0.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this._CboUoc_0.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._CboUoc_0.ForeColor = System.Drawing.SystemColors.WindowText;
-            this._CboUoc_0.Items.AddRange(new object[] {
-            "4519",
-            "4520",
-            "4521",
-            "2557",
-            "3236"});
-            this._CboUoc_0.Location = new System.Drawing.Point(62, 30);
-            this._CboUoc_0.Name = "_CboUoc_0";
-            this._CboUoc_0.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this._CboUoc_0.Size = new System.Drawing.Size(85, 22);
-            this._CboUoc_0.TabIndex = 42;
             // 
             // _TxtCriterio_5
             // 
@@ -770,6 +767,7 @@ namespace UOCFilenet
             this.ShowAnnotations.TabIndex = 17;
             this.ShowAnnotations.Text = "Despliega Anotaciones";
             this.ShowAnnotations.UseVisualStyleBackColor = false;
+            this.ShowAnnotations.Visible = false;
             this.ShowAnnotations.CheckedChanged += new System.EventHandler(this.ShowAnnotations_CheckedChanged);
             this.ShowAnnotations.CheckStateChanged += new System.EventHandler(this.ShowAnnotations_CheckStateChanged);
             // 
@@ -839,6 +837,7 @@ namespace UOCFilenet
             this.BtnNave.TabIndex = 22;
             this.BtnNave.Text = "Navegador";
             this.BtnNave.UseVisualStyleBackColor = false;
+            this.BtnNave.Visible = false;
             this.BtnNave.Click += new System.EventHandler(this.BtnNave_ClickEvent);
             // 
             // DocumentID
@@ -905,58 +904,6 @@ namespace UOCFilenet
             this.dataGridView1.Size = new System.Drawing.Size(772, 76);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
-            // 
-            // SSTab1
-            // 
-            this.SSTab1.Controls.Add(this._SSTab1_TabPage0);
-            this.SSTab1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SSTab1.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SSTab1.ItemSize = new System.Drawing.Size(42, 17);
-            this.SSTab1.Location = new System.Drawing.Point(0, 0);
-            this.SSTab1.Name = "SSTab1";
-            this.SSTab1.SelectedIndex = 0;
-            this.SSTab1.Size = new System.Drawing.Size(772, 630);
-            this.SSTab1.TabIndex = 34;
-            this.SSTab1.SelectedIndexChanged += new System.EventHandler(this.SSTab1_SelectedIndexChanged);
-            // 
-            // _SSTab1_TabPage0
-            // 
-            this._SSTab1_TabPage0.Controls.Add(this.webBrowser1);
-            this._SSTab1_TabPage0.Location = new System.Drawing.Point(4, 21);
-            this._SSTab1_TabPage0.Name = "_SSTab1_TabPage0";
-            this._SSTab1_TabPage0.Size = new System.Drawing.Size(764, 605);
-            this._SSTab1_TabPage0.TabIndex = 0;
-            this._SSTab1_TabPage0.Text = "Docto 1";
-            // 
-            // webBrowser1
-            // 
-            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowser1.Location = new System.Drawing.Point(0, 0);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(764, 605);
-            this.webBrowser1.TabIndex = 0;
-            // 
-            // SPCont
-            // 
-            this.SPCont.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.SPCont.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SPCont.Location = new System.Drawing.Point(0, 0);
-            this.SPCont.Margin = new System.Windows.Forms.Padding(2);
-            this.SPCont.Name = "SPCont";
-            // 
-            // SPCont.Panel1
-            // 
-            this.SPCont.Panel1.Controls.Add(this.SPCont2);
-            // 
-            // SPCont.Panel2
-            // 
-            this.SPCont.Panel2.Controls.Add(this.SSPanel2);
-            this.SPCont.Panel2.Controls.Add(this.SSPanel1);
-            this.SPCont.Size = new System.Drawing.Size(942, 716);
-            this.SPCont.SplitterDistance = 776;
-            this.SPCont.SplitterWidth = 2;
-            this.SPCont.TabIndex = 38;
             // 
             // Image
             // 
@@ -1060,6 +1007,58 @@ namespace UOCFilenet
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
             // 
+            // SSTab1
+            // 
+            this.SSTab1.Controls.Add(this._SSTab1_TabPage0);
+            this.SSTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SSTab1.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SSTab1.ItemSize = new System.Drawing.Size(42, 17);
+            this.SSTab1.Location = new System.Drawing.Point(0, 0);
+            this.SSTab1.Name = "SSTab1";
+            this.SSTab1.SelectedIndex = 0;
+            this.SSTab1.Size = new System.Drawing.Size(772, 630);
+            this.SSTab1.TabIndex = 34;
+            this.SSTab1.SelectedIndexChanged += new System.EventHandler(this.SSTab1_SelectedIndexChanged);
+            // 
+            // _SSTab1_TabPage0
+            // 
+            this._SSTab1_TabPage0.Controls.Add(this.webBrowser1);
+            this._SSTab1_TabPage0.Location = new System.Drawing.Point(4, 21);
+            this._SSTab1_TabPage0.Name = "_SSTab1_TabPage0";
+            this._SSTab1_TabPage0.Size = new System.Drawing.Size(764, 605);
+            this._SSTab1_TabPage0.TabIndex = 0;
+            this._SSTab1_TabPage0.Text = "Docto 1";
+            // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser1.Location = new System.Drawing.Point(0, 0);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(764, 605);
+            this.webBrowser1.TabIndex = 0;
+            // 
+            // SPCont
+            // 
+            this.SPCont.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.SPCont.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SPCont.Location = new System.Drawing.Point(0, 0);
+            this.SPCont.Margin = new System.Windows.Forms.Padding(2);
+            this.SPCont.Name = "SPCont";
+            // 
+            // SPCont.Panel1
+            // 
+            this.SPCont.Panel1.Controls.Add(this.SPCont2);
+            // 
+            // SPCont.Panel2
+            // 
+            this.SPCont.Panel2.Controls.Add(this.SSPanel2);
+            this.SPCont.Panel2.Controls.Add(this.SSPanel1);
+            this.SPCont.Size = new System.Drawing.Size(942, 716);
+            this.SPCont.SplitterDistance = 776;
+            this.SPCont.SplitterWidth = 2;
+            this.SPCont.TabIndex = 38;
+            // 
             // FrmFileNET
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -1153,8 +1152,6 @@ namespace UOCFilenet
         private System.Windows.Forms.TextBox TxtSubFol1;
         private System.Windows.Forms.Label LblSubFolio1;
         public System.Windows.Forms.Button BtnSalir;
-        private System.Windows.Forms.ComboBox _CboUoc_1;
-        private System.Windows.Forms.ComboBox _CboUoc_0;
         private System.Windows.Forms.TextBox _TxtCriterio_5;
         private System.Windows.Forms.TextBox _TxtCriterio_4;
         private System.Windows.Forms.TextBox _TxtCriterio_3;
@@ -1211,6 +1208,8 @@ namespace UOCFilenet
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.TextBox _CboUoc_1;
+        private System.Windows.Forms.TextBox _CboUoc_0;
         // private AxIDMListView.AxIDMListView IDMListView2;
     }
 }
