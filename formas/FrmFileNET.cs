@@ -13,6 +13,7 @@ using FileNet.Api.Core;
 using FileNet.Api.Meta;
 using FileNet.Api.Collection;
 using System.Net.Mail;
+using UOCFileNET.Clases;
 
 namespace UOCFilenet
 {
@@ -159,8 +160,15 @@ namespace UOCFilenet
             bool result = false;
             try
             {
+                Tools t = new Tools();
+                //RestoreSettings(true);
+                @Globals.gfSettings.txtIMSLibName.Text= @Globals.fncParmIniGet("FILENET", "txtIMSLibName", "DataConnectionFNet.ini");
+                @Globals.gfSettings.txtIMSUser.Text = @Globals.fncParmIniGet("FILENET", "txtIMSUser", "DataConnectionFNet.ini");
+                @Globals.gfSettings.txtIMSPassword.Text = t.Decrypt(@Globals.fncParmIniGet("FILENET", "txtIMSPassword", "DataConnectionFNet.ini"),true);
+                @Globals.gfSettings.textResUrl.Text = @Globals.fncParmIniGet("FILENET", "textResUrl", "DataConnectionFNet.ini");
+                @Globals.gfSettings.txtResDocClass.Text = @Globals.fncParmIniGet("FILENET", "txtResDocClass", "DataConnectionFNet.ini");
+                @Globals.gfSettings.textWorkplace.Text = @Globals.fncParmIniGet("FILENET", "textWorkplace", "DataConnectionFNet.ini");
 
-                RestoreSettings(true);
                 // Make sure we have some valid library ID's
                 if (@Globals.gfSettings.txtIMSLibName.Text == "")
                 {
@@ -240,7 +248,7 @@ namespace UOCFilenet
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 String fName = ceConnection.GetContentElement(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
-
+                /*
 
                 //TODO define what does email option
                 //@Globals.oDocument.Send(Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, (IDMObjects.idmSendOptions)(((int)IDMObjects.idmSendOptions.idmSendWithUI) + ((int)IDMObjects.idmSendOptions.idmSendCopy)));
@@ -266,6 +274,7 @@ namespace UOCFilenet
 
                 //Open the MSG file
                 oIMailItem.Display();
+            */
             }
 
         }

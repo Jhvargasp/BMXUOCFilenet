@@ -298,9 +298,10 @@ namespace UOCFilenet
             string theResult = String.Empty;
             string @Default = "";
             byte[] result1 = new byte[255];
-            
+
             //AIS-91 dvelasco
-            long rc = API.KERNEL.GetPrivateProfileString(stanza, keyname, @Default, result1, result1.Length, inifile);
+            long rc = API.KERNEL.GetPrivateProfileString(stanza, keyname, @Default, result1, result1.Length, Environment.CurrentDirectory+"/"+ inifile);
+
             System.Text.Encoding enc = System.Text.Encoding.ASCII;
             string myString = enc.GetString(result1);
             if (rc != 0)
@@ -320,7 +321,7 @@ namespace UOCFilenet
 
         static public void fncParmIniSet(string stanza, string keyname, string lpString, string inifile)
         {
-            long rc = API.KERNEL.WritePrivateProfileString(stanza, keyname, lpString, inifile);
+            long rc = 0;// API.KERNEL.WritePrivateProfileString(stanza, keyname, lpString, inifile);
         }
 
         static public void ObtPassSapuf()
