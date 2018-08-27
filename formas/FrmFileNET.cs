@@ -206,6 +206,12 @@ namespace UOCFilenet
                    // @Globals.gbISLogOff = false;
                 }
                 MessageBox.Show(this, "Connected to "+oLibrary.DisplayName , Application.ProductName);
+
+                //load workplaceXT initial..
+                //using http://localhost:9080/WorkplaceXT/j_security_check?j_username=ceadmind&j_password=sistemas2012
+                //http://localhost:9080/WorkplaceXT/getContent?id=current&vsId=%7B3A20E56A-D924-4102-829E-CD929788714F%7D&objectStoreName=Correspondencia2005&objectType=document
+                var tmp = @Globals.gfSettings.textWorkplace.Text.Replace("getContent", "");
+                webBrowser1.Navigate(tmp + "?j_username=" + @Globals.gfSettings.txtIMSUser.Text + "&j_password=" + @Globals.gfSettings.txtIMSPassword.Text);
                 return true;
             }
             catch (Exception excep)
